@@ -21,25 +21,25 @@ const navbar = () => {
 					<li className="group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
 						<a href="#">
 							สมัครเข้าชมรม
-							<span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-green-400"></span>
+							<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 						</a>
 					</li>
 					<li className="group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
 						<a href="#" >
 							เกี่ยวกับเรา
-							<span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-green-400"></span>
+							<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 						</a>
 					</li>
 					<li className="group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
 						<a href="#" >
 							ข่าวสาร
-							<span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-green-400"></span>
+							<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 						</a>
 					</li>
 					<li className="group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
 						<a href="#" >
 							ติตต่อเรา
-							<span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-green-400"></span>
+							<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 						</a>
 					</li>
 				</ul>

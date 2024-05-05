@@ -12,11 +12,11 @@ export default function Home() {
       <div className="absolute inset-0 w-full h-full bg-black z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
 
       <Boxes />
-      <h1 className="">
+      <h1 className="pointer-events-none">
         <Image
           priority
           alt="Logo"
-          className="z-0 scale-90 pointer-events-none"
+          className="z-0 scale-90"
           src={logoIcon}
           width={500}
           height={500}
@@ -24,7 +24,7 @@ export default function Home() {
       </h1>
       <p className="flex text-center mt-2 text-neutral-300 relative z-20 pointer-events-none gap-4">
         <FaQuoteLeft /> 
-        NOTHING WILL WORK UNLESS YOU DO 
+        NOTHING WILL WORK UNLESS YOU DO
         <FaQuoteRight />
       </p>
     </div>
