@@ -29,7 +29,8 @@ const config: Config = {
   darkMode: "class",
   plugins: [
     nextui(),
-    addVariablesForColors
+    addVariablesForColors,
+    require('daisyui'),
   ],
 };
 
