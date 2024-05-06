@@ -7,6 +7,9 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { IoDocumentText } from "react-icons/io5";
 import { TbMoneybag } from "react-icons/tb";
 import { IoIosNotifications } from "react-icons/io";
+import { FaFacebookSquare,FaCalendarAlt,FaInstagram } from "react-icons/fa";
+import { SiGmail } from "react-icons/si";
+import { MdAnnouncement } from "react-icons/md";
 
 const navbar = () => {
 	const [activeA, setActiveA] = useState<string | null>(null); //for about
@@ -29,7 +32,7 @@ const navbar = () => {
 						</div>
 					</Link>
 					<div className="text-white order-3 w-full md:w-auto md:order-2">
-						<ul className="flex font-semibold justify-between  font-kanit">
+						<ul className="flex font-semibold justify-between font-kanit">
 							<li className="text-green-400 group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
 								<a href="#">
 									หน้าเเรก
@@ -52,20 +55,20 @@ const navbar = () => {
 												<div className='text-base '>งบประมาณ</div>
 											</div>
 										</Link>
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
+										<Link href="/clubhistory" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
 											<div className='flex gap-3'>
 												<IoDocumentText  className='text-xl'/>
 												<div className='text-base'>ประวัติชมรม</div>
 											</div>
 										</Link>
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
+										<Link href="/clubmember" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
 											<div className='flex gap-3'>
 												<FaPeopleGroup  className='text-xl'/>
 												<div className='text-base'>บุคคลากร</div>
 											</div>
 										</Link>
 										
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
+										<Link href="/clubactivities" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
 											<div className='flex gap-3'>
 												<IoIosNotifications  className='text-xl'/>
 												<div className='text-base'>กิจกรรมองค์กร</div>
@@ -78,31 +81,19 @@ const navbar = () => {
 							<MenuB setActiveB={setActiveB}>
 								<MenuItemDropdownB setActiveB={setActiveB} activeB={activeB} item="ข่าวสาร">
 									<div className="flex flex-col space-y-4 text-sm ">
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black  ">
+										<Link href="/news" className="text-neutral-700 dark:text-neutral-200 hover:text-black  ">
 											<div className='flex gap-3'>
-												< TbMoneybag  className='text-xl'/>
-												<div className='text-base '>งบประมาณ</div>
+												< MdAnnouncement  className='text-xl'/>
+												<div className='text-base '>ข่าวสารชมรม</div>
 											</div>
 										</Link>
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
+										<Link href="/calendar" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
 											<div className='flex gap-3'>
-												<IoDocumentText  className='text-xl'/>
-												<div className='text-base'>ประวัติชมรม</div>
-											</div>
-										</Link>
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
-											<div className='flex gap-3'>
-												<FaPeopleGroup  className='text-xl'/>
-												<div className='text-base'>บุคคลากร</div>
+												<FaCalendarAlt  className='text-xl'/>
+												<div className='text-base'>ปฏิทินกิจกรรม</div>
 											</div>
 										</Link>
 										
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
-											<div className='flex gap-3'>
-												<IoIosNotifications  className='text-xl'/>
-												<div className='text-base'>กิจกรรมองค์กร</div>
-											</div>
-										</Link>
 									</div>
 								</MenuItemDropdownB>
 							</MenuB>
@@ -110,29 +101,22 @@ const navbar = () => {
 							<MenuC setActiveC={setActiveC}>
 								<MenuItemDropdownC setActiveC={setActiveC} activeC={activeC} item="ติตต่อเรา">
 									<div className="flex flex-col space-y-4 text-sm ">
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black  ">
+										<Link href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-700 dark:text-neutral-200 hover:text-black  ">
 											<div className='flex gap-3'>
-												< TbMoneybag  className='text-xl'/>
-												<div className='text-base '>งบประมาณ</div>
+												< FaInstagram  className='text-xl'/>
+												<div className='text-base '>: cybergeek_club</div>
 											</div>
 										</Link>
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
+										<Link href="https://www.facebook.com/cybergeekclub.kusrc" target='_blank' className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
 											<div className='flex gap-3'>
-												<IoDocumentText  className='text-xl'/>
-												<div className='text-base'>ประวัติชมรม</div>
+												< FaFacebookSquare  className='text-xl'/>
+												<div className='text-base'>: CyberGeekClub</div>
 											</div>
 										</Link>
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
+										<Link href="https://mail.google.com/mail/#compose"  target='_blank' className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
 											<div className='flex gap-3'>
-												<FaPeopleGroup  className='text-xl'/>
-												<div className='text-base'>บุคคลากร</div>
-											</div>
-										</Link>
-										
-										<Link href="/clubbudget" className="text-neutral-700 dark:text-neutral-200 hover:text-black ">
-											<div className='flex gap-3'>
-												<IoIosNotifications  className='text-xl'/>
-												<div className='text-base'>กิจกรรมองค์กร</div>
+												< SiGmail  className='text-xl'/>
+												<div className='text-base'>: cybergeekclub@gmail.com</div>
 											</div>
 										</Link>
 									</div>
@@ -152,34 +136,4 @@ const navbar = () => {
 		</>
 	)
 }
-const PricingContent = () => {
-	return (
-		<div className="w-64 bg-white p-6 shadow-xl">
-			<div className="mb-3 space-y-3">
-				<h3 className="font-semibold">For Individuals</h3>
-				<a href="#" className="block text-sm hover:underline">
-					Introduction
-				</a>
-				<a href="#" className="block text-sm hover:underline">
-					Pay as you go
-				</a>
-			</div>
-			<div className="mb-6 space-y-3">
-				<h3 className="font-semibold">For Companies</h3>
-				<a href="#" className="block text-sm hover:underline">
-					Startups
-				</a>
-				<a href="#" className="block text-sm hover:underline">
-					SMBs
-				</a>
-				<a href="#" className="block text-sm hover:underline">
-					Enterprise
-				</a>
-			</div>
-			<button className="w-full rounded-lg border-2 border-neutral-950 px-4 py-2 font-semibold transition-colors hover:bg-neutral-950 hover:text-white">
-				Contact sales
-			</button>
-		</div>
-	);
-};
 export default navbar
