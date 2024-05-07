@@ -20,20 +20,20 @@ const navbar = () => {
 	return (
 		<>
 			<nav className=" bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
-				<div className="md:h-16 h-28 mx-auto md:px-4 flex items-center justify-between flex-wrap md:flex-nowrap">
+				<div className="h-16 md:h-16 mx-auto md:px-4 flex items-center justify-between flex-wrap md:flex-nowrap">
 				
 					<Link href="/">
-						<div className="text-white font-semibold font-kanit md:order-1 transition-all duration-250 hover:scale-110 ">
-							<div className='text-2xl px-4'>
+						<div className="mt-1 md:mt-0 text-white font-semibold font-kanit md:order-1 transition-all duration-250 hover:scale-110 ">
+							<div className='text-xl px-5 md:text-2xl md:px-4'>
 								CGC
 							</div>
-							<div className='text-xs'>
+							<div className='text-xs md:text-xs'>
 								CyberGeekClub
 							</div>
 						</div>
 					</Link>
 					<div className="text-white order-3 w-full md:w-auto md:order-2">
-						<ul className="flex font-semibold justify-between font-kanit">
+						<ul className="hidden lg:flex font-semibold justify-between font-kanit">
 							<li className="text-green-400 group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
 								<Link href="/">
 									หน้าเเรก
@@ -125,7 +125,7 @@ const navbar = () => {
 							</MenuC>
 						</ul>
 					</div>
-					<div className="order-2 md:order-3">
+					<div className="hidden  lg:flex order-2 md:order-3">
 						<Link href="/signin">
 						<button className="font-kanit px-4 py-2   transition-all duration-250 hover:scale-110 hover:text-green-400 text-gray-50 rounded-xl flex items-center gap-2">
 							<GoSignIn className=' text-2xl' />
