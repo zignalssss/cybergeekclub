@@ -14,7 +14,7 @@ export default function SignUp() {
 
   return (
     <div className="grid h-svh w-svw place-content-center">
-      <div className="flex md:max-w[500px] md:max-h-[700px]">
+      <div className="flex md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)]">
         <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl">
           <h1 className="text-3xl text-center font-inter font-bold py-20">
             Sign In
