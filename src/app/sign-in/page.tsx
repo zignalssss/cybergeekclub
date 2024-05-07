@@ -65,7 +65,7 @@ export default function SignUp() {
                 </button>
               </label>
               <label className="font-inter">
-                Don't have an account ?
+                Don&apos;t have an account ?
                 <a
                   href="sign-up"
                   className="underline underline-offset-8 font-inter mx-2"
@@ -93,7 +93,7 @@ export default function SignUp() {
                 </div>
                 <div className="label">
                   <span className="label-text text-white font-inter">
-                    Don't get the OPT ?
+                    Don&apos;t get the OPT ?
                     <a
                       href={""}
                       className="label-text font-inter text-white underline underline-offset-8 px-2"

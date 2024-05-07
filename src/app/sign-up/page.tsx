@@ -88,7 +88,7 @@ export default function SignUp() {
                 </div>
                 <div className="label">
                   <span className="label-text text-white font-inter">
-                    Don't get the OPT ?
+                    Don&apos;t get the OPT ?
                     <a
                       href={""}
                       className="label-text font-inter text-white underline underline-offset-8 px-2"
