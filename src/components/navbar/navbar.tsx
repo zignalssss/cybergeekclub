@@ -1,8 +1,13 @@
-'use client'
-import React, { useState } from 'react'
-import { GoSignIn } from "react-icons/go";
+'use client';
+//import function and component
+
 import Link from 'next/link';
+import React, { useState } from 'react'
 import {MenuA, MenuItemDropdownA,MenuB, MenuItemDropdownB,MenuC, MenuItemDropdownC } from "../ui/navbar-menu";
+import { motion } from "framer-motion";
+
+//import icons and image
+import { GoSignIn } from "react-icons/go";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { IoDocumentText } from "react-icons/io5";
 import { TbMoneybag } from "react-icons/tb";
@@ -11,11 +16,16 @@ import { FaFacebookSquare,FaCalendarAlt,FaInstagram } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import { MdAnnouncement } from "react-icons/md";
 
+const variants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 0, x: "-100%" },
+}
+
 const navbar = () => {
 	const [activeA, setActiveA] = useState<string | null>(null); //for about
 	const [activeB, setActiveB] = useState<string | null>(null); //for news
 	const [activeC, setActiveC] = useState<string | null>(null); //for contact
-	
+	const [isOpen, setIsOpen] = useState(false)//nav mobile
 
 	return (
 		<>
@@ -23,7 +33,7 @@ const navbar = () => {
 				<div className="h-16 md:h-16 mx-auto md:px-4 flex items-center justify-between flex-wrap md:flex-nowrap">
 				
 					<Link href="/">
-						<div className="mt-1 md:mt-0 text-white font-semibold font-kanit md:order-1 transition-all duration-250 hover:scale-110 ">
+						<div className=" mt-1 md:mt-0 text-white font-semibold font-kanit md:order-1 transition-all duration-250 hover:scale-110 ">
 							<div className='text-xl px-5 md:text-2xl md:px-4'>
 								CGC
 							</div>
@@ -133,7 +143,18 @@ const navbar = () => {
 						</button>
 						</Link>
 					</div>
+					{/* <div className='md:hidden'>
+						<motion.div
+						animate={isOpen ? "open" : "closed"}
+						variants={variants}
+						>
+						<button className='text-white' onClick={()=>{setIsOpen(true)}}>
+							TEST
+						</button>
+						</motion.div>
+					</div> */}
 				</div>
+				
 			</nav>
 
 		</>
