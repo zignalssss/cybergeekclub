@@ -105,7 +105,7 @@ const navbar = () => {
 										<Link href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-3'>
 												< FaInstagram  className='text-xl'/>
-												<div className='text-base '>: cybergeek_club</div>
+												<div className='text-base '>: cybergeekclub.src</div>
 											</div>
 										</Link>
 										<Link href="https://www.facebook.com/cybergeekclub.kusrc" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
