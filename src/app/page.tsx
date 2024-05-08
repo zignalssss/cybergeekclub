@@ -10,7 +10,6 @@ import Image from "next/image";
 import logoIcon from "../img/logoCGC_TW.svg";
 import { FaQuoteRight } from "react-icons/fa";
 import { FaQuoteLeft } from "react-icons/fa";
-import { Suspense } from "react";
 export default function Home() {
   return (
     <>
