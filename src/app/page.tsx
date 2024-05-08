@@ -1,7 +1,6 @@
 "use client";
 //import function and component
 import React from "react";
-import { Boxes } from "../components/ui/background-boxes";
 import { motion } from "framer-motion";
 import Yorhistory from "@/components/mainpage_comp/yorhistory";
 
@@ -18,14 +17,14 @@ export default function Home() {
         <div className=" inset-0  z-20  pointer-events-none h-[100vh] w-full bg-black ]  bg-grid-white/[0.1]  relative flex items-center justify-center">
           <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black  [mask-image:radial-gradient(ellipse_at_center,transparent,black)]"></div>
           <motion.div
-           initial={{ opacity: 0, scale: 0.5 }}
-           animate={{ opacity: 1, scale: 1 }}
-           transition={{
-             duration: 0.6,
-             delay: 0.1,
-             ease: [0, 0.71, 0.2, 1.01]
-           }}
-           className="flex flex-col items-center"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.1,
+              ease: [0, 0.71, 0.2, 1.01],
+            }}
+            className="flex flex-col items-center"
           >
             <Image
               priority
@@ -40,9 +39,9 @@ export default function Home() {
               NOTHING WILL WORK UNLESS YOU DO
               <FaQuoteRight />
             </p>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
-    </div >
       <Yorhistory />
     </>
   );
