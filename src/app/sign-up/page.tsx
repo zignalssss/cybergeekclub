@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import OTPInput from "@/components/otp/OTPInput";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const router = useRouter();
