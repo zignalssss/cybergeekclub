@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface newsObj {
+  banner: string;
   title: string;
   detail: string;
 }
@@ -19,10 +20,9 @@ const GridNews: React.FC<GridNewsProps> = ({ news, query }) => {
         return news.title.toLowerCase().includes(query.toLowerCase());
       })
     : [];
-  const [isFound, setIsFound] = useState("");
 
   return (
-    <div className={`${isFound} grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-fit h-fit overflow-y-auto`}>
+    <div className={`grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-fit h-fit overflow-y-auto`}>
       {Array.isArray(news) && filteredNews.length === 0 && (
         <>
         <div className="h-[500px] w-[500px]"/>
@@ -34,21 +34,24 @@ const GridNews: React.FC<GridNewsProps> = ({ news, query }) => {
       )}
       {Array.isArray(news) &&
         filteredNews.map((element, index) => (
+          
           <motion.div
             key={index}
-            className="text-center px-5 py-5 mx-2 my-2 border-solid border-white/50 border-2 rounded-2xl"
+            className="group px-5 py-5 mx-2 my-2 border-solid border-white/50 border-2 rounded-2xl hover:ring-1 hover:border-green-500 hover:ring-green-500 transition-all duration-200 hover:shadow-[0_0_10px_rgba(34, 197, 94,1)] shadow-zinc-200"
             initial={{ opacity: 0, y: -50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <Image
-              src="https://as2.ftcdn.net/v2/jpg/04/79/39/21/1000_F_479392118_SyGDm9Rewoxp5kpSiQBMVd96nl2M4GZs.jpg"
+              src={element.banner}
               width={500}
               height={500}
               alt="placeholder"
             ></Image>
-            <p>{element.title}</p>
-            <p>{element.detail}</p>
+            <article className="text-wrap">
+              <p className="group-hover:text-green-500 font-kanit text-start text-xl py-4">{element.title}</p>
+              <p className="group-hover:text-green-500 font-kanit text-start text-neutral-300">{element.detail}</p>
+            </article>
           </motion.div>
         ))}
     </div>

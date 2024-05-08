@@ -9,28 +9,37 @@ export default function News({
 }) {
   const query = searchParams?.query || "";
   interface newsNewsObj {
+    banner : string;
     title: string;
     detail: string;
   }
   const newsObj: newsNewsObj[] = [
     {
-      title: "test1",
-      detail: "detail",
+      banner : "",
+      title: "สมาร์ทโฟนรุ่นใหม่จากบริษัทชั้นนำเปิดตัว",
+      detail: "บริษัทชั้นนำในวงการเทคโนโลยีเปิดตัวสมาร์ทโฟนรุ่นใหม่ที่มาพร้อมกับคุณสมบัติและเทคโนโลยีล่าสุด เช่น กล้องความละเอียดสูง, โหมดถ่ายภาพใหม่, และปรับปรุงด้านประสิทธิภาพของระบบปฏิบัติการ",
     },
     {
-      title: "test2",
-      detail: "detail",
+      banner : "",
+      title: "การเปิดตัวและการพัฒนาโดรนใหม่",
+      detail: "บริษัทเทคโนโลยีชั้นนำเปิดตัวโดรนที่มีความสามารถในการบินและการถ่ายภาพที่สูงขึ้น โดรนรุ่นใหม่นี้มาพร้อมกับฟีเจอร์และความปลอดภัยที่ปรับปรุง",
     },
     {
-      title: "test3",
-      detail: "detail",
+      banner : "",
+      title: "อุปกรณ์สวมใส่อัจฉริยะในการติดตามสุขภาพ",
+      detail: "การเปิดตัวอุปกรณ์สวมใส่อัจฉริยะที่ช่วยในการติดตามสุขภาพและกิจกรรมการออกกำลังกายของผู้ใช้ อุปกรณ์ใหม่นี้มีฟีเจอร์ต่างๆ เช่น ตรวจวัดการนอนหลับ, ติดตามอารมณ์, และการวัดความเครียด",
+    },
+    {
+      banner : "",
+      title: "การเปิดตัวเทคโนโลยีความจริงเสมือนในสถานการณ์เชิงการศึกษา",
+      detail: "สถาบันการศึกษาและบริษัทเทคโนโลยีร่วมมือกันเปิดตัวโปรแกรมการเรียนการสอนที่ใช้เทคโนโลยีความจริงเสมือนในการสร้างประสบการณ์การเรียนที่มีความสมจริงและน่าสนใจสำหรับนักเรียน"
     },
   ];
   return (
     <>
       <div className="h-screen bg-black overflow-auto scroll-smooth scrollbar-hide">
-        <h1 className="text-center text-4xl font-inter font-bold py-10">
-          News
+        <h1 className="text-center text-4xl font-kanit font-bold py-10">
+          ข่าวสารชมรม
         </h1>
         <SearchNews />
         <div className="flex justify-center w-[100vw] h-fit">
