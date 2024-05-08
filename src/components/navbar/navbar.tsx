@@ -15,10 +15,11 @@ import { IoIosNotifications } from "react-icons/io";
 import { FaFacebookSquare, FaCalendarAlt, FaInstagram } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
 import { MdAnnouncement } from "react-icons/md";
+import { IoMenu } from "react-icons/io5";
 
 const variants = {
-	open: { opacity: 1, y: 0 },
-	closed: { opacity: 0, y: "-100%" },
+	open: { opacity: 1, x: 0 },
+	closed: { opacity: 0, x: "-100%" },
 }
 
 const navbar = () => {
@@ -26,12 +27,11 @@ const navbar = () => {
 	const [activeB, setActiveB] = useState<string | null>(null); //for news
 	const [activeC, setActiveC] = useState<string | null>(null); //for contact
 	const [isOpen, setIsOpen] = useState(true)//nav mobile
-	const [activeMobile, setActiveMobile] = useState<string | null>(null); //for NavMobile
-
+	const [isDrop, setIsDrop] = useState(false)
 	return (
 		<>
 			<nav className="bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
-				<div className="h-16 md:h-16 mx-auto md:px-4 flex items-center justify-between flex-wrap md:flex-nowrap">
+				<div className="h-16 md:h-16 mx-auto md:px-4 flex  items-center justify-between flex-wrap md:flex-nowrap">
 
 					<Link href="/">
 						<div className="mt-1 md:mt-0 text-white font-semibold font-kanit md:order-1 transition-all duration-250 hover:scale-110 ">
@@ -125,7 +125,7 @@ const navbar = () => {
 												<div className='text-base'>: CyberGeekClub</div>
 											</div>
 										</Link>
-										
+
 									</div>
 								</MenuItemDropdownC>
 							</MenuC>
@@ -145,7 +145,6 @@ const navbar = () => {
 						</button>
 					</div>
 				</div>
-
 				<motion.div
 					animate={isOpen ? "open" : "closed"}
 					variants={variants}
@@ -156,6 +155,14 @@ const navbar = () => {
 						className={`z-0 top-0 flex-1 font-kanit justify-self-center pb-3  lg:pb-0 lg:mt-0 lg:hidden ${isOpen ? 'p-12 lg:p-0 block' : 'hidden'
 							}`}
 					>
+						<div className='flex gap-4'>
+							<div className="avatar">
+								<div className="w-10 rounded-full">
+									<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+								</div>
+							</div>
+							<div className='text-sm mt-2'> Name UsurName</div>
+						</div>
 						<ul className="h-screen w-52 lg:h-auto items-center justify-center lg:flex ">
 							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
 								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
@@ -168,57 +175,53 @@ const navbar = () => {
 								</Link>
 							</li>
 							<li className=" pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400  lg:hover:bg-transparent">
-								{/* <Link href="#blog" onClick={() => setIsOpen(!isOpen)}>
-									Blogs
-								</Link> */}
+							
 								<details>
 									<summary>เกี่ยวกับเรา</summary>
-									<ul>
+									<ul className='flex flex-col gap-2 ml-3 mt-4'>
 										<Link href="/clubbudget" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-2'>
-												< TbMoneybag className='text-xl' />
-												<div className='text-base '>งบประมาณ</div>
+												< TbMoneybag className='text-2xl' />
+												<div className='text-sm '>งบประมาณ</div>
 											</div>
 										</Link>
 										<Link href="/clubhistory" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
-												<IoDocumentText className='text-xl' />
-												<div className='text-base'>ประวัติชมรม</div>
+												<IoDocumentText className='text-2xl' />
+												<div className='text-sm'>ประวัติชมรม</div>
 											</div>
 										</Link>
 										<Link href="/clubmember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
-												<FaPeopleGroup className='text-xl' />
-												<div className='text-base'>บุคคลากร</div>
+												<FaPeopleGroup className='text-2xl' />
+												<div className='text-sm'>บุคคลากร</div>
 											</div>
 										</Link>
 
 										<Link href="/clubactivities" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
-												<IoIosNotifications className='text-xl' />
-												<div className='text-base'>กิจกรรมองค์กร</div>
+												<IoIosNotifications className='text-2xl' />
+												<div className='text-sm'>กิจกรรมองค์กร</div>
 											</div>
 										</Link>
 									</ul>
 								</details>
 							</li>
 							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400   md:hover:bg-transparent">
-								{/* <Link href="#contact" onClick={() => setIsOpen(!isOpen)}>
-									Contact
-								</Link> */}
+							
 								<details>
 									<summary>ข่าวสาร</summary>
-									<ul>
+									<ul className='flex flex-col gap-2 ml-3 mt-4'>
 										<Link href="/news" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-2'>
-												< MdAnnouncement className='text-xl' />
-												<div className='text-base '>ข่าวสารชมรม</div>
+												< MdAnnouncement className='text-2xl' />
+												<div className='text-sm '>ข่าวสารชมรม</div>
 											</div>
 										</Link>
 										<Link href="/eventcalendar" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
-												<FaCalendarAlt className='text-xl' />
-												<div className='text-base'>ปฏิทินกิจกรรม</div>
+												<FaCalendarAlt className='text-2xl' />
+												<div className='text-sm'>ปฏิทินกิจกรรม</div>
 											</div>
 										</Link>
 
@@ -226,11 +229,12 @@ const navbar = () => {
 								</details>
 							</li>
 							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400   md:hover:bg-transparent">
-								{/* <Link href="#projects" onClick={() => setIsOpen(!isOpen)}>
-									Projects
-								</Link> */}
-								<details>
-									<summary>ติตต่อเรา</summary>
+
+
+								<div onClick={() => setIsDrop(!isDrop)}>
+									ติตต่อเรา
+								</div>
+								<div className={`${isDrop ? `flex` : `hidden`}`}>
 									<ul className='flex flex-col gap-2 ml-3 mt-4'>
 										<Link href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-2'>
@@ -245,14 +249,14 @@ const navbar = () => {
 											</div>
 										</Link>
 									</ul>
-								</details>
+								</div>
 							</li>
 							<li>
 								<Link href="/sign-in">
-								<button className="font-kanit px-4 py-2   transition-all duration-250 hover:scale-110 hover:text-green-400 text-gray-50 rounded-xl flex items-center gap-2">
-									<GoSignIn className=' text-2xl' />
-									<span>เข้าสู่ระบบ</span>
-								</button>
+									<button className="font-kanit px-4 py-2   transition-all duration-250 hover:scale-110 hover:text-green-400 text-gray-50 rounded-xl flex items-center gap-2">
+										<GoSignIn className=' text-2xl' />
+										<span>เข้าสู่ระบบ</span>
+									</button>
 								</Link>
 							</li>
 						</ul>
