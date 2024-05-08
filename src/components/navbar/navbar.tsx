@@ -25,7 +25,7 @@ const navbar = () => {
 	const [activeA, setActiveA] = useState<string | null>(null); //for about
 	const [activeB, setActiveB] = useState<string | null>(null); //for news
 	const [activeC, setActiveC] = useState<string | null>(null); //for contact
-	const [isOpen, setIsOpen] = useState(false)//nav mobile
+	const [isOpen, setIsOpen] = useState(true)//nav mobile
 	const [activeMobile, setActiveMobile] = useState<string | null>(null); //for NavMobile
 
 	return (
@@ -112,7 +112,7 @@ const navbar = () => {
 
 							<MenuC setActiveC={setActiveC}>
 								<MenuItemDropdownC setActiveC={setActiveC} activeC={activeC} item="ติตต่อเรา">
-									<div className="flex flex-col space-y-4 text-sm ">
+									<div className="flex flex-col space-y-4 text-sm">
 										<Link href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-3'>
 												< FaInstagram className='text-xl' />
@@ -125,12 +125,7 @@ const navbar = () => {
 												<div className='text-base'>: CyberGeekClub</div>
 											</div>
 										</Link>
-										<Link href="https://mail.google.com/mail/#compose" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
-											<div className='flex gap-3'>
-												< SiGmail className='text-xl' />
-												<div className='text-base'>: cybergeekclub@gmail.com</div>
-											</div>
-										</Link>
+										
 									</div>
 								</MenuItemDropdownC>
 							</MenuC>
@@ -150,79 +145,115 @@ const navbar = () => {
 						</button>
 					</div>
 				</div>
-				
+
 				<motion.div
-				animate={isOpen ? "open" : "closed"}
-				variants={variants}
-				transition = { {type: "spring",duration: 0.5} }
-				className='flex justify-end relative z-100'
-			>
+					animate={isOpen ? "open" : "closed"}
+					variants={variants}
+					transition={{ type: "spring", duration: 0.5 }}
+					className='flex justify-end relative z-100'
+				>
 					<div
-						className={`top-0 flex-1 font-kanit justify-self-center pb-3  lg:pb-0 lg:mt-0 lg:hidden ${isOpen ? 'p-12 lg:p-0 block' : 'hidden'
+						className={`z-0 top-0 flex-1 font-kanit justify-self-center pb-3  lg:pb-0 lg:mt-0 lg:hidden ${isOpen ? 'p-12 lg:p-0 block' : 'hidden'
 							}`}
 					>
-						<ul className="h-screen lg:h-auto items-center justify-center lg:flex ">
-							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:bg-purple-900  border-green-400  lg:hover:text-purple-600 lg:hover:bg-transparent">
+						<ul className="h-screen w-52 lg:h-auto items-center justify-center lg:flex ">
+							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
 								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
 									หน้าเเรก
 								</Link>
 							</li>
-							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:bg-purple-900  border-green-400  lg:hover:text-purple-600 lg:hover:bg-transparent">
+							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
 								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
 									สมัครเข้าชมรม
 								</Link>
 							</li>
-							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0  hover:bg-purple-600  border-green-400  lg:hover:text-purple-600 lg:hover:bg-transparent">
+							<li className=" pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400  lg:hover:bg-transparent">
 								{/* <Link href="#blog" onClick={() => setIsOpen(!isOpen)}>
 									Blogs
 								</Link> */}
 								<details>
-								<summary>เกี่ยวกับเรา</summary>
+									<summary>เกี่ยวกับเรา</summary>
 									<ul>
-									<li><a>Submenu 1</a></li>
-									<li><a>Submenu 2</a></li>
+										<Link href="/clubbudget" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
+											<div className='flex gap-2'>
+												< TbMoneybag className='text-xl' />
+												<div className='text-base '>งบประมาณ</div>
+											</div>
+										</Link>
+										<Link href="/clubhistory" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+											<div className='flex gap-2'>
+												<IoDocumentText className='text-xl' />
+												<div className='text-base'>ประวัติชมรม</div>
+											</div>
+										</Link>
+										<Link href="/clubmember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+											<div className='flex gap-2'>
+												<FaPeopleGroup className='text-xl' />
+												<div className='text-base'>บุคคลากร</div>
+											</div>
+										</Link>
+
+										<Link href="/clubactivities" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+											<div className='flex gap-2'>
+												<IoIosNotifications className='text-xl' />
+												<div className='text-base'>กิจกรรมองค์กร</div>
+											</div>
+										</Link>
 									</ul>
 								</details>
 							</li>
-							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0  hover:bg-purple-600  border-green-400  lg:hover:text-purple-600 md:hover:bg-transparent">
+							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400   md:hover:bg-transparent">
 								{/* <Link href="#contact" onClick={() => setIsOpen(!isOpen)}>
 									Contact
 								</Link> */}
 								<details>
-								<summary>ข่าวสาร</summary>
+									<summary>ข่าวสาร</summary>
 									<ul>
-									<li><a>Submenu 1</a></li>
-									<li><a>Submenu 2</a></li>
+										<Link href="/news" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
+											<div className='flex gap-2'>
+												< MdAnnouncement className='text-xl' />
+												<div className='text-base '>ข่าวสารชมรม</div>
+											</div>
+										</Link>
+										<Link href="/eventcalendar" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+											<div className='flex gap-2'>
+												<FaCalendarAlt className='text-xl' />
+												<div className='text-base'>ปฏิทินกิจกรรม</div>
+											</div>
+										</Link>
+
 									</ul>
 								</details>
 							</li>
-							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0  hover:bg-purple-600  border-green-400  lg:hover:text-purple-600 md:hover:bg-transparent">
+							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400   md:hover:bg-transparent">
 								{/* <Link href="#projects" onClick={() => setIsOpen(!isOpen)}>
 									Projects
 								</Link> */}
 								<details>
-								<summary>ติตต่อเรา</summary>
-									<ul>
-									<Link href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
-											<div className='flex gap-3'>
-												< FaInstagram className='text-xl' />
-												<div className='text-base '>: cybergeekclub.src</div>
+									<summary>ติตต่อเรา</summary>
+									<ul className='flex flex-col gap-2 ml-3 mt-4'>
+										<Link href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
+											<div className='flex gap-2'>
+												< FaInstagram className='text-2xl' />
+												<div className='text-sm '>:cybergeekclub.src</div>
 											</div>
 										</Link>
 										<Link href="https://www.facebook.com/cybergeekclub.kusrc" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
-											<div className='flex gap-3'>
-												< FaFacebookSquare className='text-xl' />
-												<div className='text-base'>: CyberGeekClub</div>
-											</div>
-										</Link>
-										<Link href="https://mail.google.com/mail/#compose" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
-											<div className='flex gap-3'>
-												< SiGmail className='text-xl' />
-												<div className='text-base'>: cybergeekclub@gmail.com</div>
+											<div className='flex gap-2'>
+												< FaFacebookSquare className='text-2xl' />
+												<div className='text-sm'>:CyberGeekClub</div>
 											</div>
 										</Link>
 									</ul>
 								</details>
+							</li>
+							<li>
+								<Link href="/sign-in">
+								<button className="font-kanit px-4 py-2   transition-all duration-250 hover:scale-110 hover:text-green-400 text-gray-50 rounded-xl flex items-center gap-2">
+									<GoSignIn className=' text-2xl' />
+									<span>เข้าสู่ระบบ</span>
+								</button>
+								</Link>
 							</li>
 						</ul>
 					</div>

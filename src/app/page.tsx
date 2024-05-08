@@ -35,9 +35,9 @@ export default function Home() {
               height={500}
             />
             <p className="flex text-center mt-2 text-neutral-300 text-sm md:text-base relative z-20 pointer-events-none gap-4">
-              <FaQuoteLeft />
+              &quot;
               NOTHING WILL WORK UNLESS YOU DO
-              <FaQuoteRight />
+              &quot;
             </p>
         </motion.div>
       </div>
