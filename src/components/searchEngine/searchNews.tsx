@@ -18,7 +18,7 @@ const SearchNews = () => {
 
   return (
     <>
-      <div className="flex justify-center w-full p-10">
+      <div className="flex justify-center w-full p-10" >
         <input
           className="input w-4/5 bg-[#302E2E]"
           type="search"
