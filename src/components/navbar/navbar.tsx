@@ -163,7 +163,7 @@ const navbar = () => {
 							</div>
 						</div>
 					</div> */}
-					<div className="navbar ">
+					<div className="navbar lg:hidden">
 						<div className="navbar-start">
 							<div className="dropdown">
 								<button onClick={() => { setIsOpen(!isOpen) }}>
