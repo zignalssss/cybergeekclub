@@ -146,11 +146,14 @@ const Navbar = () => {
 					</div>
 					<div className="hidden  lg:flex order-2 md:order-3">
 						{isLogin ? <div className="dropdown dropdown-end">
-							<div tabIndex={0} role="button">
+							<div tabIndex={0} role="button" className='flex group '>
 								<div className="avatar">
-									<div className="w-9 mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_7px_rgba(22,101,52)]">
+									<div className="transition-all duration-250 group-hover:drop-shadow-[0_0_10px_rgba(22,101,52)] w-7mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_4px_rgba(22,101,52)]">
 										<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
 									</div>
+								</div>
+								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)]'>
+										PERTH
 								</div>
 							</div>
 							{/* dropdown-content */}
@@ -168,11 +171,15 @@ const Navbar = () => {
 									<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
 										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>Member</span></div>
 									</div>
-									<div className=' flex items-center py-4 md:py-5 h-5 hover:bg-neutral-950  rounded-md'>
-										<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
+									<div className=' flex items-center py-4 mt-2 md:py-5 h-5 hover:bg-neutral-950  rounded-md'>
+										<Link href="/setting">
+											<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
+										</Link>
 									</div>
 									<div className=' flex items-center py-4 md:py-5 h-5 hover:bg-neutral-950 rounded-md'>
-										<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
+										<Link href="/activitieshistory">
+											<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
+										</Link>
 									</div>
 									<div className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md '>
 										<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
@@ -190,24 +197,8 @@ const Navbar = () => {
 							</Link>}
 
 					</div>
-					{/* <div className='lg:hidden grid grid-cols-3 gap-11'>
-						<div className='btn ' onClick={() => { setIsOpen(!isOpen) }}>
-							teet
-						</div>
-						<div className='font-kanit font-semibold r'>
-							<div className='text-xl px-5 md:text-2xl md:px-4'>
-								CGC
-							</div>
-							<div className='text-xs md:text-xs'>
-								CyberGeekClub
-							</div>
-						</div>
-						<div className="avatar">
-							<div className="w-12 scale-75 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-								<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-							</div>
-						</div>
-					</div> */}
+					{/* Responsive Navbar  Design*/}
+
 					<div className="navbar lg:hidden">
 						<div className="navbar-start">
 							<div className="dropdown ">
@@ -239,6 +230,8 @@ const Navbar = () => {
 								</div>
 							</div>
 						</div>
+						
+
 						<div className="navbar-end">
 							{isLogin ?
 								<div className="dropdown dropdown-end">
@@ -264,11 +257,16 @@ const Navbar = () => {
 											<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
 												<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>Member</span></div>
 											</div>
-											<div className='flex items-center py-4 md:py-5 h-5  '>
-												<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
+											<div className='flex items-center py-4 mt-2 md:py-5 h-5 rounded-md hover:bg-neutral-950'>
+												<Link href="/setting">
+													<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
+												</Link>
 											</div>
-											<div className='flex items-center py-4 md:py-5 h-5  '>
-												<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
+											<div className='flex items-center py-4 md:py-5 h-5 rounded-md hover:bg-neutral-950 '>
+												<Link href="/activitieshistory">
+													<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
+												</Link>
+												
 											</div>
 											<div className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md '>
 												<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
@@ -288,33 +286,6 @@ const Navbar = () => {
 						</div>
 					</div>
 				</div>
-				{/* Responsive Navbar  Design*/}
-
-				{/* <motion.div
-					animate={isOpenProfile ? "open" : "closed"}
-					variants={variantsright}
-					transition={{ type: "spring", duration: 0.5 }}
-					className={`${isOpenProfile ? "flex justify-end relative z-50": "hidden"} `}
-				>
-					<div
-						className={`z-0 top-0 flex-1 font-kanit pb-3 lg:pb-0 lg:mt-0 lg:hidden ${isOpenProfile ? 'p-12 lg:p-0 block' : 'hidden'
-							}`}
-					>
-						<ul className="h-screen max-w-screen lg:h-auto items-center justify-center lg:flex ">
-							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
-								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
-									หน้าเเรก
-								</Link>
-							</li>
-							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
-								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
-									สมัครเข้าชมรม
-								</Link>
-							</li>
-							
-						</ul>
-					</div>
-				</motion.div> */}
 
 				<motion.div
 					animate={isOpen ? "open" : "closed"}
