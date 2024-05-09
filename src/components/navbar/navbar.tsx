@@ -27,7 +27,7 @@ const variantsright = {
 	closed: { opacity: 0, x: "100%" },
 }
 
-const navbar = () => {
+const Navbar = () => {
 	const [activeA, setActiveA] = useState<string | null>(null); //for about
 	const [activeB, setActiveB] = useState<string | null>(null); //for news
 	const [activeC, setActiveC] = useState<string | null>(null); //for contact
@@ -311,4 +311,4 @@ const navbar = () => {
 		</>
 	)
 }
-export default navbar
+export default Navbar
