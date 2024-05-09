@@ -222,3 +222,74 @@ export const MenuC = ({
   );
 };
 
+// section mobile 
+// export const MenuItemDropdownMobile = ({
+//   ActiveMobile,
+//   activeMobile,
+//   item,
+//   children,
+// }: {
+//   ActiveMobile: (item: string) => void;
+//   activeMobile: string | null;
+//   item: string;
+//   children?: React.ReactNode;
+// }) => {
+//   return (
+//     <div onClick={() => ActiveMobile(item)} className="relative">
+//       <motion.div
+//         transition={{ duration: 0.3 }}
+//         className="cursor-pointer text-white hover:opacity-[0.9] dark:text-white"
+//       >
+//         <div className={`group md:px-4 md:py-2 transition-all duration-250 ${activeMobile ? 'text-green-400 scale-110' : 'text-green-40'}`}>
+//           <div className="flex">
+//             {item}
+//             {activeMobile ? <RiArrowDropDownLine className="mt-1 text-xl transition-all duration-250 text-green-400" /> : <RiArrowDropDownLine className="mt-1 text-xl transition-all duration-250 rotate-180 text-white" />}
+//           </div>
+//           <span className={`flex justify-center justify-items-center scale-0 transition-all duration-500 h-0.5 bg-green-400 ${activeMobile ? 'scale-100' : 'scale-0'}`}></span>
+//         </div>
+//       </motion.div>
+//       {activeMobile !== null && (
+//         <motion.div
+//           initial={{ opacity: 0, scale: 0.85, y: 10 }}
+//           animate={{ opacity: 1, scale: 1, y: 0 }}
+//           transition={transition}
+//         >
+//           {activeMobile === item && (
+//             <div className="absolute top-[calc(100%_+_0.2rem)] left-1/2 transform -translate-x-1/2">
+//               <motion.div
+//                 transition={transition}
+//                 layoutId="active" // layoutId ensures smooth animation
+//                 className="bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-white/[0.2] shadow-xl"
+//               >
+//                 <motion.div
+//                   layout // layout ensures smooth animation
+//                   className="w-max h-full p-4"
+//                 >
+//                   {children}
+//                 </motion.div>
+//               </motion.div>
+//             </div>
+//           )}
+//         </motion.div>
+//       )}
+//     </div>
+//   );
+// };
+
+
+// export const MenuMobile = ({
+//   ActiveMobile,
+//   children,
+// }: {
+//   ActiveMobile: (item: string | null) => void;
+//   children: React.ReactNode;
+// }) => {
+//   return (
+//     <nav
+//       onMouseLeave={() => ActiveMobile(null)} // resets the state
+//     >
+//       {children}
+//     </nav>
+//   );
+// };
+
