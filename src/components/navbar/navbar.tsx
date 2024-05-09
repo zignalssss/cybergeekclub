@@ -31,9 +31,16 @@ const Navbar = () => {
 	const [activeA, setActiveA] = useState<string | null>(null); //for about
 	const [activeB, setActiveB] = useState<string | null>(null); //for news
 	const [activeC, setActiveC] = useState<string | null>(null); //for contact
-	const [isOpen, setIsOpen] = useState(true)//nav mobile
-	const [isDrop, setIsDrop] = useState(false)
-	const [isLogin,setIsLogin] = useState(true)
+
+	{ /*  section for mobile responsive */ }
+	const [isOpen, setIsOpen] = useState(false)//nav mobile left
+	const [isOpenProfile, setIsOpenProfile] = useState(false)//nav mobile Profile right 
+
+	const [isDrop, setIsDrop] = useState(false)//dropdown in nav About
+	const [isDrop1, setIsDrop1] = useState(false)//dropdown in nav News
+	const [isDrop2, setIsDrop2] = useState(false)//dropdown in nav Contact
+
+	const [isLogin, setIsLogin] = useState(true)//login state
 	return (
 		<>
 			<nav className="bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
@@ -138,12 +145,50 @@ const Navbar = () => {
 						</ul>
 					</div>
 					<div className="hidden  lg:flex order-2 md:order-3">
-						<Link href="/sign-in">
-							<button className="font-kanit px-4 py-2   transition-all duration-250 hover:scale-110 hover:text-green-400 text-gray-50 rounded-xl flex items-center gap-2">
-								<GoSignIn className=' text-2xl' />
-								<span>เข้าสู่ระบบ</span>
-							</button>
-						</Link>
+						{isLogin ? <div className="dropdown dropdown-end">
+							<div tabIndex={0} role="button">
+								<div className="avatar">
+									<div className="w-9 mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_7px_rgba(22,101,52)]">
+										<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+									</div>
+								</div>
+							</div>
+							{/* dropdown-content */}
+							<ul tabIndex={0} className="bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 bg-black rounded-md w-52 md:w-60 border border-white/0.2">
+								<div className='flex flex-col gap-1'>
+									<div className='text-base md:text-xl indent-3 font-semibold text-green-500 drop-shadow-[0_0_3px_rgba(22,101,52)]'>
+										Somchai Jaidee
+									</div>
+									<div className='text-base md:text-sm mb-2 indent-3 font-semibold text-white'>
+										Faculty of Engineering
+									</div>
+									<div className='flex items-center py-4 md:py-5 h-5 border rounded-md'>
+										<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>100</span></div>
+									</div>
+									<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
+										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>Member</span></div>
+									</div>
+									<div className=' flex items-center py-4 md:py-5 h-5 hover:bg-neutral-950  rounded-md'>
+										<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
+									</div>
+									<div className=' flex items-center py-4 md:py-5 h-5 hover:bg-neutral-950 rounded-md'>
+										<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
+									</div>
+									<div className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md '>
+										<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
+									</div>
+
+								</div>
+							</ul>
+						</div>
+							:
+							<Link href="/sign-in">
+								<button className="font-kanit px-4 py-2   transition-all duration-250 hover:scale-110 hover:text-green-400 text-gray-50 rounded-xl flex items-center gap-2">
+									<GoSignIn className=' text-2xl' />
+									<span>เข้าสู่ระบบ</span>
+								</button>
+							</Link>}
+
 					</div>
 					{/* <div className='lg:hidden grid grid-cols-3 gap-11'>
 						<div className='btn ' onClick={() => { setIsOpen(!isOpen) }}>
@@ -165,11 +210,23 @@ const Navbar = () => {
 					</div> */}
 					<div className="navbar lg:hidden">
 						<div className="navbar-start">
-							<div className="dropdown">
-								<button onClick={() => { setIsOpen(!isOpen) }}>
-									{isOpen?< IoMdClose className='mt-3 text-2xl md:text-4xl transition-all duration-250'/> : <IoMenu className='mt-3 text-2xl md:text-4xl transition-all duration-250'/>}
-									
-								</button>
+							<div className="dropdown ">
+
+								<label className="swap swap-rotate mt-2">
+
+									{/* this hidden checkbox controls the state */}
+									<input onClick={() => { setIsOpen(!isOpen); setIsOpenProfile(false); }} type="checkbox" />
+
+									{/* hamburger icon */}
+									<svg className="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" /></svg>
+
+									{/* close icon */}
+									<svg className="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" /></svg>
+
+								</label>
+								{/* {isOpen ? < IoMdClose className='mt-3 text-2xl md:text-4xl transition-all duration-250' /> : <IoMenu className='mt-3 text-2xl md:text-4xl transition-all duration-250' />} */}
+
+
 							</div>
 						</div>
 						<div className="navbar-center">
@@ -183,25 +240,87 @@ const Navbar = () => {
 							</div>
 						</div>
 						<div className="navbar-end">
-							<button className="btn btn-ghost btn-circle">
-								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-							</button>
-							<button className="btn btn-ghost btn-circle">
-								<div className="indicator">
-									<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
-									<span className="badge badge-xs badge-primary indicator-item"></span>
+							{isLogin ?
+								<div className="dropdown dropdown-end">
+									<div tabIndex={0} role="button">
+										<div className="avatar">
+											<div className="w-9 mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_7px_rgba(22,101,52)]">
+												<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+											</div>
+										</div>
+									</div>
+									{/* dropdown-content */}
+									<ul tabIndex={0} className="bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 bg-black rounded-md w-52 md:w-60 border border-white/0.2">
+										<div className='flex flex-col gap-1'>
+											<div className='text-base md:text-xl indent-3 font-semibold text-green-500 drop-shadow-[0_0_3px_rgba(22,101,52)]'>
+												Somchai Jaidee
+											</div>
+											<div className='text-xs md:text-sm mb-2 indent-3 font-semibold text-white '>
+												Faculty of Engineering
+											</div>
+											<div className='flex items-center py-4 md:py-5 h-5 border rounded-md'>
+												<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>100</span></div>
+											</div>
+											<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
+												<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>Member</span></div>
+											</div>
+											<div className='flex items-center py-4 md:py-5 h-5  '>
+												<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
+											</div>
+											<div className='flex items-center py-4 md:py-5 h-5  '>
+												<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
+											</div>
+											<div className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md '>
+												<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
+											</div>
+
+										</div>
+									</ul>
 								</div>
-							</button>
+								:
+								<Link href="/sign-in">
+									<button className="mt-[10%] font-semibold underline underline-offset-4 font-kanit transition-all duration-250 hover:text-green-400 text-gray-50 flex gap-2 ">
+										<GoSignIn className='text-sm mt-[5%]' />
+										<span className=' text-sm' >เข้าสู่ระบบ</span>
+									</button>
+								</Link>
+							}
 						</div>
 					</div>
 				</div>
 				{/* Responsive Navbar  Design*/}
 
+				{/* <motion.div
+					animate={isOpenProfile ? "open" : "closed"}
+					variants={variantsright}
+					transition={{ type: "spring", duration: 0.5 }}
+					className={`${isOpenProfile ? "flex justify-end relative z-50": "hidden"} `}
+				>
+					<div
+						className={`z-0 top-0 flex-1 font-kanit pb-3 lg:pb-0 lg:mt-0 lg:hidden ${isOpenProfile ? 'p-12 lg:p-0 block' : 'hidden'
+							}`}
+					>
+						<ul className="h-screen max-w-screen lg:h-auto items-center justify-center lg:flex ">
+							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
+								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
+									หน้าเเรก
+								</Link>
+							</li>
+							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
+								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
+									สมัครเข้าชมรม
+								</Link>
+							</li>
+							
+						</ul>
+					</div>
+				</motion.div> */}
+
 				<motion.div
 					animate={isOpen ? "open" : "closed"}
 					variants={variantsleft}
 					transition={{ type: "spring", duration: 0.5 }}
-					className='flex justify-end relative z-100'
+					className={`${isOpen ? "flex justify-end relative z-100" : "hidden"} `}
 				>
 					<div
 						className={`z-0 top-0 flex-1 font-kanit justify-self-center pb-3  lg:pb-0 lg:mt-0 lg:hidden ${isOpen ? 'p-12 lg:p-0 block' : 'hidden'
@@ -223,26 +342,26 @@ const Navbar = () => {
 								<details>
 									<summary>เกี่ยวกับเรา</summary>
 									<ul className='flex flex-col gap-2 ml-3 mt-4'>
-										<Link href="/clubbudget" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="/clubbudget" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-2'>
 												< TbMoneybag className='text-2xl' />
 												<div className='text-sm '>งบประมาณ</div>
 											</div>
 										</Link>
-										<Link href="/clubhistory" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="/clubhistory" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<IoDocumentText className='text-2xl' />
 												<div className='text-sm'>ประวัติชมรม</div>
 											</div>
 										</Link>
-										<Link href="/clubmember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="/clubmember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<FaPeopleGroup className='text-2xl' />
 												<div className='text-sm'>บุคคลากร</div>
 											</div>
 										</Link>
 
-										<Link href="/clubactivities" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="/clubactivities" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<IoIosNotifications className='text-2xl' />
 												<div className='text-sm'>กิจกรรมองค์กร</div>
@@ -256,13 +375,13 @@ const Navbar = () => {
 								<details>
 									<summary>ข่าวสาร</summary>
 									<ul className='flex flex-col gap-2 ml-3 mt-4'>
-										<Link href="/news" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="/news" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-2'>
 												< MdAnnouncement className='text-2xl' />
 												<div className='text-sm '>ข่าวสารชมรม</div>
 											</div>
 										</Link>
-										<Link href="/eventcalendar" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="/eventcalendar" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<FaCalendarAlt className='text-2xl' />
 												<div className='text-sm'>ปฏิทินกิจกรรม</div>
@@ -295,17 +414,15 @@ const Navbar = () => {
 									</ul>
 								</div>
 							</li>
-							<li>
-								<Link href="/sign-in">
-									<button className="font-kanit px-4 py-2   transition-all duration-250 hover:scale-110 hover:text-green-400 text-gray-50 rounded-xl flex items-center gap-2">
-										<GoSignIn className=' text-2xl' />
-										<span>เข้าสู่ระบบ</span>
-									</button>
-								</Link>
-							</li>
+
 						</ul>
 					</div>
 				</motion.div>
+
+				{/* Profile Info*/}
+
+
+
 			</nav>
 
 		</>
