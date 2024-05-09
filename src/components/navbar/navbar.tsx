@@ -40,7 +40,7 @@ const Navbar = () => {
 	const [isDrop1, setIsDrop1] = useState(false)//dropdown in nav News
 	const [isDrop2, setIsDrop2] = useState(false)//dropdown in nav Contact
 
-	const [isLogin, setIsLogin] = useState(true)//login state
+	const [isLogin, setIsLogin] = useState(false)//login state
 	return (
 		<>
 			<nav className="bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
@@ -194,8 +194,8 @@ const Navbar = () => {
 									<GoSignIn className=' text-2xl' />
 									<span>เข้าสู่ระบบ</span>
 								</button>
-							</Link>}
-
+							</Link>
+						}
 					</div>
 					{/* Responsive Navbar  Design*/}
 
