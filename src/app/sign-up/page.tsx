@@ -2,33 +2,12 @@
 import React, { useState } from "react";
 import OTPInput from "@/components/otp/OTPInput";
 import { useRouter } from "next/navigation";
+import { faculty } from "./faculty";
+
 export default function SignUp() {
   const router = useRouter();
   const onChange = (value: string) => setOpt(value);
-  const faculty = [
-    { id: 1, th: "คณะวิทยาการจัดการ", en: "Faculty of Management Sciences" },
-    {
-      id: 2,
-      th: "คณะวิศวกรรมศาสตร์ ศรีราชา",
-      en: "Faculty of Engineering at Sriracha",
-    },
-    {
-      id: 3,
-      th: "คณะวิทยาศาสตร์ ศรีราชา",
-      en: "Faculty of Science at Sriracha",
-    },
-    {
-      id: 4,
-      th: "คณะเศรษฐศาสตร์ ศรีราชา",
-      en: "Faculty of Economics at Sriracha",
-    },
-    {
-      id: 5,
-      th: "คณะพาณิชยนาวีนานาชาติ",
-      en: "Faculty of International Maritime Studies",
-    },
-  ];
-  const faculty_of_management_sciences = [];
+  
 
   const [showVerify, setShowVerify] = useState("hidden");
   const [showPersonalInfo1, setShowPersonalInfo1] = useState("hidden");
@@ -118,8 +97,9 @@ export default function SignUp() {
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
-                      const facultyEnDropdown =
-                        document.getElementById("prefixEN") as HTMLSelectElement;
+                      const facultyEnDropdown = document.getElementById(
+                        "prefixEN"
+                      ) as HTMLSelectElement;
                       if (facultyEnDropdown) {
                         facultyEnDropdown.selectedIndex = selectedIndex;
                       }
@@ -165,8 +145,9 @@ export default function SignUp() {
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
-                      const facultyEnDropdown =
-                        document.getElementById("prefixTH") as HTMLSelectElement;
+                      const facultyEnDropdown = document.getElementById(
+                        "prefixTH"
+                      ) as HTMLSelectElement;
                       if (facultyEnDropdown) {
                         facultyEnDropdown.selectedIndex = selectedIndex;
                       }
@@ -175,9 +156,9 @@ export default function SignUp() {
                     <option disabled selected>
                       choose
                     </option>
-                    <option >Mr</option>
-                    <option >Mrs</option>
-                    <option >Miss</option>
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                    <option>Miss</option>
                   </select>
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -303,8 +284,9 @@ export default function SignUp() {
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
-                      const facultyEnDropdown =
-                        document.getElementById("facultyEn") as HTMLSelectElement;
+                      const facultyEnDropdown = document.getElementById(
+                        "facultyEn"
+                      ) as HTMLSelectElement;
                       if (facultyEnDropdown) {
                         facultyEnDropdown.selectedIndex = selectedIndex;
                       }
