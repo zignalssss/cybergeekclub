@@ -3,11 +3,17 @@ import React, { useState } from "react";
 import OTPInput from "@/components/otp/OTPInput";
 import { useRouter } from "next/navigation";
 import { faculty } from "./faculty";
+import { IoMdLink } from "react-icons/io";
+
+interface Department {
+  id: number;
+  th: string;
+  en: string;
+}
 
 export default function SignUp() {
   const router = useRouter();
   const onChange = (value: string) => setOpt(value);
-  
 
   const [showVerify, setShowVerify] = useState("hidden");
   const [showPersonalInfo1, setShowPersonalInfo1] = useState("hidden");
@@ -17,9 +23,23 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [opt, setOpt] = useState("");
 
+  const [departments, setDepartments] = useState<Department[]>([]);
+
+  // Function to populate departments based on selected faculty
+  const populateDepartments = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedId = event.target.selectedIndex;
+    const selectedFaculty = faculty.find(
+      (faculty) => faculty.id === selectedId
+    );
+    if (selectedFaculty) {
+      setDepartments(selectedFaculty.departments);
+    } else {
+      setDepartments([]);
+    }
+  };
   return (
     <div className="grid h-svh place-content-center">
-      <div className="flex justify-center md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)]">
+      <div className="flex justify-center md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)] transition-all duration-400">
         <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl">
           <h1 className="text-3xl text-center font-inter font-bold py-20">
             Sign Up
@@ -87,12 +107,13 @@ export default function SignUp() {
             </h1>
             <div className="flex flex-col gap-y-2 justify-center w-full h-fit">
               <div className="flex justify-center w-full px-10 gap-2">
-                <label className="form-control flex-none w-24 max-w-xs">
+                <label className="form-control flex-none w-28 max-w-xs">
                   <div className="label">
                     <span className="label-text text-white">คำนำหน้า</span>
                   </div>
                   <select
                     id="prefixTH"
+                    defaultValue=""
                     className="select select-bordered"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -105,7 +126,7 @@ export default function SignUp() {
                       }
                     }}
                   >
-                    <option disabled selected>
+                    <option value="" disabled>
                       เลือก
                     </option>
                     <option>นาย</option>
@@ -135,12 +156,13 @@ export default function SignUp() {
                 </label>
               </div>
               <div className="flex justify-center w-full px-10 gap-2">
-                <label className="form-control flex-none w-24 max-w-xs">
+                <label className="form-control flex-none w-28 max-w-xs">
                   <div className="label">
                     <span className="label-text text-white">prefix</span>
                   </div>
                   <select
                     id="prefixEN"
+                    defaultValue=""
                     className="select select-bordered"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -153,7 +175,7 @@ export default function SignUp() {
                       }
                     }}
                   >
-                    <option disabled selected>
+                    <option value="" disabled>
                       choose
                     </option>
                     <option>Mr</option>
@@ -219,8 +241,12 @@ export default function SignUp() {
                   <div className="label">
                     <span className="label-text text-white">ศาสนา</span>
                   </div>
-                  <select className="select select-bordered" required>
-                    <option disabled selected>
+                  <select
+                    defaultValue=""
+                    className="select select-bordered"
+                    required
+                  >
+                    <option value="" disabled>
                       เลือก
                     </option>
                     <option>พุทธ</option>
@@ -280,6 +306,8 @@ export default function SignUp() {
                     <span className="label-text text-white">คณะ</span>
                   </div>
                   <select
+                    id="facultyTh"
+                    defaultValue=""
                     className="select select-bordered"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -287,12 +315,21 @@ export default function SignUp() {
                       const facultyEnDropdown = document.getElementById(
                         "facultyEn"
                       ) as HTMLSelectElement;
+                      const departmentTh = document.getElementById(
+                        "majorTh"
+                      ) as HTMLSelectElement;
+                      const departmentEn = document.getElementById(
+                        "majorEn"
+                      ) as HTMLSelectElement;
                       if (facultyEnDropdown) {
                         facultyEnDropdown.selectedIndex = selectedIndex;
                       }
+                      populateDepartments(e);
+                      departmentTh.selectedIndex = 0;
+                      departmentEn.selectedIndex = 0;
                     }}
                   >
-                    <option disabled selected>
+                    <option value="" disabled>
                       เลือก
                     </option>
                     {faculty.map((obj) => (
@@ -300,20 +337,91 @@ export default function SignUp() {
                     ))}
                   </select>
                 </label>
+                <div className="flex pt-12 h-full w-fit">
+                  <IoMdLink className="text-center text-xl " />
+                </div>
                 <label className="form-control w-full max-w-xs">
                   <div className="label">
                     <span className="label-text text-white">faculty</span>
                   </div>
                   <select
                     id="facultyEn"
+                    defaultValue=""
                     className="select select-bordered"
                     required
-                    disabled
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      const selectedIndex = e.target.selectedIndex;
+                      const facultyEnDropdown = document.getElementById(
+                        "facultyTh"
+                      ) as HTMLSelectElement;
+                      if (facultyEnDropdown) {
+                        facultyEnDropdown.selectedIndex = selectedIndex;
+                      }
+                    }}
                   >
-                    <option disabled selected>
+                    <option value="" disabled>
                       choose
                     </option>
                     {faculty.map((obj) => (
+                      <option key={obj.id}>{obj.en}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+              <div className="flex justify-center w-full px-10 gap-2">
+                <label className="form-control w-full max-w-xs">
+                  <div className="label">
+                    <span className="label-text text-white">สาขา</span>
+                  </div>
+                  <select
+                    id="majorTh"
+                    defaultValue=""
+                    className="select select-bordered"
+                    required
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      const selectedIndex = e.target.selectedIndex;
+                      const departmentEnDropdown = document.getElementById(
+                        "majorEn"
+                      ) as HTMLSelectElement;
+                      if (departmentEnDropdown) {
+                        departmentEnDropdown.selectedIndex = selectedIndex;
+                      }
+                    }}
+                  >
+                    <option value="" disabled>
+                      เลือก
+                    </option>
+                    {departments.map((obj) => (
+                      <option key={obj.id} value={obj.id}>{obj.th}</option>
+                    ))}
+                  </select>
+                </label>
+                <div className="flex pt-12 h-full w-fit">
+                  <IoMdLink className="text-center text-xl " />
+                </div>
+                <label className="form-control w-full max-w-xs">
+                  <div className="label">
+                    <span className="label-text text-white">major</span>
+                  </div>
+                  <select
+                    id="majorEn"
+                    defaultValue=""
+                    className="select select-bordered"
+                    required
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      const selectedIndex = e.target.selectedIndex;
+                      const facultyEnDropdown = document.getElementById(
+                        "majorTh"
+                      ) as HTMLSelectElement;
+                      if (facultyEnDropdown) {
+                        facultyEnDropdown.selectedIndex = selectedIndex;
+                      }
+                    }}
+                  >
+                    <option value="" disabled>
+                      choose
+                    </option>
+                    {departments.map((obj) => (
                       <option key={obj.id}>{obj.en}</option>
                     ))}
                   </select>
