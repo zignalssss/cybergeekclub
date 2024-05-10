@@ -4,9 +4,9 @@ import Image from "next/image";
 
 const content = [
   {
-    title: "Collaborative Editing",
+    title: "CGC's Coding Camp",
     description:
-      "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
+      "เป็นโอกาสที่ไม่ควรพลาดสำหรับผู้ที่สนใจเรียนรู้การเขียนโปรแกรมและการพัฒนาซอฟต์แวร์ ไม่ว่าคุณจะเป็นมือใหม่ที่ไม่มีประสบการณ์เลยในการเขียนโค้ดหรือเป็นผู้มีประสบการณ์บางส่วนแล้ว ทุกคนมีที่สำหรับเรียนรู้",
     content: (
       <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
         Collaborative Editing
@@ -14,13 +14,13 @@ const content = [
     ),
   },
   {
-    title: "Real time changes",
+    title: "CGC's CyberSecurity Camp",
     description:
-      "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.",
+      "ค่าย CyberSecurity Camp เป็นที่สำหรับผู้ที่สนใจเรียนรู้เกี่ยวกับความมั่นคงปลอดภัยทางไซเบอร์และการเข้าร่วมการแข่งขัน Capture The Flag (CTF) โดยไม่จำเป็นต้องมีประสบการณ์มาก่อน ทุกคนที่สนใจเรียนรู้เกี่ยวกับเรื่องนี้มีโอกาสเข้าร่วมและเรียนรู้ได้ที่นี่!",
     content: (
       <div className="h-full w-full  flex items-center justify-center text-white">
         <Image
-          src="/linear.webp"
+          src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686%7D"
           width={300}
           height={300}
           className="h-full w-full object-cover"
@@ -29,32 +29,13 @@ const content = [
       </div>
     ),
   },
-  {
-    title: "Version control",
-    description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        Version control
-      </div>
-    ),
-  },
-  {
-    title: "Running out of content",
-    description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Running out of content
-      </div>
-    ),
-  },
+  
 ];
 
 const Stickyscroll = () => {
   return (
-    <div className='mt-20 h-screen'>
-    <div className='mb-10 font-kanit underline underline-offset-4 text-2xl font-semibold flex justify-center '> กิจกรรมองค์กร </div>
+    <div className='mt-20 h-screen '>
+    <div className='mb-20 font-kanit text-2xl font-semibold flex justify-center '> กิจกรรมองค์กร  </div>
     <StickyScroll content={content}/>
   </div>
   )

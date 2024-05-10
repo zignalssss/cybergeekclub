@@ -79,7 +79,7 @@ const Navbar = () => {
 								</Link>
 							</li>
 							<li className="group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
-								<Link href="#">
+								<Link href="/sign-up">
 									สมัครเข้าชมรม
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>

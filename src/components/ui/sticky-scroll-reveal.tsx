@@ -81,7 +81,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-kg text-slate-300 max-w-sm mt-10"
+                className="text-kg text-slate-300 max-w-sm mt-10 font-kanit"
               >
                 {/* this is scroll description*/}
                 {item.description}
