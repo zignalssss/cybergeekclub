@@ -35,7 +35,7 @@ const content = [
 const Stickyscroll = () => {
   return (
     <div className='mt-20 h-screen '>
-    <div className='mb-20 font-kanit text-2xl font-semibold flex justify-center '> กิจกรรมองค์กร  </div>
+    <div className='mb-20 font-kanit text-xl md:text-3xl font-semibold flex justify-center '> กิจกรรมองค์กร  </div>
     <StickyScroll content={content}/>
   </div>
   )
