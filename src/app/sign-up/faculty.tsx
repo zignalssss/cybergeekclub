@@ -3,52 +3,156 @@ export const faculty = [
     id: 1,
     th: "คณะวิทยาการจัดการ",
     en: "Faculty of Management Sciences",
-    departments : [
-      {id : 1, th : "การเงิน", en : "Finance", tag: "R01"},
-      {id : 2, th : "การจัดการ", en : "Management", tag: "R02"},
-      {id : 3, th : "การตลาด", en : "Marketing", tag: "R03"},
-      {id : 4, th : "ธุรกิจระหว่างประเทศ", en : "International Business", tag: "R04"},
-      {id : 5, th : "การจัดการโรงแรมและท่องเที่ยว", en : "Hotel and Tourism Management", tag: "R05"},
-      {id : 6, th : "การโรงแรม", en : "Hotel Studies", tag: "R06"},
-      {id : 7, th : "การบัญชีบริหาร", en : "Managerial Accounting", tag: "R13"},
-      {id : 8, th : "การจัดการโลจิสติกส์", en : "Logistics Management", tag: "R14"},
-      {id : 9, th : "การเงินและการลงทุน", en : "Finance and Investment", tag: "R16"},
-      {id : 10, th : "จัดการโรงแรม", en : "Hotel Management", tag: "R20"},
-      {id : 11, th : "การจัดการการท่องเที่ยวร่วมสมัย", en : "Contemporary Tourism Management", tag: "R22"},
-      {id : 12, th : "การบัญชี", en : "Accounting", tag: "R24"},
-      {id : 13, th : "การตลาดดิจิทัลและการสร้างตรา", en : "Digital Marketing and Branding", tag: "R32"},
-    ]
+    departments: [
+      {
+        id: 1,
+        th: "การเงิน",
+        en: "Finance",
+        tag: {
+          regular: "R01",
+          special: "R09",
+        },
+      },
+      {
+        id: 2,
+        th: "การจัดการ",
+        en: "Management",
+        tag: {
+          regular: "R02",
+          special: "R08",
+        },
+      },
+      {
+        id: 3,
+        th: "การตลาด",
+        en: "Marketing",
+        tag: {
+          regular: "R03",
+          special: "R11",
+        },
+      },
+      {
+        id: 4,
+        th: "ธุรกิจระหว่างประเทศ",
+        en: "International Business",
+        tag: {
+          regular: "R04",
+          special: "R07",
+        },
+      },
+      {
+        id: 5,
+        th: "การจัดการโรงแรมและท่องเที่ยว",
+        en: "Hotel and Tourism Management",
+        tag: {
+          regular: "R05",
+          special: "R10",
+        },
+      },
+      {
+        id: 6,
+        th: "การโรงแรม",
+        en: "Hotel Studies",
+        tag: {
+          regular: "R06",
+          special: "",
+        },
+      },
+      {
+        id: 7,
+        th: "การบัญชีบริหาร",
+        en: "Managerial Accounting",
+        tag: {
+          regular: "R13",
+          special: "R12",
+        },
+      },
+      {
+        id: 8,
+        th: "การจัดการโลจิสติกส์",
+        en: "Logistics Management",
+        tag: {
+          regular: "R14",
+          special: "R15",
+        },
+      },
+      {
+        id: 9,
+        th: "การเงินและการลงทุน",
+        en: "Finance and Investment",
+        tag: {
+          regular: "R16",
+          special: "R17",
+        },
+      },
+      {
+        id: 10,
+        th: "จัดการโรงแรม",
+        en: "Hotel Management",
+        tag: {
+          regular: "R20",
+          special: "R21",
+        },
+      },
+      {
+        id: 11,
+        th: "การจัดการการท่องเที่ยวร่วมสมัย",
+        en: "Contemporary Tourism Management",
+        tag: {
+          regular: "R22",
+          special: "R23",
+        },
+      },
+      {
+        id: 12,
+        th: "การบัญชี",
+        en: "Accounting",
+        tag: {
+          regular: "R24",
+          special: "R25",
+        },
+      },
+      {
+        id: 13,
+        th: "การตลาดดิจิทัลและการสร้างตรา",
+        en: "Digital Marketing and Branding",
+        tag: {
+          regular: "R32",
+          special: "R33",
+        },
+      },
+    ],
   },
   {
     id: 2,
     th: "คณะวิศวกรรมศาสตร์ ศรีราชา",
     en: "Faculty of Engineering at Sriracha",
-    departments : [
-      {id : 1, th : "วิศวกรรมคอมพิวเตอร์", en : "Computer Engineering"},
-    ]
+    departments: [
+      { id: 1, th: "วิศวกรรมคอมพิวเตอร์", en: "Computer Engineering" },
+    ],
   },
   {
     id: 3,
     th: "คณะวิทยาศาสตร์ ศรีราชา",
     en: "Faculty of Science at Sriracha",
-    departments : [
-      {id : 1, th : "วิทยาการคอมพิวเตอร์", en : "Computer Science"},
-    ]
+    departments: [{ id: 1, th: "วิทยาการคอมพิวเตอร์", en: "Computer Science" }],
   },
   {
     id: 4,
     th: "คณะเศรษฐศาสตร์ ศรีราชา",
     en: "Faculty of Economics at Sriracha",
-    departments : [
-      {id : 1, th : "เศรษฐศาสตร์", en : "Economics"},
-    ]
+    departments: [{ id: 1, th: "เศรษฐศาสตร์", en: "Economics" }],
   },
   {
     id: 5,
     th: "คณะพาณิชยนาวีนานาชาติ",
     en: "Faculty of International Maritime Studies",
-    departments : [
-      {id : 1, th : "วิศวกรรมต่อเรือและเครื่องกลเรือ", en : "Naval Architecture and Marine Engineering"},
-    ]
+    departments: [
+      {
+        id: 1,
+        th: "วิศวกรรมต่อเรือและเครื่องกลเรือ",
+        en: "Naval Architecture and Marine Engineering",
+      },
+    ],
   },
 ];
