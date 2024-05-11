@@ -114,7 +114,7 @@ export default function SignUp() {
                   <select
                     id="prefixTH"
                     defaultValue=""
-                    className="select select-bordered"
+                    className="select select-bordered bg-[#302E2E]"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -141,7 +141,7 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="เด็กไทย"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -151,7 +151,7 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="ใจดี"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
                   />
                 </label>
               </div>
@@ -163,7 +163,7 @@ export default function SignUp() {
                   <select
                     id="prefixEN"
                     defaultValue=""
-                    className="select select-bordered"
+                    className="select select-bordered bg-[#302E2E]"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -190,7 +190,7 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="Dekthai"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -200,7 +200,7 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="Jaidee"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
                   />
                 </label>
               </div>
@@ -212,7 +212,7 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="สุดสวย"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -222,7 +222,7 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="Sudsuay"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
                   />
                 </label>
               </div>
@@ -234,7 +234,7 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="0xxxxxxxxxx"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
                   />
                 </label>
                 <label className="form-control flex-none w-fit max-w-xs">
@@ -243,7 +243,7 @@ export default function SignUp() {
                   </div>
                   <select
                     defaultValue=""
-                    className="select select-bordered"
+                    className="select select-bordered bg-[#302E2E]"
                     required
                   >
                     <option value="" disabled>
@@ -261,7 +261,7 @@ export default function SignUp() {
                   </div>
                   <input
                     type="date"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
                   />
                 </label>
               </div>
@@ -296,7 +296,7 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="ex. 65xxxxxxxx"
-                    className="input input-bordered w-full max-w-xs"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
                   />
                 </label>
               </div>
@@ -308,7 +308,7 @@ export default function SignUp() {
                   <select
                     id="facultyTh"
                     defaultValue=""
-                    className="select select-bordered"
+                    className="select select-bordered bg-[#302E2E]"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -347,7 +347,7 @@ export default function SignUp() {
                   <select
                     id="facultyEn"
                     defaultValue=""
-                    className="select select-bordered"
+                    className="select select-bordered bg-[#302E2E]"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -376,7 +376,7 @@ export default function SignUp() {
                   <select
                     id="majorTh"
                     defaultValue=""
-                    className="select select-bordered"
+                    className="select select-bordered bg-[#302E2E]"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -406,7 +406,7 @@ export default function SignUp() {
                   <select
                     id="majorEn"
                     defaultValue=""
-                    className="select select-bordered"
+                    className="select select-bordered bg-[#302E2E]"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
