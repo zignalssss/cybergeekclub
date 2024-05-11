@@ -8,9 +8,18 @@ const content = [
     description:
       "เป็นโอกาสที่ไม่ควรพลาดสำหรับผู้ที่สนใจเรียนรู้การเขียนโปรแกรมและการพัฒนาซอฟต์แวร์ ไม่ว่าคุณจะเป็นมือใหม่ที่ไม่มีประสบการณ์เลยในการเขียนโค้ดหรือเป็นผู้มีประสบการณ์บางส่วนแล้ว ทุกคนมีที่สำหรับเรียนรู้",
     content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Collaborative Editing
+      <div className="h-full w-full  flex items-center justify-center text-white">
+        <Image
+          src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686%7D"
+          width={300}
+          height={300}
+          className="h-full w-full object-cover"
+          alt="linear board demo"
+        />
       </div>
+      // <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
+      //   Collaborative Editing
+      // </div>
     ),
   },
   {

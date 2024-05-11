@@ -25,25 +25,25 @@ const contacus = () => {
                             text="สามารถติดต่อเราได้ที่ IG : cybergeekclub.src หรือ FB:CyberGeekClub"
                         />
                         <AccordionItem
-                            header="How long we deliver your first blog post?"
+                            header="ผู้สมัครจำเป็นต้องเคยเขียนโด้ดหรือไม่?"
                             text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
                         />
                         <AccordionItem
-                            header="How long we deliver your first blog post?"
+                            header="ผู้สมัครจำเป็นต้องเป็นผู้ที่เรียนเกี่ยวกับด้านคอมพิวเตอร์หรือไม่?"
                             text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
                         />
                     </div>
                     <div className="w-full px-4 lg:w-1/2">
                         <AccordionItem
-                            header="How long we deliver your first blog post?"
+                            header="เเต้ม GeekPoint คืออะไร?"
                             text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
                         />
                         <AccordionItem
-                            header="How long we deliver your first blog post?"
+                            header="การเเข่งขัน CTF Capture The Flag คืออะไร?"
                             text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
                         />
                         <AccordionItem
-                            header="How long we deliver your first blog post?"
+                            header="เข้าร่วมกิจกรรมกับเราจะได้อะไรบ้าง?"
                             text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
                         />
                     </div>
