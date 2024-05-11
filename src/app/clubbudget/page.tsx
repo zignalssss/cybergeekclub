@@ -1,5 +1,6 @@
 import React from "react";
 import All_Budget from "@/components/badget/all-budget";
+import Simple_Detial_Budget from "@/components/badget/simple_detial_budget";
 export default function Budget(){
     return(
         <div className="flex flex-col items-center h-dvh bg-black overflow-auto scroll-smooth scrollbar-hide">
@@ -10,32 +11,9 @@ export default function Budget(){
                     <All_Budget title="รายจ่ายทั้งหมด" cost={-1500}/>
                 </div>
                 <div className=" row-span-1 flex justify-around">
-                    <div className="bg-[#1E1E1E] rounded-2xl h-full w-2/4 mx-4 flex flex-col items-center">
-                        <h1 className="px-4 py-4 font-kanit font-bold text-2xl">งบประมาณ</h1>
-                        <div className="flex justify-around w-full">
-                            <div className="px-10 py-2">
-                                <h2 className="px-10 pt-4 font-kanit font-bold text-xl">เงินรายได้</h2>
-                                <h2 className="px-10 pt-1 text-green-500 font-kanit font-bold text-2xl">+ 0.00 บาท</h2>
-                            </div>
-                            <div className="px-10 py-2">
-                                <h2 className="px-10 pt-4 font-kanit font-bold text-xl">งบอุดหนุน</h2>
-                                <h2 className="px-10 pt-1 text-green-500 font-kanit font-bold text-2xl">+ 0.00 บาท</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bg-[#1E1E1E] rounded-2xl w-2/4 mx-4 flex flex-col items-center">
-                    <h1 className="px-4 py-4 font-kanit font-bold text-2xl">รายจ่าย</h1>
-                        <div className="flex justify-around w-full">
-                            <div className="px-10 py-2">
-                                <h2 className="px-10 pt-4 font-kanit font-bold text-xl">เงินรายจ่าย</h2>
-                                <h2 className="px-10 pt-1 text-red-500 font-kanit font-bold text-2xl">- 0.00 บาท</h2>
-                            </div>
-                            <div className="px-10 py-2">
-                                <h2 className="px-10 pt-4 font-kanit font-bold text-xl">งบอุดหนุน</h2>
-                                <h2 className="px-10 pt-1 text-red-500 font-kanit font-bold text-2xl">- 0.00 บาท</h2>
-                            </div>
-                        </div>
-                    </div>
+                {/* รายละเอียดรายรับรายจ่ายบางส่วน */}
+                    <Simple_Detial_Budget typeBudget="งบประมาณ" income={0} budgetSupport={0}/>
+                    <Simple_Detial_Budget typeBudget="รายจ่าย" income={0} budgetSupport={0}/>
                 </div>
                 <div className="row-span-2 flex justify-around">
                     <div className="bg-[#1E1E1E] rounded-2xl h-full w-2/4 my-4 mx-4 flex flex-col items-center">
