@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React, { useState } from 'react'
 import { MenuA, MenuItemDropdownA, MenuB, MenuItemDropdownB, MenuC, MenuItemDropdownC } from "../ui/navbar-menu";
 import { motion } from "framer-motion";
+import Hamburger from 'hamburger-react'
 
 //import icons and image
 import { GoSignIn } from "react-icons/go";
@@ -13,20 +14,18 @@ import { IoDocumentText } from "react-icons/io5";
 import { TbMoneybag } from "react-icons/tb";
 import { IoIosNotifications } from "react-icons/io";
 import { FaFacebookSquare, FaCalendarAlt, FaInstagram } from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
 import { MdAnnouncement } from "react-icons/md";
-import { IoMenu } from "react-icons/io5";
-import { IoMdClose } from "react-icons/io";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const variantsleft = {
 	open: { opacity: 1, x: 0 },
 	closed: { opacity: 0, x: "-100%" },
 }
-const variantsright = {
-	open: { opacity: 1, x: 0 },
-	closed: { opacity: 0, x: "100%" },
-}
 
+const variantsdown = {
+	open: { opacity: 1, y: 0 },
+	closed: { opacity: 0, y: "-10%" },
+}
 const Navbar = () => {
 	const [activeA, setActiveA] = useState<string | null>(null); //for about
 	const [activeB, setActiveB] = useState<string | null>(null); //for news
@@ -34,11 +33,25 @@ const Navbar = () => {
 
 	{ /*  section for mobile responsive */ }
 	const [isOpen, setIsOpen] = useState(false)//nav mobile left
-	const [isOpenProfile, setIsOpenProfile] = useState(false)//nav mobile Profile right 
 
-	const [isDrop, setIsDrop] = useState(false)//dropdown in nav About
-	const [isDrop1, setIsDrop1] = useState(false)//dropdown in nav News
+	const [isDrop1, setIsDrop1] = useState(false)//dropdown in nav Abou
 	const [isDrop2, setIsDrop2] = useState(false)//dropdown in nav Contact
+	const [isDrop3, setIsDrop3] = useState(false)//dropdown in nav News
+	const navbarDrop1Handel = () => {
+		setIsDrop1(!isDrop1);
+		setIsDrop2(false);
+		setIsDrop3(false);
+	}
+	const navbarDrop2Handel = () => {
+		setIsDrop1(false);
+		setIsDrop2(!isDrop2);
+		setIsDrop3(false);
+	}
+	const navbarDrop3Handel = () => {
+		setIsDrop1(false);
+		setIsDrop2(false);
+		setIsDrop3(!isDrop3);
+	}
 
 	const [isLogin, setIsLogin] = useState(false)//login state
 	return (
@@ -65,7 +78,7 @@ const Navbar = () => {
 								</Link>
 							</li>
 							<li className="group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
-								<Link href="#">
+								<Link href="/sign-up">
 									สมัครเข้าชมรม
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>
@@ -86,7 +99,7 @@ const Navbar = () => {
 												<div className='text-base'>ประวัติชมรม</div>
 											</div>
 										</Link>
-										<Link href="/clubmember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+										<Link href="/coremember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-3'>
 												<FaPeopleGroup className='text-xl' />
 												<div className='text-base'>บุคคลากร</div>
@@ -153,7 +166,7 @@ const Navbar = () => {
 									</div>
 								</div>
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)]'>
-										PERTH
+									Name
 								</div>
 							</div>
 							{/* dropdown-content */}
@@ -201,24 +214,7 @@ const Navbar = () => {
 
 					<div className="navbar lg:hidden">
 						<div className="navbar-start">
-							<div className="dropdown ">
-
-								<label className="swap swap-rotate mt-2">
-
-									{/* this hidden checkbox controls the state */}
-									<input onClick={() => { setIsOpen(!isOpen); setIsOpenProfile(false); }} type="checkbox" />
-
-									{/* hamburger icon */}
-									<svg className="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" /></svg>
-
-									{/* close icon */}
-									<svg className="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" /></svg>
-
-								</label>
-								{/* {isOpen ? < IoMdClose className='mt-3 text-2xl md:text-4xl transition-all duration-250' /> : <IoMenu className='mt-3 text-2xl md:text-4xl transition-all duration-250' />} */}
-
-
-							</div>
+							<Hamburger size={25} toggled={isOpen} rounded toggle={setIsOpen} />
 						</div>
 						<div className="navbar-center">
 							<div className='font-kanit font-semibold r'>
@@ -230,7 +226,7 @@ const Navbar = () => {
 								</div>
 							</div>
 						</div>
-						
+
 
 						<div className="navbar-end">
 							{isLogin ?
@@ -266,7 +262,7 @@ const Navbar = () => {
 												<Link href="/activitieshistory">
 													<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
 												</Link>
-												
+
 											</div>
 											<div className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md '>
 												<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
@@ -298,20 +294,28 @@ const Navbar = () => {
 							}`}
 					>
 						<ul className="h-screen max-w-screen lg:h-auto items-center justify-center lg:flex ">
-							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
+							<li className=" pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
 								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
-									หน้าเเรก
+									<div className='ml-[7%] md:ml-3'>หน้าเเรก</div>
 								</Link>
 							</li>
-							<li className="pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
-								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
-									สมัครเข้าชมรม
-								</Link>
+							<li className=" pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
+							<Link href="/sign-up" onClick={() => setIsOpen(!isOpen)}>
+									<div className='ml-[7%] md:ml-3'>สมัครเข้าชมรม</div>
+							</Link>
 							</li>
 							<li className=" pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400  lg:hover:bg-transparent">
 
-								<details>
-									<summary>เกี่ยวกับเรา</summary>
+								<div onClick={navbarDrop1Handel} className='flex justify-center'>
+									{isDrop1 ? <RiArrowDropDownLine className='mt-[1%] text-xl'/> : <RiArrowDropDownLine className='rotate-180 mt-[1%] text-xl'/>}
+									<div>เกี่ยวกับเรา</div>
+								</div>
+								<motion.div 
+								animate={isDrop1 ? "open" : "closed"}
+								variants={variantsdown}
+								transition={{duration:0.3}} 
+								className={`${isDrop1 ? `flex` : `hidden`}`}
+								>
 									<ul className='flex flex-col gap-2 ml-3 mt-4'>
 										<Link onClick={() => setIsOpen(!isOpen)} href="/clubbudget" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-2'>
@@ -325,7 +329,7 @@ const Navbar = () => {
 												<div className='text-sm'>ประวัติชมรม</div>
 											</div>
 										</Link>
-										<Link onClick={() => setIsOpen(!isOpen)} href="/clubmember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="/coremember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<FaPeopleGroup className='text-2xl' />
 												<div className='text-sm'>บุคคลากร</div>
@@ -339,12 +343,19 @@ const Navbar = () => {
 											</div>
 										</Link>
 									</ul>
-								</details>
+								</motion.div>
 							</li>
 							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400   md:hover:bg-transparent">
-
-								<details>
-									<summary>ข่าวสาร</summary>
+								<div onClick={navbarDrop2Handel} className='flex justify-center'>
+								{isDrop2? <RiArrowDropDownLine className='mt-[1%] text-xl'/> : <RiArrowDropDownLine className='rotate-180 mt-[1%] text-xl'/>}
+									<div>ข่าวสาร</div>
+								</div>
+								<motion.div 
+								animate={isDrop2 ? "open" : "closed"}
+								variants={variantsdown}
+								transition={{duration:0.3}} 
+								className={`${isDrop2 ? `flex` : `hidden`}`}
+								>
 									<ul className='flex flex-col gap-2 ml-3 mt-4'>
 										<Link onClick={() => setIsOpen(!isOpen)} href="/news" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-2'>
@@ -358,32 +369,35 @@ const Navbar = () => {
 												<div className='text-sm'>ปฏิทินกิจกรรม</div>
 											</div>
 										</Link>
-
 									</ul>
-								</details>
+								</motion.div>
 							</li>
 							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400   md:hover:bg-transparent">
-
-
-								<div onClick={() => setIsDrop(!isDrop)}>
-									ติตต่อเรา
+								<div onClick={navbarDrop3Handel} className='flex justify-center'>
+									{isDrop3 ? <RiArrowDropDownLine className='mt-[1%] text-xl'/> : <RiArrowDropDownLine className='rotate-180 mt-[1%] text-xl'/>}
+									<div>ติตต่อเรา</div>
 								</div>
-								<div className={`${isDrop ? `flex` : `hidden`}`}>
+								<motion.div 
+								animate={isDrop3 ? "open" : "closed"}
+								variants={variantsdown}
+								transition={{duration:0.3}} 
+								className={`${isDrop3 ? `flex` : `hidden`}`}
+								>
 									<ul className='flex flex-col gap-2 ml-3 mt-4'>
-										<Link href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-2'>
 												< FaInstagram className='text-2xl' />
 												<div className='text-sm '>:cybergeekclub.src</div>
 											</div>
 										</Link>
-										<Link href="https://www.facebook.com/cybergeekclub.kusrc" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="https://www.facebook.com/cybergeekclub.kusrc" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												< FaFacebookSquare className='text-2xl' />
 												<div className='text-sm'>:CyberGeekClub</div>
 											</div>
 										</Link>
 									</ul>
-								</div>
+								</motion.div>
 							</li>
 
 						</ul>

@@ -3,17 +3,17 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Yorhistory from "@/components/mainpage_comp/yorhistory";
+import Stickyscroll from "@/components/mainpage_comp/stickyscroll";
+import FAQ from "@/components/mainpage_comp/FAQ";
 
 // import icon and image
 import Image from "next/image";
 import logoIcon from "../img/logoCGC_TW.svg";
-import { FaQuoteRight } from "react-icons/fa";
-import { FaQuoteLeft } from "react-icons/fa";
 export default function Home() {
   return (
     <>
       <div>
-        <div className=" inset-0  z-20  pointer-events-none h-[100vh] w-full bg-black ]  bg-grid-white/[0.1]  relative flex items-center justify-center">
+        <div className="inset-0  z-20  pointer-events-none h-[100vh] w-full bg-black ]  bg-grid-white/[0.1]  relative flex items-center justify-center">
           <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-black  [mask-image:radial-gradient(ellipse_at_center,transparent,black)]"></div>
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
@@ -42,6 +42,8 @@ export default function Home() {
         </div>
       </div>
       <Yorhistory />
+      <Stickyscroll/>
+      <FAQ/>
     </>
   );
 }
