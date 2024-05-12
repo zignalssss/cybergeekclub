@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Yorhistory from "@/components/mainpage_comp/yorhistory";
 import Stickyscroll from "@/components/mainpage_comp/stickyscroll";
-import Contacus from "@/components/mainpage_comp/contacus";
+import FAQ from "@/components/mainpage_comp/FAQ";
 
 // import icon and image
 import Image from "next/image";
@@ -43,7 +43,7 @@ export default function Home() {
       </div>
       <Yorhistory />
       <Stickyscroll/>
-      <Contacus/>
+      <FAQ/>
     </>
   );
 }

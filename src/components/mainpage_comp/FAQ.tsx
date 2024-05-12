@@ -44,7 +44,7 @@ const contacus = () => {
                         />
                         <AccordionItem
                             header="เข้าร่วมกิจกรรมกับเราจะได้อะไรบ้าง?"
-                            text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+                            text="ได้รับชั่วโมงกิจกรรม เเละ ได้ความรู้ที่เกี่ยวกับ Technology ต่างๆเเละทักษะการเขียนโปรเเกรม"
                         />
                     </div>
                 </div>
