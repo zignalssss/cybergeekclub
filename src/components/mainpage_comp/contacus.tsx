@@ -21,26 +21,26 @@ const contacus = () => {
                 <div className="-mx-4 flex flex-wrap">
                     <div className="w-full px-4 lg:w-1/2">
                         <AccordionItem
+                           header="จะสมัครเข้าร่วมชมรมทำได้อย่างไร?"
+                           text="สามารถกดปุ่ม สมัครเข้าชมรม ใน Website ของเราจากนั้น กรอกแบบฟอร์มสำหรับสมัครสมาชิกเพื่อสร้างโปรไฟล์ใน Website จากนั้นเมื่อกรอกข้อมูลเสร็จระบบจะให้ทำการอัพโหลดใบสมัครในเว็บของเราโดยเเนบมาเป็น pdf เป็นอันเสร็จเรียบร้อย { ปล.โปรดอัพโหลดใบสมัครภายใน 7 วัน ไม่เช่นนั้นข้อมูลการสมัครของท่านจะโดนลบ }"
+                        />
+                        <AccordionItem
+                            header="ผู้สมัครจำเป็นต้องเคยเขียนโค้ดหรือไม่?"
+                            text="ผู้สมัครไม่จำเป็นต้องเขียนโค้ดเป็น ขอเเค่คุณเป็นคนที่มีความสนใจใน Technology ต่างๆชมรมCyberGeekClub ก็ตอบโจทย์คุณนั่นเอง!"
+                        />
+                        <AccordionItem
                             header="ติดต่อเราได้ที่ไหน?"
-                            text="สามารถติดต่อเราได้ที่ IG : cybergeekclub.src หรือ FB:CyberGeekClub"
-                        />
-                        <AccordionItem
-                            header="ผู้สมัครจำเป็นต้องเคยเขียนโด้ดหรือไม่?"
-                            text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
-                        />
-                        <AccordionItem
-                            header="ผู้สมัครจำเป็นต้องเป็นผู้ที่เรียนเกี่ยวกับด้านคอมพิวเตอร์หรือไม่?"
-                            text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+                            text="สามารถติดต่อเราได้ที่ IG : cybergeekclub.src หรือ FB:CyberGeekClub"   
                         />
                     </div>
                     <div className="w-full px-4 lg:w-1/2">
                         <AccordionItem
                             header="เเต้ม GeekPoint คืออะไร?"
-                            text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+                            text="GeekPoint คือเเต้มที่จะใช้เข้าร่วมกิจกรรมต่างของ CyberGeekClub โดยเเต้ม GeekPoint จะถูกหักก็ต่อเมื่อ มีการลงทะเบียนเข้าร่วมกิจกรรมเเล้วเเต่ไม่เข้ากิจกรรม เท่านั้น โดยถ้าเเต้มGeekPoint ไม่พอก็จะไม่สามารถเข้าร่วมกิจกรรมที่เราจัด โดยในกรณีนี้จะต้องติดต่อเจ้าหน้าที่เท่านั้น"
                         />
                         <AccordionItem
                             header="การเเข่งขัน CTF Capture The Flag คืออะไร?"
-                            text="It takes 2-3 weeks to get your first blog post ready. That includes the in-depth research & creation of your monthly content marketing strategy that we do before writing your first blog post, Ipsum available ."
+                            text="การแข่งขัน Capture The Flag (CTF) เป็นกิจกรรมที่ให้ผู้เข้าร่วมพยายามเรียกข้อมูลหรือซ่อนไปจาก ธง(flag) ซึ่งเป็นรหัสหรือข้อมูลที่ถูกตั้งไว้ลึกลับภายในระบบหรือเซิร์ฟเวอร์ขององค์กรหรือโครงการใดๆ ผู้เข้าแข่งขันจะต้องใช้ทักษะในการเข้าถึงระบบ (เช่น hacking, programming, cryptography, reverse engineering) เพื่อให้สามารถหาธงและส่งมอบให้กับผู้จัดแข่งขันเป็นการสะสมคะแนน"
                         />
                         <AccordionItem
                             header="เข้าร่วมกิจกรรมกับเราจะได้อะไรบ้าง?"
