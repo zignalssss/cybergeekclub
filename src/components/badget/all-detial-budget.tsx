@@ -19,7 +19,7 @@ export default function All_Detial_Budget({typeBudget,detial_income,detial_suppo
                         </div>
                     )}
                 </div>
-                <div className="px-5 py-2 py-2 ">
+                <div className="px-5 py-2 ">
                     <h2 className="px-10 pt-4 font-kanit font-bold text-l ">รายได้จากงบอุดหนุน</h2>
                     {detial_support.map((element,index)=>
                         <div className=" bg-[#302E2E] w-full rounded-lg px-2 py-2 my-2">

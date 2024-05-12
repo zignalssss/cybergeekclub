@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React, { useState } from 'react'
 import { MenuA, MenuItemDropdownA, MenuB, MenuItemDropdownB, MenuC, MenuItemDropdownC } from "../ui/navbar-menu";
 import { motion } from "framer-motion";
+import Hamburger from 'hamburger-react'
 
 //import icons and image
 import { GoSignIn } from "react-icons/go";
@@ -13,7 +14,6 @@ import { IoDocumentText } from "react-icons/io5";
 import { TbMoneybag } from "react-icons/tb";
 import { IoIosNotifications } from "react-icons/io";
 import { FaFacebookSquare, FaCalendarAlt, FaInstagram } from "react-icons/fa";
-import { SiGmail } from "react-icons/si";
 import { MdAnnouncement } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
@@ -33,7 +33,6 @@ const Navbar = () => {
 
 	{ /*  section for mobile responsive */ }
 	const [isOpen, setIsOpen] = useState(false)//nav mobile left
-	const [isOpenProfile, setIsOpenProfile] = useState(false)//nav mobile Profile right 
 
 	const [isDrop1, setIsDrop1] = useState(false)//dropdown in nav Abou
 	const [isDrop2, setIsDrop2] = useState(false)//dropdown in nav Contact
@@ -167,7 +166,7 @@ const Navbar = () => {
 									</div>
 								</div>
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)]'>
-									PERTH
+									Name
 								</div>
 							</div>
 							{/* dropdown-content */}
@@ -215,24 +214,7 @@ const Navbar = () => {
 
 					<div className="navbar lg:hidden">
 						<div className="navbar-start">
-							<div className="dropdown ">
-
-								<label className="swap swap-rotate mt-2">
-
-									{/* this hidden checkbox controls the state */}
-									<input onClick={() => { setIsOpen(!isOpen); setIsOpenProfile(false); }} type="checkbox" />
-
-									{/* hamburger icon */}
-									<svg className="swap-off fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" /></svg>
-
-									{/* close icon */}
-									<svg className="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" /></svg>
-
-								</label>
-								{/* {isOpen ? < IoMdClose className='mt-3 text-2xl md:text-4xl transition-all duration-250' /> : <IoMenu className='mt-3 text-2xl md:text-4xl transition-all duration-250' />} */}
-
-
-							</div>
+							<Hamburger size={25} toggled={isOpen} rounded toggle={setIsOpen} />
 						</div>
 						<div className="navbar-center">
 							<div className='font-kanit font-semibold r'>
@@ -318,7 +300,9 @@ const Navbar = () => {
 								</Link>
 							</li>
 							<li className=" pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
+							<Link href="/sign-up" onClick={() => setIsOpen(!isOpen)}>
 									<div className='ml-[7%] md:ml-3'>สมัครเข้าชมรม</div>
+							</Link>
 							</li>
 							<li className=" pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400  lg:hover:bg-transparent">
 

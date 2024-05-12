@@ -5,7 +5,8 @@ import All_Detial_Budget from "@/components/badget/all-detial-budget";
 export default function Budget(){
     return(
         <div className="flex flex-col items-center h-dvh bg-black overflow-auto scroll-smooth scrollbar-hide">
-            <div className="grid grid-rows-4 w-4/5 h-full pb-8">
+            <div className="grid my-10 grid-rows-4 w-4/5 h-full pb-8">
+                <div className="text-2xl font-kanit font-semibold flex justify-center">งบประมาณทั้งหมด</div>
                 {/* งบประมาณทั้งหมดทั้ง รายรับ กับ รายจ่าย */}
                 <div className="row-span-1 flex justify-around">
                     <All_Budget title="งบประมาณทั้งหมด"  cost={51500.00} />
