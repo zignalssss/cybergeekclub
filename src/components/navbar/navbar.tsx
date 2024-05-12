@@ -100,7 +100,7 @@ const Navbar = () => {
 												<div className='text-base'>ประวัติชมรม</div>
 											</div>
 										</Link>
-										<Link href="/clubmember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+										<Link href="/coremember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-3'>
 												<FaPeopleGroup className='text-xl' />
 												<div className='text-base'>บุคคลากร</div>
@@ -345,7 +345,7 @@ const Navbar = () => {
 												<div className='text-sm'>ประวัติชมรม</div>
 											</div>
 										</Link>
-										<Link onClick={() => setIsOpen(!isOpen)} href="/clubmember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="/coremember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<FaPeopleGroup className='text-2xl' />
 												<div className='text-sm'>บุคคลากร</div>
