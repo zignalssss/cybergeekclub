@@ -41,7 +41,7 @@ const Page = () => {
                         <p>เลขานุการ</p>
                     </div>
                     <div className="text-center text-gray-300 ">
-                        <img draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686%7D" alt="avatar img" />
+                        <img draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/memberprofile%2FSunny.PNG?alt=media&token=62819d27-7269-4daf-a211-59c652b009fe" alt="avatar img" />
                         <h3 className="mb-1  text-xl font-bold tracking-tight text-white ">
                             <a href="#">วิชญาพร ปุณโณฑก</a>
                         </h3>
