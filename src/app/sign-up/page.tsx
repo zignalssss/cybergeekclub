@@ -9,6 +9,8 @@ interface Department {
   id: number;
   th: string;
   en: string;
+  regular : string;
+  special : string;
 }
 
 export default function SignUp() {
@@ -24,6 +26,7 @@ export default function SignUp() {
   const [opt, setOpt] = useState("");
 
   const [departments, setDepartments] = useState<Department[]>([]);
+  const [selectedDepartment, setSelectedDepartment] = useState<Department>();
 
   // Function to populate departments based on selected faculty
   const populateDepartments = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -32,7 +35,7 @@ export default function SignUp() {
       (faculty) => faculty.id === selectedId
     );
     if (selectedFaculty) {
-      setDepartments(selectedFaculty.departments);
+      setDepartments(selectedFaculty.departments as Department[]);
     } else {
       setDepartments([]);
     }
@@ -383,8 +386,13 @@ export default function SignUp() {
                       const departmentEnDropdown = document.getElementById(
                         "majorEn"
                       ) as HTMLSelectElement;
+                      const tagDropdown = document.getElementById(
+                        "tag"
+                      ) as HTMLSelectElement;
                       if (departmentEnDropdown) {
                         departmentEnDropdown.selectedIndex = selectedIndex;
+                        setSelectedDepartment(departments[selectedIndex]);
+                        tagDropdown.selectedIndex = 0;
                       }
                     }}
                   >
@@ -424,6 +432,31 @@ export default function SignUp() {
                     {departments.map((obj) => (
                       <option key={obj.id}>{obj.en}</option>
                     ))}
+                  </select>
+                </label>
+              </div>
+              <div className="flex justify-center w-full px-10 gap-2">
+                <label className="form-control w-full max-w-xs">
+                  <div className="label">
+                    <span className="label-text text-white">
+                      รหัส (tag)
+                    </span>
+                  </div>
+                  <select
+                    id="tag"
+                    defaultValue=""
+                    className="select select-bordered bg-[#302E2E]"
+                    required
+                  >
+                    <option value="" disabled>
+                      choose
+                    </option>
+                    <option>
+                      {selectedDepartment?.regular}
+                    </option>
+                    <option>
+                      {selectedDepartment?.special}
+                    </option>
                   </select>
                 </label>
               </div>
