@@ -7,8 +7,6 @@ import Yorhistory from "@/components/mainpage_comp/yorhistory";
 // import icon and image
 import Image from "next/image";
 import logoIcon from "../img/logoCGC_TW.svg";
-import { FaQuoteRight } from "react-icons/fa";
-import { FaQuoteLeft } from "react-icons/fa";
 export default function Home() {
   return (
     <>
