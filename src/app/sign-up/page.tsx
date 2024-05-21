@@ -50,7 +50,7 @@ export default function SignUp() {
   };
   return (
     <div className="grid h-svh place-content-center">
-      <div className="bg-[#181818] p-5 rounded-3xl my-1">
+      <div className="p-5 rounded-3xl my-1">
         <h1 className="text-center text-3xl font-inter">
           {
             nowState > 0 ? <span className="loading loading-dots loading-lg"></span> : nowState === 3 ? <BsFillCheckCircleFill /> : <span className="loading loading-dots loading-lg"></span>
