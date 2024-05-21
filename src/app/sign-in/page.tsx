@@ -64,14 +64,13 @@ export default function SignUp() {
                   sign in
                 </button>
               </label>
-              <label className="font-inter">
+              <label className="font-inter flex">
                 Don&apos;t have an account ?
-                <a
-                  href="sign-up"
-                  className="underline underline-offset-8 font-inter mx-2"
-                >
+                <h1 onClick={()=>{
+                  router.push(`/sign-up`)
+                }} className="underline underline-offset-8 font-inter mx-2 hover:cursor-pointer">
                   sign-up
-                </a>
+                </h1>
               </label>
             </div>
           </div>

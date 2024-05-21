@@ -4,13 +4,16 @@ import OTPInput from "@/components/otp/OTPInput";
 import { useRouter } from "next/navigation";
 import { faculty } from "./faculty";
 import { IoMdLink } from "react-icons/io";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa";
 
 interface Department {
   id: number;
   th: string;
   en: string;
-  regular : string;
-  special : string;
+  regular: string;
+  special: string;
 }
 
 export default function SignUp() {
@@ -65,7 +68,7 @@ export default function SignUp() {
                   }}
                 />
                 <div className="label">
-                  <span className="label-text text-white font-inter mt-10">
+                  <span className="label-text text-white font-inter mt-5">
                     Password
                   </span>
                 </div>
@@ -78,8 +81,22 @@ export default function SignUp() {
                     setPassword(event.target.value);
                   }}
                 />
+                <div className="label">
+                  <span className="label-text text-white font-inter mt-5">
+                    Confirm Password
+                  </span>
+                </div>
+                <input
+                  required
+                  type="password"
+                  placeholder="example123456!@#"
+                  className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
+                />
                 <button
-                  className="btn bg-black my-20 font-inter text-white"
+                  className="btn bg-black my-10 font-inter text-white hover:text-green-500"
                   type="submit"
                   onClick={() => {
                     setShowVerify("hidden");
@@ -87,7 +104,7 @@ export default function SignUp() {
                     setShowPersonalInfo2("hidden");
                   }}
                 >
-                  next step
+                  next step <FaArrowRightLong />
                 </button>
               </label>
               <label className="font-inter">
@@ -268,9 +285,20 @@ export default function SignUp() {
                   />
                 </label>
               </div>
-              <div className="flex justify-end w-full px-10 gap-2">
+              <div className="flex justify-center w-full px-10 gap-2">
                 <button
-                  className="btn bg-black my-10 font-inter text-white"
+                  className="btn btn-ghost my-10 font-inter text-white hover:text-green-500"
+                  type="submit"
+                  onClick={() => {
+                    setShowVerify("hidden");
+                    setShowPersonalInfo1("hidden");
+                    setShowPersonalInfo2("hidden");
+                  }}
+                >
+                  <FaArrowLeftLong /> go back
+                </button>
+                <button
+                  className="btn bg-black my-10 font-inter text-white hover:text-green-500"
                   type="submit"
                   onClick={() => {
                     setShowVerify("hidden");
@@ -278,7 +306,7 @@ export default function SignUp() {
                     setShowPersonalInfo2("");
                   }}
                 >
-                  next step
+                  next step <FaArrowRightLong />
                 </button>
               </div>
             </div>
@@ -400,7 +428,9 @@ export default function SignUp() {
                       เลือก
                     </option>
                     {departments.map((obj) => (
-                      <option key={obj.id} value={obj.id}>{obj.th}</option>
+                      <option key={obj.id} value={obj.id}>
+                        {obj.th}
+                      </option>
                     ))}
                   </select>
                 </label>
@@ -438,9 +468,7 @@ export default function SignUp() {
               <div className="flex justify-center w-full px-10 gap-2">
                 <label className="form-control w-full max-w-xs">
                   <div className="label">
-                    <span className="label-text text-white">
-                      รหัส (tag)
-                    </span>
+                    <span className="label-text text-white">รหัส (tag)</span>
                   </div>
                   <select
                     id="tag"
@@ -451,19 +479,25 @@ export default function SignUp() {
                     <option value="" disabled>
                       choose
                     </option>
-                    <option>
-                      {selectedDepartment?.regular}
-                    </option>
-                    <option>
-                      {selectedDepartment?.special}
-                    </option>
+                    <option>{selectedDepartment?.regular}</option>
+                    <option>{selectedDepartment?.special}</option>
                   </select>
                 </label>
               </div>
-
-              <div className="flex justify-end w-full px-10 gap-2">
+              <div className="flex justify-center w-full px-10 gap-2">
                 <button
-                  className="btn bg-black my-10 font-inter text-white"
+                  className="btn btn-ghost my-10 font-inter text-white hover:text-green-500"
+                  type="submit"
+                  onClick={() => {
+                    setShowVerify("hidden");
+                    setShowPersonalInfo1("");
+                    setShowPersonalInfo2("hidden");
+                  }}
+                >
+                  <FaArrowLeftLong /> go back
+                </button>
+                <button
+                  className="btn bg-black my-10 font-inter text-white hover:text-green-500"
                   type="submit"
                   onClick={() => {
                     setShowVerify("");
@@ -471,7 +505,7 @@ export default function SignUp() {
                     setShowPersonalInfo2("hidden");
                   }}
                 >
-                  next step
+                  next step <FaArrowRightLong />
                 </button>
               </div>
             </div>
@@ -503,6 +537,28 @@ export default function SignUp() {
                       resent
                     </a>
                   </span>
+                </div>
+                <div className="flex justify-center w-full px-10 gap-20">
+                  <button
+                    className="btn btn-ghost my-10 font-inter text-white hover:text-green-500"
+                    type="submit"
+                    onClick={() => {
+                      setShowVerify("hidden");
+                      setShowPersonalInfo1("hidden");
+                      setShowPersonalInfo2("");
+                    }}
+                  >
+                    <FaArrowLeftLong /> go back
+                  </button>
+                  <button
+                    className="btn bg-black my-10 font-inter text-white hover:text-green-500"
+                    type="submit"
+                    onClick={() => {
+                      router.push(`/`)
+                    }}
+                  >
+                    finish <FaCheck />
+                  </button>
                 </div>
               </label>
             </div>
