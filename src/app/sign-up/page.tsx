@@ -64,14 +64,14 @@ export default function SignUp() {
       <div className="flex justify-center md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)] transition-all duration-400">
         <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl border border-white/15 ">
           <h1 className="text-3xl text-center font-kanit font-bold py-20">
-            Sign Up
+            สมัครสมาชิก
           </h1>
           <div className="flex justify-center">
             <div>
               <label className="form-control w-full max-w-xs">
                 <div className="label">
                   <span className="label-text text-white font-kanit">
-                    Email
+                    อีเมล
                   </span>
                 </div>
                 <input
@@ -85,7 +85,7 @@ export default function SignUp() {
                 />
                 <div className="label">
                   <span className="label-text text-white font-kanit mt-5">
-                    Password
+                    รหัสผ่าน
                   </span>
                 </div>
                 <input
@@ -99,7 +99,7 @@ export default function SignUp() {
                 />
                 <div className="label">
                   <span className="label-text text-white font-kanit mt-5">
-                    Confirm Password
+                    ยืนยันรหัสผ่าน
                   </span>
                 </div>
                 <input
@@ -122,18 +122,20 @@ export default function SignUp() {
                     console.log(nowState);
                   }}
                 >
-                  next step <FaArrowRightLong />
+                  ต่อไป <FaArrowRightLong />
                 </button>
               </label>
-              <label className="font-kanit">
-                Already have an account ?
-                <a
-                  href="sign-in"
-                  className="underline underline-offset-8 font-kanit mx-2 hover:text-green-500"
-                >
-                  sign-in
-                </a>
-              </label>
+              <div className="text-center">
+                <label className="font-kanit">
+                  มีบัญชีแล้ว ?
+                  <a
+                    href="sign-in"
+                    className="underline underline-offset-8 font-kanit mx-2 hover:text-green-500"
+                  >
+                    เข้าสู่ระบบ
+                  </a>
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -323,7 +325,7 @@ export default function SignUp() {
                     console.log(nowState);
                   }}
                 >
-                  <FaArrowLeftLong /> go back
+                  <FaArrowLeftLong /> ย้อนกลับ
                 </button>
                 <button
                   className="btn bg-black my-10 font-kanit text-white hover:text-green-500"
@@ -336,7 +338,7 @@ export default function SignUp() {
                     console.log(nowState);
                   }}
                 >
-                  next step <FaArrowRightLong />
+                  ต่อไป <FaArrowRightLong />
                 </button>
               </div>
             </div>
@@ -527,7 +529,7 @@ export default function SignUp() {
                     console.log(nowState);
                   }}
                 >
-                  <FaArrowLeftLong /> go back
+                  <FaArrowLeftLong /> ย้อนกลับ
                 </button>
                 <button
                   className="btn bg-black my-10 font-kanit text-white hover:text-green-500"
@@ -540,7 +542,7 @@ export default function SignUp() {
                     console.log(nowState);
                   }}
                 >
-                  next step <FaArrowRightLong />
+                  ต่อไป <FaArrowRightLong />
                 </button>
               </div>
             </div>
@@ -550,13 +552,13 @@ export default function SignUp() {
         <div className={`absolute ${showVerify}`}>
           <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl justify-center border border-white/15">
             <h1 className="text-3xl text-center font-kanit font-bold py-20">
-              Verify
+              ยืนยันตัวตน
             </h1>
             <div className="flex justify-center">
               <label className="form-control w-full max-w-xs">
                 <div className="label">
                   <span className="label-text text-white font-kanit">
-                    Enter OPT code
+                    ใส่รหัส OPT
                   </span>
                 </div>
                 <div className="flex flex-col gap-2 py-5">
@@ -564,12 +566,12 @@ export default function SignUp() {
                 </div>
                 <div className="">
                   <span className="text-white font-kanit">
-                    Don&apos;t get the OPT ?
+                    ไม่ได้รับรหัส OTP ?
                     <a
                       href={""}
                       className="font-kanit text-white underline underline-offset-8 px-2 hover:text-green-500"
                     >
-                      resent
+                      ส่งอีกครั้ง
                     </a>
                   </span>
                 </div>
@@ -584,7 +586,7 @@ export default function SignUp() {
                       setNowState(2);
                     }}
                   >
-                    <FaArrowLeftLong /> go back
+                    <FaArrowLeftLong /> ย้อนกลับ
                   </button>
                   <button
                     className="btn bg-black my-10 font-kanit text-white hover:text-green-500"
@@ -593,7 +595,7 @@ export default function SignUp() {
                       router.push(`/`)
                     }}
                   >
-                    finish <FaCheck />
+                    เสร็จสิ้น <FaCheck />
                   </button>
                 </div>
               </label>
