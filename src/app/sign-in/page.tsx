@@ -15,16 +15,16 @@ export default function SignUp() {
   return (
     <div className="grid h-svh place-content-center">
       <div className="flex md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)]">
-        <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl">
+        <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl border border-white/15">
           <h1 className="text-3xl text-center font-kanit font-bold py-20">
-            Sign In
+            เข้าสู่ระบบ
           </h1>
           <div className="flex justify-center">
             <div>
               <label className="form-control w-full max-w-xs">
                 <div className="label">
                   <span className="label-text text-white font-kanit">
-                    Email
+                    อีเมล
                   </span>
                 </div>
                 <input
@@ -38,7 +38,7 @@ export default function SignUp() {
                 />
                 <div className="label">
                   <span className="label-text text-white font-kanit mt-10">
-                    Password
+                    รหัสผ่าน
                   </span>
                 </div>
                 <input
@@ -61,17 +61,19 @@ export default function SignUp() {
                     }
                   }}
                 >
-                  sign in
+                  เข้าสู่ระบบ
                 </button>
               </label>
-              <label className="font-kanit flex">
-                Don&apos;t have an account ?
-                <h1 onClick={()=>{
-                  router.push(`/sign-up`)
-                }} className="underline underline-offset-8 font-kanit mx-2 hover:cursor-pokanit hover:text-green-500">
-                  sign-up
-                </h1>
-              </label>
+              <div className="flex justify-center text-center">
+                <label className="flex font-kanit">
+                  ยังไม่มีบัญชี ?
+                  <h1 onClick={()=>{
+                    router.push(`/sign-up`)
+                  }} className="underline underline-offset-8 font-kanit mx-2 hover:cursor-pokanit hover:text-green-500">
+                    สมัครสมาชิก
+                  </h1>
+                </label>
+              </div>
             </div>
           </div>
         </div>
