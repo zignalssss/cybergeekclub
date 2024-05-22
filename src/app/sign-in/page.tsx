@@ -16,14 +16,14 @@ export default function SignUp() {
     <div className="grid h-svh place-content-center">
       <div className="flex md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)]">
         <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl">
-          <h1 className="text-3xl text-center font-inter font-bold py-20">
+          <h1 className="text-3xl text-center font-kanit font-bold py-20">
             Sign In
           </h1>
           <div className="flex justify-center">
             <div>
               <label className="form-control w-full max-w-xs">
                 <div className="label">
-                  <span className="label-text text-white font-inter">
+                  <span className="label-text text-white font-kanit">
                     Email
                   </span>
                 </div>
@@ -31,13 +31,13 @@ export default function SignUp() {
                   required
                   type="email"
                   placeholder="example@ku.th"
-                  className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
+                  className="input input-bordered w-full max-w-xs font-kanit bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
                   onChange={(event) => {
                     setEmail(event.target.value);
                   }}
                 />
                 <div className="label">
-                  <span className="label-text text-white font-inter mt-10">
+                  <span className="label-text text-white font-kanit mt-10">
                     Password
                   </span>
                 </div>
@@ -45,14 +45,14 @@ export default function SignUp() {
                   required
                   type="password"
                   placeholder="example123456!@#"
-                  className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
+                  className="input input-bordered w-full max-w-xs font-kanit bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
                   onChange={(event) => {
                     setPassword(event.target.value);
                   }}
                 />
                 <button
-                  className="btn bg-black my-20 font-inter text-white"
-                  type="submit"
+                  className="btn bg-black my-20 font-kanit text-white"
+                  type="button"
                   onClick={() => {
                     if (!session) {
                       setHidden("");
@@ -64,11 +64,11 @@ export default function SignUp() {
                   sign in
                 </button>
               </label>
-              <label className="font-inter flex">
+              <label className="font-kanit flex">
                 Don&apos;t have an account ?
                 <h1 onClick={()=>{
                   router.push(`/sign-up`)
-                }} className="underline underline-offset-8 font-inter mx-2 hover:cursor-pointer">
+                }} className="underline underline-offset-8 font-kanit mx-2 hover:cursor-pokanit hover:text-green-500">
                   sign-up
                 </h1>
               </label>
@@ -77,13 +77,13 @@ export default function SignUp() {
         </div>
         <div className={`absolute ${hidden}`}>
           <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl justify-center">
-            <h1 className="text-3xl text-center font-inter font-bold py-20">
+            <h1 className="text-3xl text-center font-kanit font-bold py-20">
               Verify
             </h1>
             <div className="flex justify-center">
               <label className="form-control w-full max-w-xs">
                 <div className="label">
-                  <span className="label-text text-white font-inter">
+                  <span className="label-text text-white font-kanit">
                     Enter OPT code
                   </span>
                 </div>
@@ -91,11 +91,11 @@ export default function SignUp() {
                   <OTPInput value={opt} valueLength={6} onChange={onChange} />
                 </div>
                 <div className="label">
-                  <span className="label-text text-white font-inter">
+                  <span className="label-text text-white font-kanit">
                     Don&apos;t get the OPT ?
                     <a
                       href={""}
-                      className="label-text font-inter text-white underline underline-offset-8 px-2"
+                      className="label-text font-kanit text-white underline underline-offset-8 px-2"
                     >
                       resent
                     </a>

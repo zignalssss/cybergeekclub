@@ -49,27 +49,28 @@ export default function SignUp() {
   };
   
   return (
-    <div className="grid h-svh place-content-center">
+    <div className="grid grid-cols-3 h-svh place-content-center">
       <div className="p-5 rounded-3xl my-1">
-        <h1 className="text-center text-3xl font-kanit mb-10">
-          {
-            
-            nowState === 3 ? <div className="flex justify-center"><BsFillCheckCircleFill/></div> : nowState > 0 ? <span className="loading loading-dots loading-lg"></span> : "3 Step"
-          }
-        </h1>
-        <ProgressBar maximumState={3} nowState={nowState} text={texts}/>
+        <div className="flex flex-col justify-center place-content-center w-[80%] h-[80%] mx-20">
+          <h1 className="text-center text-3xl font-kanit font-bold mb-10">
+            {
+              nowState === 3 ? <div className="flex justify-center"><BsFillCheckCircleFill/></div> : nowState > 0 ? <span className="loading loading-dots loading-lg"></span> : "3 Step"
+            }
+          </h1>
+          <ProgressBar maximumState={3} nowState={nowState} text={texts}/>
+        </div>
       </div>
       
       <div className="flex justify-center md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)] transition-all duration-400">
         <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl border border-white/15 ">
-          <h1 className="text-3xl text-center font-inter font-bold py-20">
+          <h1 className="text-3xl text-center font-kanit font-bold py-20">
             Sign Up
           </h1>
           <div className="flex justify-center">
             <div>
               <label className="form-control w-full max-w-xs">
                 <div className="label">
-                  <span className="label-text text-white font-inter">
+                  <span className="label-text text-white font-kanit">
                     Email
                   </span>
                 </div>
@@ -77,13 +78,13 @@ export default function SignUp() {
                   required
                   type="email"
                   placeholder="example@ku.th"
-                  className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
+                  className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100 focus:ring-2 focus:ring-green-500"
                   onChange={(event) => {
                     setEmail(event.target.value);
                   }}
                 />
                 <div className="label">
-                  <span className="label-text text-white font-inter mt-5">
+                  <span className="label-text text-white font-kanit mt-5">
                     Password
                   </span>
                 </div>
@@ -91,13 +92,13 @@ export default function SignUp() {
                   required
                   type="password"
                   placeholder="example123456!@#"
-                  className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
+                  className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100 focus:ring-2 focus:ring-green-500"
                   onChange={(event) => {
                     setPassword(event.target.value);
                   }}
                 />
                 <div className="label">
-                  <span className="label-text text-white font-inter mt-5">
+                  <span className="label-text text-white font-kanit mt-5">
                     Confirm Password
                   </span>
                 </div>
@@ -105,14 +106,14 @@ export default function SignUp() {
                   required
                   type="password"
                   placeholder="example123456!@#"
-                  className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
+                  className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100 focus:ring-2 focus:ring-green-500"
                   onChange={(event) => {
                     setPassword(event.target.value);
                   }}
                 />
                 <button
-                  className="btn bg-black my-10 font-inter text-white hover:text-green-500"
-                  type="submit"
+                  className="btn bg-black my-10 font-kanit text-white hover:text-green-500"
+                  type="button"
                   onClick={() => {
                     setShowVerify("hidden");
                     setShowPersonalInfo1("");
@@ -124,11 +125,11 @@ export default function SignUp() {
                   next step <FaArrowRightLong />
                 </button>
               </label>
-              <label className="font-inter">
+              <label className="font-kanit">
                 Already have an account ?
                 <a
                   href="sign-in"
-                  className="underline underline-offset-8 font-inter mx-2"
+                  className="underline underline-offset-8 font-kanit mx-2 hover:text-green-500"
                 >
                   sign-in
                 </a>
@@ -151,7 +152,7 @@ export default function SignUp() {
                   <select
                     id="prefixTH"
                     defaultValue=""
-                    className="select select-bordered bg-[#302E2E]"
+                    className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -178,7 +179,8 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="เด็กไทย"
-                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+                    required
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -188,7 +190,8 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="ใจดี"
-                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+                    required
                   />
                 </label>
               </div>
@@ -200,7 +203,7 @@ export default function SignUp() {
                   <select
                     id="prefixEN"
                     defaultValue=""
-                    className="select select-bordered bg-[#302E2E]"
+                    className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -227,7 +230,8 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="Dekthai"
-                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+                    required
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -237,7 +241,8 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="Jaidee"
-                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+                    required 
                   />
                 </label>
               </div>
@@ -249,7 +254,8 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="สุดสวย"
-                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+                    required
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -259,7 +265,8 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="Sudsuay"
-                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+                    required
                   />
                 </label>
               </div>
@@ -271,7 +278,8 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="0xxxxxxxxxx"
-                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+                    required
                   />
                 </label>
                 <label className="form-control flex-none w-fit max-w-xs">
@@ -280,7 +288,7 @@ export default function SignUp() {
                   </div>
                   <select
                     defaultValue=""
-                    className="select select-bordered bg-[#302E2E]"
+                    className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
                   >
                     <option value="" disabled>
@@ -298,14 +306,15 @@ export default function SignUp() {
                   </div>
                   <input
                     type="date"
-                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+                    required
                   />
                 </label>
               </div>
-              <div className="flex justify-center w-full px-10 gap-2">
+              <div className="flex justify-center w-full px-10 gap-20">
                 <button
-                  className="btn btn-ghost my-10 font-inter text-white hover:text-green-500"
-                  type="submit"
+                  className="btn btn-ghost my-10 font-kanit text-white hover:text-green-500"
+                  type="button"
                   onClick={() => {
                     setShowVerify("hidden");
                     setShowPersonalInfo1("hidden");
@@ -317,8 +326,8 @@ export default function SignUp() {
                   <FaArrowLeftLong /> go back
                 </button>
                 <button
-                  className="btn bg-black my-10 font-inter text-white hover:text-green-500"
-                  type="submit"
+                  className="btn bg-black my-10 font-kanit text-white hover:text-green-500"
+                  type="button"
                   onClick={() => {
                     setShowVerify("hidden");
                     setShowPersonalInfo1("hidden");
@@ -335,7 +344,7 @@ export default function SignUp() {
         </div>
         {/* personal data 2 */}
         <div className={`absolute ${showPersonalInfo2}`}>
-          <div className="bg-[#181818] md:w-[700px] md:h-[700px] rounded-3xl font-kanit ">
+          <div className="bg-[#181818] md:w-[700px] md:h-[700px] rounded-3xl font-kanit border border-white/15">
             <h1 className="text-3xl text-center font-bold py-20">
               ข้อมูลในสถานศึกษา
             </h1>
@@ -348,7 +357,8 @@ export default function SignUp() {
                   <input
                     type="text"
                     placeholder="ex. 65xxxxxxxx"
-                    className="input input-bordered w-full max-w-xs bg-[#302E2E]"
+                    className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+                    required
                   />
                 </label>
               </div>
@@ -360,7 +370,7 @@ export default function SignUp() {
                   <select
                     id="facultyTh"
                     defaultValue=""
-                    className="select select-bordered bg-[#302E2E]"
+                    className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -399,7 +409,7 @@ export default function SignUp() {
                   <select
                     id="facultyEn"
                     defaultValue=""
-                    className="select select-bordered bg-[#302E2E]"
+                    className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -428,7 +438,7 @@ export default function SignUp() {
                   <select
                     id="majorTh"
                     defaultValue=""
-                    className="select select-bordered bg-[#302E2E]"
+                    className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -465,7 +475,7 @@ export default function SignUp() {
                   <select
                     id="majorEn"
                     defaultValue=""
-                    className="select select-bordered bg-[#302E2E]"
+                    className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
@@ -494,7 +504,7 @@ export default function SignUp() {
                   <select
                     id="tag"
                     defaultValue=""
-                    className="select select-bordered bg-[#302E2E]"
+                    className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
                   >
                     <option value="" disabled>
@@ -505,10 +515,10 @@ export default function SignUp() {
                   </select>
                 </label>
               </div>
-              <div className="flex justify-center w-full px-10 gap-2">
+              <div className="flex justify-center w-full px-10 gap-20">
                 <button
-                  className="btn btn-ghost my-10 font-inter text-white hover:text-green-500"
-                  type="submit"
+                  className="btn btn-ghost my-10 font-kanit text-white hover:text-green-500"
+                  type="button"
                   onClick={() => {
                     setShowVerify("hidden");
                     setShowPersonalInfo1("");
@@ -520,8 +530,8 @@ export default function SignUp() {
                   <FaArrowLeftLong /> go back
                 </button>
                 <button
-                  className="btn bg-black my-10 font-inter text-white hover:text-green-500"
-                  type="submit"
+                  className="btn bg-black my-10 font-kanit text-white hover:text-green-500"
+                  type="button"
                   onClick={() => {
                     setShowVerify("");
                     setShowPersonalInfo1("hidden");
@@ -538,26 +548,26 @@ export default function SignUp() {
         </div>
         {/* verify page */}
         <div className={`absolute ${showVerify}`}>
-          <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl justify-center">
-            <h1 className="text-3xl text-center font-inter font-bold py-20">
+          <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl justify-center border border-white/15">
+            <h1 className="text-3xl text-center font-kanit font-bold py-20">
               Verify
             </h1>
             <div className="flex justify-center">
               <label className="form-control w-full max-w-xs">
                 <div className="label">
-                  <span className="label-text text-white font-inter">
+                  <span className="label-text text-white font-kanit">
                     Enter OPT code
                   </span>
                 </div>
                 <div className="flex flex-col gap-2 py-5">
                   <OTPInput value={opt} valueLength={6} onChange={onChange} />
                 </div>
-                <div className="label">
-                  <span className="label-text text-white font-inter">
+                <div className="">
+                  <span className="text-white font-kanit">
                     Don&apos;t get the OPT ?
                     <a
                       href={""}
-                      className="label-text font-inter text-white underline underline-offset-8 px-2"
+                      className="font-kanit text-white underline underline-offset-8 px-2 hover:text-green-500"
                     >
                       resent
                     </a>
@@ -565,8 +575,8 @@ export default function SignUp() {
                 </div>
                 <div className="flex justify-center w-full px-10 gap-20">
                   <button
-                    className="btn btn-ghost my-10 font-inter text-white hover:text-green-500"
-                    type="submit"
+                    className="btn btn-ghost my-10 font-kanit text-white hover:text-green-500"
+                    type="button"
                     onClick={() => {
                       setShowVerify("hidden");
                       setShowPersonalInfo1("hidden");
@@ -577,8 +587,8 @@ export default function SignUp() {
                     <FaArrowLeftLong /> go back
                   </button>
                   <button
-                    className="btn bg-black my-10 font-inter text-white hover:text-green-500"
-                    type="submit"
+                    className="btn bg-black my-10 font-kanit text-white hover:text-green-500"
+                    type="button"
                     onClick={() => {
                       router.push(`/`)
                     }}

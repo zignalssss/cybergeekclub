@@ -106,7 +106,7 @@ export default function OPTInput({ value, valueLength, onChange }: Props) {
               onKeyDown={inputOnkeyDown}
               onChange={(e) => inputOnChange(e, idx)}
               onFocus={inputOnFocus}
-              className="h-16 w-10 bg-[#302E2E] text-center rounded-xl font-inter"
+              className="h-16 w-10 bg-[#302E2E] text-center rounded-xl font-kanit"
             ></input>
           ))}
         </label>
