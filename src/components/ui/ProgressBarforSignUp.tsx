@@ -23,7 +23,7 @@ export default function ProgressBar({ maximumState, nowState, text}: Prop) {
   return (
     <>
       <div className="flex flex-col w-auto h-20 ">
-        <div className={`grid grid-cols-${maximumState} w-full h-fit`}>
+        <div className={`grid grid-cols-3 w-full h-fit`}>
             {createDivs(maximumState)}
         </div>
         <div className="w-full h-5 bg-[#302E2E] rounded-lg">

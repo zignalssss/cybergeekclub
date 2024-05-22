@@ -7,7 +7,7 @@ import { IoMdLink } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
-import ProgressBar from "@/components/ui/ProgressBar";
+import ProgressBar from "@/components/ui/ProgressBarforSignUp";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
 interface Department {
