@@ -11,7 +11,7 @@ export default function ProgressBar({ maximumState, nowState, text}: Prop) {
     let divs: JSX.Element[] = [];
     for (let i = 0; i < count && text.length != 0; i++) {
       divs.push(
-        <div key={i} className="flex justify-center font-kanit">
+        <div key={i} className="text-center font-kanit">
           {text[i]}
         </div>
       );
@@ -22,7 +22,7 @@ export default function ProgressBar({ maximumState, nowState, text}: Prop) {
   const percentage = (nowState / maximumState) * 100;
   return (
     <>
-      <div className="flex flex-col justify-center w-auto h-20 ">
+      <div className="flex flex-col w-auto h-20 ">
         <div className={`grid grid-cols-${maximumState} w-full h-fit`}>
             {createDivs(maximumState)}
         </div>

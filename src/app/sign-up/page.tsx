@@ -9,7 +9,6 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
 import ProgressBar from "@/components/ui/ProgressBar";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import Image from "next/image";
 
 interface Department {
   id: number;
@@ -27,7 +26,7 @@ export default function SignUp() {
   const [showPersonalInfo1, setShowPersonalInfo1] = useState("hidden");
   const [showPersonalInfo2, setShowPersonalInfo2] = useState("hidden");
   const [nowState, setNowState] = useState(0);
-  const texts = ["ข้อมูลส่วนตัว", "ข้อมูลในสถานศึกษา", "ยืนยันตัวตน"];
+  const texts = ["1.ข้อมูลส่วนตัว", "2.ข้อมูลในสถานศึกษา", "3.ยืนยันตัวตน"];
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,19 +47,21 @@ export default function SignUp() {
       setDepartments([]);
     }
   };
+  
   return (
     <div className="grid h-svh place-content-center">
       <div className="p-5 rounded-3xl my-1">
-        <h1 className="text-center text-3xl font-inter">
+        <h1 className="text-center text-3xl font-kanit mb-10">
           {
-            nowState > 0 ? <span className="loading loading-dots loading-lg"></span> : nowState === 3 ? <BsFillCheckCircleFill /> : <span className="loading loading-dots loading-lg"></span>
+            
+            nowState === 3 ? <div className="flex justify-center"><BsFillCheckCircleFill/></div> : nowState > 0 ? <span className="loading loading-dots loading-lg"></span> : "3 Step"
           }
         </h1>
         <ProgressBar maximumState={3} nowState={nowState} text={texts}/>
       </div>
       
       <div className="flex justify-center md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)] transition-all duration-400">
-        <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl">
+        <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl border border-white/15 ">
           <h1 className="text-3xl text-center font-inter font-bold py-20">
             Sign Up
           </h1>
@@ -117,6 +118,7 @@ export default function SignUp() {
                     setShowPersonalInfo1("");
                     setShowPersonalInfo2("hidden");
                     setNowState(1);
+                    console.log(nowState);
                   }}
                 >
                   next step <FaArrowRightLong />
@@ -136,7 +138,7 @@ export default function SignUp() {
         </div>
         {/* personal data 1 */}
         <div className={`absolute ${showPersonalInfo1}`}>
-          <div className="bg-[#181818] md:w-[700px] md:h-[700px] rounded-3xl font-kanit ">
+          <div className="bg-[#181818] md:w-[700px] md:h-[700px] rounded-3xl font-kanit border border-white/15">
             <h1 className="text-3xl text-center font-bold py-20">
               ข้อมูลส่วนตัว
             </h1>
@@ -309,6 +311,7 @@ export default function SignUp() {
                     setShowPersonalInfo1("hidden");
                     setShowPersonalInfo2("hidden");
                     setNowState(0);
+                    console.log(nowState);
                   }}
                 >
                   <FaArrowLeftLong /> go back
@@ -321,6 +324,7 @@ export default function SignUp() {
                     setShowPersonalInfo1("hidden");
                     setShowPersonalInfo2("");
                     setNowState(2);
+                    console.log(nowState);
                   }}
                 >
                   next step <FaArrowRightLong />
@@ -510,6 +514,7 @@ export default function SignUp() {
                     setShowPersonalInfo1("");
                     setShowPersonalInfo2("hidden");
                     setNowState(1);
+                    console.log(nowState);
                   }}
                 >
                   <FaArrowLeftLong /> go back
@@ -522,6 +527,7 @@ export default function SignUp() {
                     setShowPersonalInfo1("hidden");
                     setShowPersonalInfo2("hidden");
                     setNowState(3);
+                    console.log(nowState);
                   }}
                 >
                   next step <FaArrowRightLong />
