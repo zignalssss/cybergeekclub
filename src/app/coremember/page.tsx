@@ -8,7 +8,7 @@ const Page = () => {
                     <h2 className="mb-4 font-kanit text-4xl tracking-tight font-extrabold text-white ">อาจารย์ที่ปรึกษา</h2>
                 </div>
                 <div className="text-center text-gray-300 mb-14">
-                    <img draggable="false"  className="mx-auto mb-4 w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/memberprofile%2FAJ%20Nanta.jpg?alt=media&token=79a9c494-3a79-481d-a103-adc1696f4ade" alt="avatar img" />
+                    <img draggable="false"  className="mx-auto mb-4 w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/memberprofile%2FAJN.jpg?alt=media&token=341fad85-fbd8-4b55-9506-c34327605347" alt="avatar img" />
                     <h3 className="mb-1 text-2xl font-bold tracking-tight text-white ">
                         <a href="#">ผศ.ดร.นันทา จันทร์พิทักษ์</a>
                     </h3>
