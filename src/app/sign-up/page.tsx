@@ -20,7 +20,6 @@ interface Department {
 
 export default function SignUp() {
   const router = useRouter();
-  const onChange = (value: string) => setOpt(value);
 
   const [showVerify, setShowVerify] = useState("hidden");
   const [showPersonalInfo1, setShowPersonalInfo1] = useState("hidden");
@@ -28,9 +27,50 @@ export default function SignUp() {
   const [nowState, setNowState] = useState(0);
   const texts = ["1.ข้อมูลส่วนตัว", "2.ข้อมูลในสถานศึกษา", "3.ยืนยันตัวตน"];
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [opt, setOpt] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    prefixTH: "",
+    prefixEN: "",
+    nameTH: "",
+    nameEN: "",
+    surnameTH: "",
+    surnameEN: "",
+    nicknameTH: "",
+    nicknameEN: "",
+    phoneNumber: "",
+    birthDate: "",
+    nisitID: "",
+    facultyTh: "",
+    facultyEn: "",
+    majorTh: "",
+    majorEn: "",
+    tag: "",
+    otp: "",
+  });
+  // for OTP only
+  const onChange = (value: string) => {
+    setFormData({
+      ...formData,
+      otp: value,
+    });
+  };
+  // for everything
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+    console.log(formData);
+  };
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+    console.log(formData);
+  };
 
   const [departments, setDepartments] = useState<Department[]>([]);
   const [selectedDepartment, setSelectedDepartment] = useState<Department>();
@@ -47,20 +87,24 @@ export default function SignUp() {
       setDepartments([]);
     }
   };
-  
+
   return (
-    <div className="grid grid-cols-3 h-svh place-content-center">
-      <div className="p-5 rounded-3xl my-1">
-        <div className="flex flex-col justify-center place-content-center w-[80%] h-[80%] mx-20">
-          <h1 className="text-center text-3xl font-kanit font-bold mb-10">
-            {
-              nowState === 3 ? <div className="flex justify-center"><BsFillCheckCircleFill/></div> : nowState > 0 ? <span className="loading loading-dots loading-lg"></span> : "3 Step"
-            }
-          </h1>
-          <ProgressBar maximumState={3} nowState={nowState} text={texts}/>
-        </div>
+    <div className="grid place-content-center">
+      <div className="p-5 rounded-3xl">
+        <h1 className="text-center text-3xl font-kanit font-bold mb-10">
+          {nowState === 3 ? (
+            <div className="flex justify-center">
+              <BsFillCheckCircleFill />
+            </div>
+          ) : nowState > 0 ? (
+            <span className="loading loading-dots loading-lg"></span>
+          ) : (
+            "3 Step"
+          )}
+        </h1>
+        <ProgressBar maximumState={3} nowState={nowState} text={texts} />
       </div>
-      
+
       <div className="flex justify-center md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)] transition-all duration-400">
         <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl border border-white/15 ">
           <h1 className="text-3xl text-center font-kanit font-bold py-20">
@@ -76,12 +120,11 @@ export default function SignUp() {
                 </div>
                 <input
                   required
+                  id="email"
                   type="email"
                   placeholder="example@ku.th"
                   className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100 focus:ring-2 focus:ring-green-500"
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                  }}
+                  onChange={handleInputChange}
                 />
                 <div className="label">
                   <span className="label-text text-white font-kanit mt-5">
@@ -89,13 +132,12 @@ export default function SignUp() {
                   </span>
                 </div>
                 <input
+                  id="password"
                   required
                   type="password"
                   placeholder="example123456!@#"
                   className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100 focus:ring-2 focus:ring-green-500"
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                  }}
+                  onChange={handleInputChange}
                 />
                 <div className="label">
                   <span className="label-text text-white font-kanit mt-5">
@@ -107,9 +149,7 @@ export default function SignUp() {
                   type="password"
                   placeholder="example123456!@#"
                   className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100 focus:ring-2 focus:ring-green-500"
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                  }}
+                  onChange={handleInputChange}
                 />
                 <button
                   className="btn bg-black my-10 font-kanit text-white hover:text-green-500"
@@ -119,7 +159,6 @@ export default function SignUp() {
                     setShowPersonalInfo1("");
                     setShowPersonalInfo2("hidden");
                     setNowState(1);
-                    console.log(nowState);
                   }}
                 >
                   ต่อไป <FaArrowRightLong />
@@ -164,6 +203,7 @@ export default function SignUp() {
                       if (facultyEnDropdown) {
                         facultyEnDropdown.selectedIndex = selectedIndex;
                       }
+                      handleSelectChange(e);
                     }}
                   >
                     <option value="" disabled>
@@ -179,10 +219,12 @@ export default function SignUp() {
                     <span className="label-text text-white">ชื่อ</span>
                   </div>
                   <input
+                    id="nameTH"
                     type="text"
                     placeholder="เด็กไทย"
                     className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
+                    onChange={handleInputChange}
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -190,10 +232,12 @@ export default function SignUp() {
                     <span className="label-text text-white">นามสกุล</span>
                   </div>
                   <input
+                    id="surnameTH"
                     type="text"
                     placeholder="ใจดี"
                     className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
+                    onChange={handleInputChange}
                   />
                 </label>
               </div>
@@ -209,12 +253,13 @@ export default function SignUp() {
                     required
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       const selectedIndex = e.target.selectedIndex;
-                      const facultyEnDropdown = document.getElementById(
+                      const facultyThDropdown = document.getElementById(
                         "prefixTH"
                       ) as HTMLSelectElement;
-                      if (facultyEnDropdown) {
-                        facultyEnDropdown.selectedIndex = selectedIndex;
+                      if (facultyThDropdown) {
+                        facultyThDropdown.selectedIndex = selectedIndex;
                       }
+                      handleSelectChange(e);
                     }}
                   >
                     <option value="" disabled>
@@ -230,10 +275,12 @@ export default function SignUp() {
                     <span className="label-text text-white">Name</span>
                   </div>
                   <input
+                    id="nameEN"
                     type="text"
                     placeholder="Dekthai"
                     className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
+                    onChange={handleInputChange}
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -241,10 +288,12 @@ export default function SignUp() {
                     <span className="label-text text-white">Surname</span>
                   </div>
                   <input
+                    id="surnameEN"
                     type="text"
                     placeholder="Jaidee"
                     className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
-                    required 
+                    required
+                    onChange={handleInputChange}
                   />
                 </label>
               </div>
@@ -254,10 +303,12 @@ export default function SignUp() {
                     <span className="label-text text-white">ชื่อเล่น</span>
                   </div>
                   <input
+                    id="nicknameTH"
                     type="text"
                     placeholder="สุดสวย"
                     className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
+                    onChange={handleInputChange}
                   />
                 </label>
                 <label className="form-control w-full max-w-xs">
@@ -265,10 +316,12 @@ export default function SignUp() {
                     <span className="label-text text-white">Nickname</span>
                   </div>
                   <input
+                    id="nicknameEN"
                     type="text"
                     placeholder="Sudsuay"
                     className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
+                    onChange={handleInputChange}
                   />
                 </label>
               </div>
@@ -278,38 +331,24 @@ export default function SignUp() {
                     <span className="label-text text-white">เบอร์โทรศัพท์</span>
                   </div>
                   <input
+                    id="phoneNumber"
                     type="text"
                     placeholder="0xxxxxxxxxx"
                     className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
+                    onChange={handleInputChange}
                   />
-                </label>
-                <label className="form-control flex-none w-fit max-w-xs">
-                  <div className="label">
-                    <span className="label-text text-white">ศาสนา</span>
-                  </div>
-                  <select
-                    defaultValue=""
-                    className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
-                    required
-                  >
-                    <option value="" disabled>
-                      เลือก
-                    </option>
-                    <option>พุทธ</option>
-                    <option>อิสลาม</option>
-                    <option>คริสต์</option>
-                    <option>ไม่มี</option>
-                  </select>
                 </label>
                 <label className="form-control w-full max-w-xs">
                   <div className="label">
                     <span className="label-text text-white">วันเกิด</span>
                   </div>
                   <input
+                    id="birthDate"
                     type="date"
                     className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
+                    onChange={handleInputChange}
                   />
                 </label>
               </div>
@@ -322,7 +361,6 @@ export default function SignUp() {
                     setShowPersonalInfo1("hidden");
                     setShowPersonalInfo2("hidden");
                     setNowState(0);
-                    console.log(nowState);
                   }}
                 >
                   <FaArrowLeftLong /> ย้อนกลับ
@@ -335,7 +373,6 @@ export default function SignUp() {
                     setShowPersonalInfo1("hidden");
                     setShowPersonalInfo2("");
                     setNowState(2);
-                    console.log(nowState);
                   }}
                 >
                   ต่อไป <FaArrowRightLong />
@@ -357,10 +394,12 @@ export default function SignUp() {
                     <span className="label-text text-white">รหัสนักศึกษา</span>
                   </div>
                   <input
+                    id="nisitID"
                     type="text"
                     placeholder="ex. 65xxxxxxxx"
                     className="input input-bordered w-full max-w-xs bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
+                    onChange={handleInputChange}
                   />
                 </label>
               </div>
@@ -391,6 +430,7 @@ export default function SignUp() {
                       populateDepartments(e);
                       departmentTh.selectedIndex = 0;
                       departmentEn.selectedIndex = 0;
+                      handleSelectChange(e);
                     }}
                   >
                     <option value="" disabled>
@@ -421,6 +461,7 @@ export default function SignUp() {
                       if (facultyEnDropdown) {
                         facultyEnDropdown.selectedIndex = selectedIndex;
                       }
+                      handleSelectChange(e);
                     }}
                   >
                     <option value="" disabled>
@@ -455,6 +496,7 @@ export default function SignUp() {
                         setSelectedDepartment(departments[selectedIndex]);
                         tagDropdown.selectedIndex = 0;
                       }
+                      handleSelectChange(e);
                     }}
                   >
                     <option value="" disabled>
@@ -487,6 +529,7 @@ export default function SignUp() {
                       if (facultyEnDropdown) {
                         facultyEnDropdown.selectedIndex = selectedIndex;
                       }
+                      handleSelectChange(e);
                     }}
                   >
                     <option value="" disabled>
@@ -508,6 +551,7 @@ export default function SignUp() {
                     defaultValue=""
                     className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
                     required
+                    onChange={handleSelectChange}
                   >
                     <option value="" disabled>
                       choose
@@ -526,7 +570,6 @@ export default function SignUp() {
                     setShowPersonalInfo1("");
                     setShowPersonalInfo2("hidden");
                     setNowState(1);
-                    console.log(nowState);
                   }}
                 >
                   <FaArrowLeftLong /> ย้อนกลับ
@@ -539,7 +582,6 @@ export default function SignUp() {
                     setShowPersonalInfo1("hidden");
                     setShowPersonalInfo2("hidden");
                     setNowState(3);
-                    console.log(nowState);
                   }}
                 >
                   ต่อไป <FaArrowRightLong />
@@ -562,7 +604,11 @@ export default function SignUp() {
                   </span>
                 </div>
                 <div className="flex flex-col gap-2 py-5">
-                  <OTPInput value={opt} valueLength={6} onChange={onChange} />
+                  <OTPInput
+                    value={formData.otp}
+                    valueLength={6}
+                    onChange={onChange}
+                  />
                 </div>
                 <div className="">
                   <span className="text-white font-kanit">
@@ -592,7 +638,8 @@ export default function SignUp() {
                     className="btn bg-black my-10 font-kanit text-white hover:text-green-500"
                     type="button"
                     onClick={() => {
-                      router.push(`/`)
+                      router.push(`/`);
+                      console.log(formData);
                     }}
                   >
                     เสร็จสิ้น <FaCheck />

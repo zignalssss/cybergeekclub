@@ -22,7 +22,7 @@ export default function ProgressBar({ maximumState, nowState, text}: Prop) {
   const percentage = (nowState / maximumState) * 100;
   return (
     <>
-      <div className="flex flex-col w-auto h-20 ">
+      <div className="flex flex-col w-auto h-10 ">
         <div className={`grid grid-cols-3 w-full h-fit`}>
             {createDivs(maximumState)}
         </div>
