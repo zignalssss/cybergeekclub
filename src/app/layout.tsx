@@ -18,17 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <Providers>
-        <link
-          rel="icon"
-          href="/icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-        <Navbar/>
-          {children}
-        <Footer/>
+          <Navbar />
+            {children}
+          <Footer />
         </Providers>
       </body>
     </html>
