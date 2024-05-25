@@ -72,19 +72,19 @@ export default function SignUp() {
     console.log(formData);
   };
 
-  const [departments, setDepartments] = useState<Department[]>([]);
+  const [Major, setMajor] = useState<Department[]>([]);
   const [selectedDepartment, setSelectedDepartment] = useState<Department>();
 
-  // Function to populate departments based on selected faculty
-  const populateDepartments = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  // Function to populate Major based on selected faculty
+  const populateMajor = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedId = event.target.selectedIndex;
     const selectedFaculty = faculty.find(
       (faculty) => faculty.id === selectedId
     );
     if (selectedFaculty) {
-      setDepartments(selectedFaculty.departments as Department[]);
+      setMajor(selectedFaculty.Major as Department[]);
     } else {
-      setDepartments([]);
+      setMajor([]);
     }
   };
 
@@ -427,7 +427,7 @@ export default function SignUp() {
                       if (facultyEnDropdown) {
                         facultyEnDropdown.selectedIndex = selectedIndex;
                       }
-                      populateDepartments(e);
+                      populateMajor(e);
                       departmentTh.selectedIndex = 0;
                       departmentEn.selectedIndex = 0;
                       handleSelectChange(e);
@@ -493,7 +493,7 @@ export default function SignUp() {
                       ) as HTMLSelectElement;
                       if (departmentEnDropdown) {
                         departmentEnDropdown.selectedIndex = selectedIndex;
-                        setSelectedDepartment(departments[selectedIndex]);
+                        setSelectedDepartment(Major[selectedIndex]);
                         tagDropdown.selectedIndex = 0;
                       }
                       handleSelectChange(e);
@@ -502,7 +502,7 @@ export default function SignUp() {
                     <option value="" disabled>
                       เลือก
                     </option>
-                    {departments.map((obj) => (
+                    {Major.map((obj) => (
                       <option key={obj.id} value={obj.id}>
                         {obj.th}
                       </option>
@@ -535,7 +535,7 @@ export default function SignUp() {
                     <option value="" disabled>
                       choose
                     </option>
-                    {departments.map((obj) => (
+                    {Major.map((obj) => (
                       <option key={obj.id}>{obj.en}</option>
                     ))}
                   </select>
