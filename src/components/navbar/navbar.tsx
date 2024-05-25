@@ -182,9 +182,6 @@ const Navbar = () => {
 										<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>100</span></div>
 									</div>
 									<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
-										<div className='text-sm md:text-lg ml-2 font-semibold'>Role : <span className='font-normal'>MEMBER</span></div>
-									</div>
-									<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
 										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>CERTIFIED</span></div>
 									</div>
 									<div className=' flex items-center py-4 mt-2 md:py-5 h-5 hover:bg-neutral-950  rounded-md'>
@@ -229,8 +226,6 @@ const Navbar = () => {
 								</div>
 							</div>
 						</div>
-
-
 						<div className="navbar-end">
 							{isLogin ?
 								<div className="dropdown dropdown-end">
