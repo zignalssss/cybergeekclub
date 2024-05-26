@@ -15,7 +15,7 @@ type FormData1 = {
 };
 type FormData2 = {
   prefix_TH: string;
-  prefix_EN: String;
+  prefix_EN: string;
   name_TH: string;
   name_EN: string;
   surname_TH: string;
@@ -33,7 +33,6 @@ type FormData3 = {
   major_EN: string;
   tag: string;
 };
-
 type FormData4 = {
   otp: string;
 };
@@ -41,24 +40,34 @@ type FormData4 = {
 const SignUp = () => {
   const texts = ["1.ข้อมูลส่วนตัว", "2.ข้อมูลในสถานศึกษา", "3.ยืนยันตัวตน"];
   const [nowState, setNowState] = useState<number>(0);
+  const [userData, setUserData] = useState<any>({});
+
   const handleSubmitData1 = (data: FormData1) => {
-    console.log("form 1", data);
+    const email = data.email
+    const password = data.password
+    setUserData((prevData: any) => ({email,password}));
   };
+
   const handleSubmitData2 = (data: FormData2) => {
-    console.log("form 2", data);
+    setUserData((prevData: any) => ({ ...prevData, ...data }));
   };
+
   const handleSubmitData3 = (data: FormData3) => {
-    console.log("form 3", data);
+    setUserData((prevData: any) => ({ ...prevData, ...data }));
+    
   };
+
   const handleSubmitData4 = (data: FormData4) => {
-    console.log("form 4", data);
+    
+
   };
+
   const handleState = (value: number) => {
     setNowState(value);
-    console.log("nowState", nowState);
   };
+
   return (
-    <div className="grid place-content-center h-fit">
+    <div className="grid place-content-center h-fit mb-20">
       <div className="flex justify-center w-full h-full my-10">
         <ProgressBar maximumState={3} nowState={nowState} text={texts} />
       </div>
@@ -89,7 +98,7 @@ const SignUp = () => {
           nowState === 3 ? "" : "!hidden"
         } flex justify-center w-full h-fit`}
       >
-        <VerifySignUp onSubmit={handleSubmitData4} state={handleState} />
+        <VerifySignUp onSubmit={handleSubmitData4} state={handleState} email = {userData.email} nowState = {nowState}/>
       </div>
     </div>
   );

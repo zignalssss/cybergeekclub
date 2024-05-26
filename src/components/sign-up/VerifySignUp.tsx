@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
+import axios from "axios"
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
@@ -8,13 +9,17 @@ import { useRouter } from "next/navigation";
 type Prop = {
   onSubmit: (data: FormData) => void;
   state: (value: number) => void;
+  email : string;
+  nowState : number;
 };
 
 type FormData = {
   otp: string;
 };
-const VerifySignUp = ({ onSubmit, state }: Prop) => {
+
+const VerifySignUp = ({ onSubmit, state,email,nowState }: Prop) => {
   const router = useRouter();
+
   const [formData, setFormData] = useState<FormData>({
     otp: "",
   });
@@ -32,6 +37,18 @@ const VerifySignUp = ({ onSubmit, state }: Prop) => {
     onSubmit(formData);
     router.push("/");
   };
+  const GenerateOTP = async (email : string) =>{
+   try{
+  await axios.post("api/otp/generateotp",{email})
+   }catch(e){
+      return {"message":e}
+   }
+  }
+  useEffect(()=>{
+    if(nowState === 3){
+        GenerateOTP(email)    }
+  },[nowState])
+
   return (
     <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:h-[700px] md: bg-[#181818] rounded-3xl border border-white/15">
       <div className="flex justify-center my-10">

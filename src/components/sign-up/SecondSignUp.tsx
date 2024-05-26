@@ -9,7 +9,7 @@ type Prop = {
 };
 type FormData = {
   prefix_TH: string;
-  prefix_EN: String;
+  prefix_EN: string;
   name_TH: string;
   name_EN: string;
   surname_TH: string;
@@ -129,7 +129,7 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text text-white font-kanit">
-                ชื่อ (EN)
+                FirstName (EN)
               </span>
             </div>
             <input
@@ -145,7 +145,7 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text text-white font-kanit">
-                นามสกุล (EN)
+                LastName (EN)
               </span>
             </div>
             <input
@@ -177,7 +177,7 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text text-white font-kanit">
-                ชื่อเล่น (EN)
+                Nickname (EN)
               </span>
             </div>
             <input
