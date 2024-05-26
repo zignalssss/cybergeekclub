@@ -33,6 +33,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
       ...formData,
       [id]: value,
     });
+    setErrorMessage("");
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -74,7 +75,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
               id="password"
               type="password"
               placeholder="example@#!@#123"
-              className="input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E]"
+              className={`input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E] ${!errorMessage ? "" : "ring-2 ring-red-500"}`}
               required
               onChange={handleInputChange}
               value={formData.password}
@@ -90,7 +91,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
               id="confirmPassword"
               type="password"
               placeholder="example@#!@#123"
-              className="input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E]"
+              className={`input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E] ${!errorMessage ? "" : "ring-2 ring-red-500"}`}
               required
               onChange={handleInputChange}
               value={formData.confirmPassword}

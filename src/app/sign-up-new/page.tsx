@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 const ProgressBar = dynamic(
-  () => import("@/components/ui/ProgressBarforSignUp")
+  () => import("@/components/sign-up/ProgressBarforSignUp")
 );
 const FirstSignUp = dynamic(() => import("@/components/sign-up/FirstSignUp"));
 const SecondSignUp = dynamic(() => import("@/components/sign-up/SecondSignUp"));
@@ -27,6 +27,7 @@ type FormData2 = {
 };
 
 const SignUp = () => {
+  const texts = ["1.ข้อมูลส่วนตัว", "2.ข้อมูลในสถานศึกษา", "3.ยืนยันตัวตน"];
   const [nowState, setNowState] = useState<number>(0);
   const handleSubmitData1 = (data: FormData1) => {
     console.log("form 1", data);
@@ -44,7 +45,7 @@ const SignUp = () => {
         <ProgressBar
           maximumState={3}
           nowState={nowState}
-          text={["1.", "2.", "3."]}
+          text={texts}
         />
       </div>
 

@@ -1,5 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { BsFillCheckCircleFill } from "react-icons/bs";
+
 type Prop = {
   maximumState: number;
   nowState: number;
@@ -22,7 +24,18 @@ export default function ProgressBar({ maximumState, nowState, text}: Prop) {
   const percentage = (nowState / maximumState) * 100;
   return (
     <>
-      <div className="flex flex-col w-1/3 h-fit ">
+      <div className="flex flex-col w-80 sm:w-[500px] md:w-[700px] h-fit ">
+      <h1 className="text-center text-3xl font-kanit font-bold mb-10">
+          {nowState === 3 ? (
+            <div className="flex justify-center">
+              <BsFillCheckCircleFill />
+            </div>
+          ) : nowState > 0 ? (
+            <span className="loading loading-dots loading-lg"></span>
+          ) : (
+            "3 Step"
+          )}
+        </h1>
         <div className={`grid grid-cols-3 w-full h-fit`}>
             {createDivs(maximumState)}
         </div>
