@@ -1,113 +1,91 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
-import OTPInput from "@/components/otp/OTPInput";
 import { useRouter } from "next/navigation";
 
-export default function SignUp() {
-  const router = useRouter();
-  const [session, setSession] = useState(true);
-  const [hidden, setHidden] = useState("hidden");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [opt, setOpt] = useState("");
-  const onChange = (value: string) => setOpt(value);
+type FormData = {
+  email: string;
+  password: string;
+};
 
+export default function SignIn() {
+  const router = useRouter();
+  const [session, setSession] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+  });
+  
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData({
+      ...formData,
+      [id]: value,
+    });
+    setErrorMessage("");
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (true) {
+      setErrorMessage("");
+    } else {
+      setErrorMessage("รหัสผ่านไม่ตรงกัน");
+    }
+    console.log("Login form", formData)
+  };
   return (
-    <div className="grid h-svh place-content-center">
-      <div className="flex md:max-w[500px] md:max-h-[700px] drop-shadow-[0_0_30px_rgba(23,23,23,0.7)]">
-        <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl border border-white/15">
-          <h1 className="text-3xl text-center font-kanit font-bold py-20">
-            เข้าสู่ระบบ
-          </h1>
-          <div className="flex justify-center">
-            <div>
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text text-white font-kanit">
-                    อีเมล
-                  </span>
-                </div>
-                <input
-                  required
-                  type="email"
-                  placeholder="example@ku.th"
-                  className="input input-bordered w-full max-w-xs font-kanit bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                  }}
-                />
-                <div className="label">
-                  <span className="label-text text-white font-kanit mt-10">
-                    รหัสผ่าน
-                  </span>
-                </div>
-                <input
-                  required
-                  type="password"
-                  placeholder="example123456!@#"
-                  className="input input-bordered w-full max-w-xs font-kanit bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 transition-all duration-100"
-                  onChange={(event) => {
-                    setPassword(event.target.value);
-                  }}
-                />
-                <button
-                  className="btn bg-black my-20 font-kanit text-white"
-                  type="button"
-                  onClick={() => {
-                    if (!session) {
-                      setHidden("");
-                    } else {
-                      router.push("/");
-                    }
-                  }}
-                >
-                  เข้าสู่ระบบ
-                </button>
-              </label>
-              <div className="flex justify-center text-center">
-                <label className="flex font-kanit">
-                  ยังไม่มีบัญชี ?
-                  <h1 onClick={()=>{
-                    router.push(`/sign-up`)
-                  }} className="underline underline-offset-8 font-kanit mx-2 hover:cursor-pokanit hover:text-green-500">
-                    สมัครสมาชิก
-                  </h1>
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={`absolute ${hidden}`}>
-          <div className="bg-[#181818] md:w-[500px] md:h-[700px] rounded-3xl justify-center">
-            <h1 className="text-3xl text-center font-kanit font-bold py-20">
-              Verify
-            </h1>
-            <div className="flex justify-center">
-              <label className="form-control w-full max-w-xs">
-                <div className="label">
-                  <span className="label-text text-white font-kanit">
-                    Enter OPT code
-                  </span>
-                </div>
-                <div className="flex flex-col gap-2 py-5">
-                  <OTPInput value={opt} valueLength={6} onChange={onChange} />
-                </div>
-                <div className="label">
-                  <span className="label-text text-white font-kanit">
-                    Don&apos;t get the OPT ?
-                    <a
-                      href={""}
-                      className="label-text font-kanit text-white underline underline-offset-8 px-2"
-                    >
-                      resent
-                    </a>
-                  </span>
-                </div>
-              </label>
-            </div>
-          </div>
-        </div>
+    <div className="flex justify-center md:h-screen h-fit my-10">
+    <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:h-[700px] md: bg-[#181818] rounded-3xl border border-white/15 my-10 drop-shadow-[0_0_30px_rgba(23,23,23,0.7)]">
+      <div className="flex justify-center my-10">
+        <h1 className="font-kanit text-3xl">เข้าสู่ระบบ</h1>
       </div>
+      <form id="registrationForm1" onSubmit={handleSubmit}>
+        <div className="md:flex md:flex-col md:place-items-center justify-center grid w-full md:gap-10 gap-4">
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text text-white font-kanit">อีเมล</span>
+            </div>
+            <input
+              id="email"
+              type="email"
+              placeholder="example@ku.th"
+              className="input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E]"
+              required
+              onChange={handleInputChange}
+              value={formData.email}
+            />
+          </label>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text text-white font-kanit">รหัสผ่าน</span>
+            </div>
+            <input
+              id="password"
+              type="password"
+              placeholder="example@#!@#123"
+              className={`input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E] ${!errorMessage ? "" : "ring-2 ring-red-500"}`}
+              required
+              onChange={handleInputChange}
+              value={formData.password}
+            />
+          </label>
+          {errorMessage && (
+            <div className="text-center text-red-500 font-kanit">
+              {errorMessage}
+            </div>
+          )}
+          <button type="submit" className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500 md:my-10">
+            เริ่มต้น
+          </button>
+        </div>
+      </form>
+      <div className="flex justify-center p-5 font-kanit">
+        <h1>ยังไม่มีบัญชี ?&nbsp;</h1>
+        <Link className="hover:text-green-500 underline underline-offset-4" href={"/sign-up"}>สมัครสมาชิก</Link>
+      </div>
+    </div>
     </div>
   );
 }
