@@ -25,7 +25,18 @@ type FormData2 = {
   phone_number: string;
   birth_date: string;
 };
-type FormData3 = {};
+type FormData3 = {
+  student_id: string;
+  faculty_TH: string;
+  faculty_EN: string;
+  major_TH: string;
+  major_EN: string;
+  tag: string;
+};
+
+type FormData4 = {
+  otp: string;
+};
 
 const SignUp = () => {
   const texts = ["1.ข้อมูลส่วนตัว", "2.ข้อมูลในสถานศึกษา", "3.ยืนยันตัวตน"];
@@ -38,6 +49,9 @@ const SignUp = () => {
   };
   const handleSubmitData3 = (data: FormData3) => {
     console.log("form 3", data);
+  };
+  const handleSubmitData4 = (data: FormData4) => {
+    console.log("form 4", data);
   };
   const handleState = (value: number) => {
     setNowState(value);
@@ -75,7 +89,7 @@ const SignUp = () => {
           nowState === 3 ? "" : "!hidden"
         } flex justify-center w-full h-fit`}
       >
-        <VerifySignUp onSubmit={handleSubmitData3} state={handleState} />
+        <VerifySignUp onSubmit={handleSubmitData4} state={handleState} />
       </div>
     </div>
   );

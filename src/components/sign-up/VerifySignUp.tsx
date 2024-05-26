@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa";
 import OPTInput from "../otp/OTPInput";
 import { useRouter } from "next/navigation";
 type Prop = {
@@ -19,7 +20,6 @@ const VerifySignUp = ({ onSubmit, state }: Prop) => {
   });
   const onChange = (value: string) => {
     setFormData({
-      ...formData,
       otp: value,
     });
   };
@@ -78,8 +78,7 @@ const VerifySignUp = ({ onSubmit, state }: Prop) => {
             type="submit"
             className="btn btn-ghost min-w-20 bg-black font-kanit hover:text-green-500"
           >
-            ต่อไป
-            <FaArrowRightLong />
+            เสร็จสิ้น <FaCheck />
           </button>
         </div>
       </form>
