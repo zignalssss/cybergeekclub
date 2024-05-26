@@ -11,16 +11,15 @@ export async function POST(request: Request) {
     const { email }: {
         email: string,
     } = await request.json()
-    const OTP= otpGenerator.generate(OTP_LENGTH, { digits: true, lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false })
-
-    // await prisma.one_time_password.create({
-    //     data: {
-    //       email: email,
-    //       otp: OTP
-    //     }
-    // })
+    await prisma.one_time_password.create({
+        data: {
+          email: email,
+          otp: ""
+        }
+    })
     const SIMPLE_MAIL_TRANSFER_PROTOCOL_USERNAME= process.env.SIMPLE_MAIL_TRANSFER_PROTOCOL_USERNAME
     const SIMPLE_MAIL_TRANSFER_PROTOCOL_PASSWORD= process.env.SIMPLE_MAIL_TRANSFER_PROTOCOL_PASSWORD
+    const OTP = otpGenerator.generate(OTP_LENGTH, { digits: true, lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false })
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -39,6 +38,6 @@ export async function POST(request: Request) {
     await transporter.sendMail(mailOptions)
     return Response.json({ message: "ส่งรหัสสำเร็จ", data: email }, { status: 200 });
   } catch (error: unknown) {
-    return Response.json({ error: "ส่งรหัสล้มเหลว", data: error }, { status: 500 });
+    return Response.json({ error: "ส่งรหัสล้มเหลว" }, { status: 500 });
   }
 }
