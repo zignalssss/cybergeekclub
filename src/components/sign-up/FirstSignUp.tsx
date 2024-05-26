@@ -1,18 +1,23 @@
-"use client"
+"use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 type Prop = {
-  onSubmit : (data : FormData) => void;
-  state : (value : number) => void;
-}
+  onSubmit: (data: FormData) => void;
+  state: (value: number) => void;
+};
 type FormData = {
-  email : string;
-  password : string;
-  confirmPassword : string;
-}
-const FirstSignUp = ({onSubmit, state} : Prop) => {
-  const [formData, setFormData] = useState<FormData>({email: "", password: "", confirmPassword: ""});
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+const FirstSignUp = ({ onSubmit, state }: Prop) => {
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const checkPassword = () => {
@@ -21,7 +26,7 @@ const FirstSignUp = ({onSubmit, state} : Prop) => {
     } else {
       return false;
     }
-  }
+  };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData({
@@ -37,9 +42,9 @@ const FirstSignUp = ({onSubmit, state} : Prop) => {
       onSubmit(formData);
       state(1);
     } else {
-      setErrorMessage("รหัสผ่านไม่ตรงกัน")
+      setErrorMessage("รหัสผ่านไม่ตรงกัน");
     }
-  }
+  };
   return (
     <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:h-[700px] md: bg-[#181818] rounded-3xl border border-white/15">
       <div className="flex justify-center my-10">
@@ -77,7 +82,9 @@ const FirstSignUp = ({onSubmit, state} : Prop) => {
           </label>
           <label className="form-control w-full max-w-xs">
             <div className="label">
-              <span className="label-text text-white font-kanit">ยืนยันรหัสผ่าน</span>
+              <span className="label-text text-white font-kanit">
+                ยืนยันรหัสผ่าน
+              </span>
             </div>
             <input
               id="confirmPassword"
@@ -89,10 +96,20 @@ const FirstSignUp = ({onSubmit, state} : Prop) => {
               value={formData.confirmPassword}
             />
           </label>
-          {errorMessage && <div className="text-center text-red-500 font-kanit">{errorMessage}</div>}
-          <button type="submit" className="btn btn-neutral min-w-52 bg-black">เริ่มต้น</button>
+          {errorMessage && (
+            <div className="text-center text-red-500 font-kanit">
+              {errorMessage}
+            </div>
+          )}
+          <button type="submit" className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500">
+            เริ่มต้น
+          </button>
         </div>
       </form>
+      <div className="flex justify-center p-5 font-kanit">
+        <h1>มีบัญชีแล้ว ?&nbsp;</h1>
+        <Link className="hover:text-green-500 underline underline-offset-4" href={"/sign-in"}>เข้าสู่ระบบ</Link>
+      </div>
     </div>
   );
 };

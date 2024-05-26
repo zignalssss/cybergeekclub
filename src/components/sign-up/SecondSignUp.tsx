@@ -229,7 +229,7 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
         <div className="grid grid-cols-2 gap-3 my-10 md:gap-52 md:mx-5">
             <button
               type="button"
-              className="btn btn-neutral min-w-20 bg-black font-kanit"
+              className="btn btn-ghost min-w-20 bg-transparent font-kanit hover:text-green-500"
               onClick={handleBackBtn}
             >
               <FaArrowLeftLong />
@@ -237,7 +237,7 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
             </button>
             <button
               type="submit"
-              className="btn btn-neutral min-w-20 bg-black font-kanit"
+              className="btn btn-ghost min-w-20 bg-black font-kanit hover:text-green-500"
             >
               ต่อไป
               <FaArrowRightLong />
