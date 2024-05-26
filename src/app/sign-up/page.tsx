@@ -7,7 +7,6 @@ const FirstSignUp = dynamic(() => import("@/components/sign-up/FirstSignUp"));
 const SecondSignUp = dynamic(() => import("@/components/sign-up/SecondSignUp"));
 const ThirdSignUp = dynamic(() => import("@/components/sign-up/ThirdSignUp"));
 const VerifySignUp = dynamic(() => import("@/components/sign-up/VerifySignUp"));
-
 type FormData1 = {
   email: string;
   password: string;
