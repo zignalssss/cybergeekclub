@@ -31,9 +31,9 @@ export default function ProgressBar({ maximumState, nowState, text }: Prop) {
               <BsFillCheckCircleFill />
             </div>
           ) : nowState > 0 ? (
-            <span className="loading loading-dots loading-lg"></span>
+            <span className="loading loading-dots loading-lg animate-pulse"></span>
           ) : (
-            "3 Step"
+            <div className="animate-bounce">3 step</div>
           )}
         </h1>
         <div className={`grid grid-cols-3 w-full h-fit`}>
@@ -42,9 +42,9 @@ export default function ProgressBar({ maximumState, nowState, text }: Prop) {
         <div className="w-full h-5 bg-[#302E2E] rounded-lg">
           <motion.div
             className="h-full"
-            animate={{ opacity: [1, 0, 1] }}
+            animate={{ opacity: [1, 0.5, 1] }}
             transition={{
-              duration: 2,
+              duration: 1,
               repeat: Infinity,
               ease: "easeInOut",
             }}
