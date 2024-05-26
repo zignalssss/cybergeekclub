@@ -13,12 +13,14 @@ export async function POST(request: Request) {
     } = await request.json()
     const OTP= otpGenerator.generate(OTP_LENGTH, { digits: true, lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false })
 
-    await prisma.one_time_password.create({
-        data: {
+    const updateUser = await prisma.one_time_password.update({
+        where: {
           email: email,
-          otp: OTP
-        }
-    })
+        },
+        data: {
+          otp: OTP,
+        },
+      })
     const SIMPLE_MAIL_TRANSFER_PROTOCOL_USERNAME= process.env.SIMPLE_MAIL_TRANSFER_PROTOCOL_USERNAME
     const SIMPLE_MAIL_TRANSFER_PROTOCOL_PASSWORD= process.env.SIMPLE_MAIL_TRANSFER_PROTOCOL_PASSWORD
   
