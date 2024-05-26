@@ -1,23 +1,32 @@
 "use client";
-import Link from "next/link";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 
+import Link from "next/link";
+import { useState } from "react";
+
+type Prop = {
+  onSubmit: (data: FormData) => void;
+  state: (value: number) => void;
+};
 type FormData = {
   email: string;
   password: string;
+  confirmPassword: string;
 };
-
-export default function SignIn() {
-  const router = useRouter();
-  const [session, setSession] = useState<boolean>(true);
-  const [errorMessage, setErrorMessage] = useState<string>("");
+const FirstSignUp = ({ onSubmit, state }: Prop) => {
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
+    confirmPassword: "",
   });
-  
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
+  const checkPassword = () => {
+    if (formData.password === formData.confirmPassword) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData({
@@ -26,20 +35,21 @@ export default function SignIn() {
     });
     setErrorMessage("");
   };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (true) {
+    if (checkPassword()) {
       setErrorMessage("");
+      onSubmit(formData);
+      state(1);
     } else {
       setErrorMessage("รหัสผ่านไม่ตรงกัน");
     }
-    console.log("Login form", formData)
   };
   return (
-    <div className="flex justify-center md:h-screen h-fit my-10">
-    <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:h-[700px] md: bg-[#181818] rounded-3xl border border-white/15 my-10 drop-shadow-[0_0_30px_rgba(23,23,23,0.7)]">
+    <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:h-[700px] md: bg-[#181818] rounded-3xl border border-white/15">
       <div className="flex justify-center my-10">
-        <h1 className="font-kanit text-3xl">เข้าสู่ระบบ</h1>
+        <h1 className="font-kanit text-3xl">สมัครสมาชิก</h1>
       </div>
       <form id="registrationForm1" onSubmit={handleSubmit}>
         <div className="md:flex md:flex-col md:place-items-center justify-center grid w-full md:gap-10 gap-4">
@@ -71,6 +81,22 @@ export default function SignIn() {
               value={formData.password}
             />
           </label>
+          <label className="form-control w-full max-w-xs">
+            <div className="label">
+              <span className="label-text text-white font-kanit">
+                ยืนยันรหัสผ่าน
+              </span>
+            </div>
+            <input
+              id="confirmPassword"
+              type="password"
+              placeholder="example@#!@#123"
+              className={`input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E] ${!errorMessage ? "" : "ring-2 ring-red-500"}`}
+              required
+              onChange={handleInputChange}
+              value={formData.confirmPassword}
+            />
+          </label>
           {errorMessage && (
             <div className="text-center text-red-500 font-kanit">
               {errorMessage}
@@ -82,10 +108,11 @@ export default function SignIn() {
         </div>
       </form>
       <div className="flex justify-center p-5 font-kanit">
-        <h1>ยังไม่มีบัญชี ?&nbsp;</h1>
-        <Link className="hover:text-green-500 underline underline-offset-4" href={"/sign-up"}>สมัครสมาชิก</Link>
+        <h1>มีบัญชีแล้ว ?&nbsp;</h1>
+        <Link className="hover:text-green-500 underline underline-offset-4" href={"/sign-in"}>เข้าสู่ระบบ</Link>
       </div>
     </div>
-    </div>
   );
-}
+};
+
+export default FirstSignUp;

@@ -1,0 +1,259 @@
+{
+    "faculty": [
+        {
+            "name_en": "Faculty of Management Sciences",
+            "name_th": "คณะวิทยาการจัดการ",
+            "programs": [
+                {
+                    "name_en": "Finance",
+                    "name_th": "สาขาวิชาการเงิน",
+                    "codes": ["R01", "R09"]
+                },
+                {
+                    "name_en": "Management",
+                    "name_th": "สาขาวิชาการจัดการ",
+                    "codes": ["R02", "R08"]
+                },
+                {
+                    "name_en": "Marketing",
+                    "name_th": "สาขาวิชาการตลาด",
+                    "codes": ["R03", "R11"]
+                },
+                {
+                    "name_en": "International Business",
+                    "name_th": "สาขาวิชาธุรกิจระหว่างประเทศ",
+                    "codes": ["R04", "R07"]
+                },
+                {
+                    "name_en": "Hotel and Tourism Management",
+                    "name_th": "สาขาวิชาการจัดการโรงแรมและท่องเที่ยว",
+                    "codes": ["R05", "R10"]
+                },
+                {
+                    "name_en": "Hotel Studies",
+                    "name_th": "สาขาวิชาการโรงแรม",
+                    "codes": ["R06"]
+                },
+                {
+                    "name_en": "Managerial Accounting",
+                    "name_th": "สาขาวิชาการบัญชีบริหาร",
+                    "codes": ["R13", "R12"]
+                },
+                {
+                    "name_en": "Logistics Management",
+                    "name_th": "สาขาวิชาการจัดการโลจิสติกส์",
+                    "codes": ["R14", "R15"]
+                },
+                {
+                    "name_en": "Finance and Investment",
+                    "name_th": "สาขาวิชาการเงินและการลงทุน",
+                    "codes": ["R16", "R17"]
+                },
+                {
+                    "name_en": "Hotel Management",
+                    "name_th": "สาขาวิชาการจัดการโรงแรม",
+                    "codes": ["R20", "R21"]
+                },
+                {
+                    "name_en": "Contemporary Tourism Management",
+                    "name_th": "สาขาวิชาการจัดการการท่องเที่ยวร่วมสมัย",
+                    "codes": ["R22", "R23"]
+                },
+                {
+                    "name_en": "Accounting",
+                    "name_th": "สาขาวิชาการบัญชี",
+                    "codes": ["R24", "R25"]
+                },
+                {
+                    "name_en": "Digital Marketing and Branding",
+                    "name_th": "สาขาวิชาการตลาดดิจิทัลและการสร้างตรา",
+                    "codes": ["R32", "R33"]
+                }
+            ]
+        },
+        {
+            "name_en": "Faculty of Engineering at Sriracha",
+            "name_th": "คณะวิศวกรรมศาสตร์ ศรีราชา",
+            "programs": [
+                {
+                    "name_en": "Computer Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมคอมพิวเตอร์",
+                    "codes": ["T02"]
+                },
+                {
+                    "name_en": "Mechanical Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมเครื่องกล",
+                    "codes": ["T03"]
+                },
+                {
+                    "name_en": "Electrical Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมไฟฟ้า",
+                    "codes": ["T04"]
+                },
+                {
+                    "name_en": "Civil Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมโยธา",
+                    "codes": ["T05"]
+                },
+                {
+                    "name_en": "Industrial Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมอุตสาหการ",
+                    "codes": ["T07"]
+                },
+                {
+                    "name_en": "Mechanical and Manufacturing Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมเครื่องกลและการผลิต",
+                    "codes": ["T08"]
+                },
+                {
+                    "name_en": "Computer Engineering and Informatics",
+                    "name_th": "สาขาวิชาวิศวกรรมคอมพิวเตอร์และสารสนเทศศาสตร์",
+                    "codes": ["T12"]
+                },
+                {
+                    "name_en": "Mechanical and Design Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมเครื่องกลและการออกแบบ",
+                    "codes": ["T13"]
+                },
+                {
+                    "name_en": "Electrical and Electronics Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมไฟฟ้าและอิเล็กทรอนิกส์",
+                    "codes": ["T14"]
+                },
+                {
+                    "name_en": "Industrial and Systems Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมอุตสาหการและระบบ",
+                    "codes": ["T17"]
+                },
+                {
+                    "name_en": "Digital Manufacturing System Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมระบบการผลิตดิจิทัล",
+                    "codes": ["T20"]
+                },
+                {
+                    "name_en": "Digital and Smart Electronics Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมดิจิทัลและอิเล็กทรอนิกส์อัจฉริยะ",
+                    "codes": ["T23"]
+                },
+                {
+                    "name_en": "Mechanical Engineering and Production System",
+                    "name_th": "สาขาวิชาวิศวกรรมเครื่องกลและระบบการผลิต",
+                    "codes": ["T18"]
+                },
+                {
+                    "name_en": "Robotic and Automation Systems Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมหุ่นยนต์และระบบอัตโนมัติ",
+                    "codes": ["T19"]
+                },
+                {
+                    "name_en": "Automotive Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมยานยนต์",
+                    "codes": ["T22"]
+                }
+            ]
+        },
+        {
+            "name_en": "Faculty of Science at Sriracha",
+            "name_th": "คณะวิทยาศาสตร์ ศรีราชา",
+            "programs": [
+                {
+                    "name_en": "Computer Science",
+                    "name_th": "สาขาวิชาวิทยาการคอมพิวเตอร์",
+                    "codes": ["S05", "S06"]
+                },
+                {
+                    "name_en": "Environmental Science",
+                    "name_th": "สาขาวิชาวิทยาศาสตร์สิ่งแวดล้อม",
+                    "codes": ["S08"]
+                },
+                {
+                    "name_en": "Information Technology",
+                    "name_th": "สาขาวิชาเทคโนโลยีสารสนเทศ",
+                    "codes": ["S09", "S10"]
+                },
+                {
+                    "name_en": "Chemistry",
+                    "name_th": "สาขาวิชาเคมี",
+                    "codes": ["S03"]
+                },
+                {
+                    "name_en": "Applied Chemical Science and Technology",
+                    "name_th": "สาขาวิชาวิทยาศาสตร์และเทคโนโลยีเคมีประยุกต์",
+                    "codes": ["S04"]
+                },
+                {
+                    "name_en": "Applied Mathematics",
+                    "name_th": "สาขาวิชาคณิตศาสตร์ประยุกต์",
+                    "codes": ["S01"]
+                },
+                {
+                    "name_en": "Data Analytics and Actuarial Science",
+                    "name_th": "สาขาวิชาวิทยาการวิเคราะห์ข้อมูลและคณิตศาสตร์ประกันภัย",
+                    "codes": ["S02"]
+                },
+                {
+                    "name_en": "Physics",
+                    "name_th": "สาขาวิชาฟิสิกส์",
+                    "codes": ["S11"]
+                },
+                {
+                    "name_en": "Environmental Science and Technology",
+                    "name_th": "สาขาวิชาวิทยาศาสตร์และเทคโนโลยีสิ่งแวดล้อม",
+                    "codes": ["S18"]
+                },
+                {
+                    "name_en": "Digital Science and Technology",
+                    "name_th": "สาขาวิชาวิทยาการและเทคโนโลยีดิจิทัล",
+                    "codes": ["S19", "S20"]
+                }
+            ]
+        },
+        {
+            "name_en": "Faculty of Economics at Sriracha",
+            "name_th": "คณะเศรษฐศาสตร์ ศรีราชา",
+            "programs": [
+                {
+                    "name_en": "Economics",
+                    "name_th": "สาขาวิชาเศรษฐศาสตร์",
+                    "codes": ["G01", "G02"]
+                }
+            ]
+        },
+        {
+            "name_en": "Faculty of International Maritime Studies",
+            "name_th": "คณะพาณิชยนาวีนานาชาติ",
+            "programs": [
+                {
+                    "name_en": "Naval Architecture and Marine Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมต่อเรือและเครื่องกลเรือ",
+                    "codes": ["M01", "M03", "M05"]
+                },
+                {
+                    "name_en": "Naval Architecture and Marine Engineering (2017 revision)",
+                    "name_th": "สาขาวิชาวิศวกรรมต่อเรือและเครื่องกลเรือ ปรับปรุงปี 2560",
+                    "codes": ["M01"]
+                },
+                {
+                    "name_en": "Nautical Science",
+                    "name_th": "สาขาวิชาวิทยาศาสตร์การเดินเรือ",
+                    "codes": ["M02"]
+                },
+                {
+                    "name_en": "Maritime Transportation",
+                    "name_th": "สาขาวิชาการขนส่งทางทะเล",
+                    "codes": ["M04"]
+                },
+                {
+                    "name_en": "Naval Architecture and Ocean Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมต่อเรือและวิศวกรรมสมุทรศาสตร์",
+                    "codes": ["M07"]
+                },
+                {
+                    "name_en": "Marine Engineering",
+                    "name_th": "สาขาวิชาวิศวกรรมเครื่องกลเรือ",
+                    "codes": ["M09"]
+                }
+            ]
+        }
+    ]
+}

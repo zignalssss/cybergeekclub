@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -17,11 +17,11 @@ interface GridNewsProps {
 
 const GridNews: React.FC<GridNewsProps> = ({ news, query }) => {
   const router = useRouter();
-  const filteredNews = Array.isArray(news)
-    ? news.filter((news) => {
-        return news.title.toLowerCase().includes(query.toLowerCase());
-      })
-    : [];
+  const filteredNews = useMemo(() => {
+    return news.filter((newsItem) =>
+      newsItem.title.toLowerCase().includes(query.toLowerCase())
+    );
+  }, [news, query]);
 
   return (
     <div className={`grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-fit h-fit overflow-y-auto`}>
