@@ -1,7 +1,8 @@
 "use client"
 
-import FirstSignUp from "@/components/sign-up/FirstSignUp"
-import ProgressBar from "@/components/ui/ProgressBarforSignUp"
+import dynamic from "next/dynamic"
+const ProgressBar = dynamic(()=> import("@/components/ui/ProgressBarforSignUp") )
+const FirstSignUp = dynamic(()=> import("@/components/sign-up/FirstSignUp") )
 
 const SignUp = () => {
   return (
