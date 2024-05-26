@@ -1,5 +1,6 @@
 "use client";
 
+import ThirdSignUp from "@/components/sign-up/ThirdSignUp";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 const ProgressBar = dynamic(
@@ -25,6 +26,9 @@ type FormData2 = {
   phone_number: string;
   birth_date: string;
 };
+type FormData3 = {
+
+}
 
 const SignUp = () => {
   const texts = ["1.ข้อมูลส่วนตัว", "2.ข้อมูลในสถานศึกษา", "3.ยืนยันตัวตน"];
@@ -34,6 +38,9 @@ const SignUp = () => {
   };
   const handleSubmitData2 = (data: FormData2) => {
     console.log("form 2", data);
+  };
+  const handleSubmitData3 = (data: FormData3) => {
+    console.log("form 3", data);
   };
   const handleState = (value: number) => {
     setNowState(value);
@@ -52,9 +59,11 @@ const SignUp = () => {
       <div className={`${nowState === 0 ? "" : "!hidden"} flex justify-center w-full h-fit`}>
         <FirstSignUp onSubmit={handleSubmitData1} state={handleState} />
       </div>
-
       <div className={`${nowState === 1 ? "" : "!hidden"} flex justify-center w-full h-fit`}>
         <SecondSignUp onSubmit={handleSubmitData2} state={handleState} />
+      </div>
+      <div className={`${nowState === 2 ? "" : "!hidden"} flex justify-center w-full h-fit`}>
+        <ThirdSignUp onSubmit={handleSubmitData3} state={handleState} />
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
+
 type Prop = {
   maximumState: number;
   nowState: number;
@@ -27,8 +28,8 @@ export default function ProgressBar({ maximumState, nowState, text }: Prop) {
       <div className="flex flex-col w-80 sm:w-[500px] md:w-[700px] h-fit ">
         <h1 className="text-center text-3xl font-kanit font-bold mb-10">
           {nowState === 3 ? (
-            <div className="flex justify-center">
-              <BsFillCheckCircleFill />
+            <div className="flex justify-center text-green-500 animate-bounce">
+              <BsFillCheckCircleFill className="animate-spinner-ease-spin"/>
             </div>
           ) : nowState > 0 ? (
             <span className="loading loading-dots loading-lg animate-pulse"></span>

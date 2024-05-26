@@ -71,7 +71,7 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
       <div className="flex justify-center my-10">
         <h1 className="font-kanit text-3xl">ข้อมูลส่วนตัว</h1>
       </div>
-      <form id="registrationForm" onSubmit={handleSubmit}>
+      <form id="registrationForm2" onSubmit={handleSubmit}>
         <div className="md:px-10 md:grid-cols-2 md:place-items-center justify-center grid w-full gap-3">
           <label className="form-control w-full max-w-xs md:col-span-2">
             <div className="label">
