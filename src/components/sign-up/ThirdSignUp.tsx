@@ -40,6 +40,10 @@ const ThirdSignUp = ({ onSubmit, state }: Prop) => {
   });
   const handleFacultySelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { selectedIndex } = e.target;
+    const majorElement = document.getElementById("major_TH") as HTMLSelectElement;
+    const tagElement = document.getElementById("tag") as HTMLSelectElement;
+    majorElement.selectedIndex = 0;
+    tagElement.selectedIndex = 0;
     setFacultySelectIndex(selectedIndex-1);
     setFormData({
       ...formData,
@@ -49,6 +53,8 @@ const ThirdSignUp = ({ onSubmit, state }: Prop) => {
   };
   const handleMajorSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { selectedIndex } = e.target;
+    const tagElement = document.getElementById("tag") as HTMLSelectElement;
+    tagElement.selectedIndex = 0;
     setMajorSelectIndex(selectedIndex-1);
     setFormData({
       ...formData,
@@ -88,7 +94,7 @@ const ThirdSignUp = ({ onSubmit, state }: Prop) => {
       </div>
       <form id="registrationForm3" onSubmit={handleSubmit}>
         <div className="md:px-10 md:grid-cols-2 md:place-items-center justify-center grid w-full gap-3">
-          <label className="form-control w-full max-w-xs col-span-2">
+          <label className="form-control w-full max-w-xs md:col-span-2">
             <div className="label">
               <span className="label-text text-white font-kanit">
                 รหัสนักศึกษา
@@ -111,7 +117,7 @@ const ThirdSignUp = ({ onSubmit, state }: Prop) => {
             <select
               id="faculty_TH"
               defaultValue=""
-              className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+              className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500 font-kanit"
               required
               onChange={handleFacultySelectChange}
             >
@@ -132,7 +138,7 @@ const ThirdSignUp = ({ onSubmit, state }: Prop) => {
             <select
               id="major_TH"
               defaultValue=""
-              className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+              className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500 font-kanit"
               required
               onChange={handleMajorSelectChange}
             >
@@ -153,7 +159,7 @@ const ThirdSignUp = ({ onSubmit, state }: Prop) => {
             <select
               id="tag"
               defaultValue=""
-              className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+              className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500 font-kanit" 
               required
               onChange={handleTagSelectChange}
             >
