@@ -52,7 +52,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
         <h1 className="font-kanit text-3xl">สมัครสมาชิก</h1>
       </div>
       <form id="registrationForm1" onSubmit={handleSubmit}>
-        <div className="md:flex md:flex-col md:place-items-center justify-center grid w-full gap-4">
+        <div className="md:flex md:flex-col md:place-items-center justify-center grid w-full md:gap-10 gap-4">
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text text-white font-kanit">อีเมล</span>
@@ -102,7 +102,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
               {errorMessage}
             </div>
           )}
-          <button type="submit" className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500">
+          <button type="submit" className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500 md:my-10">
             เริ่มต้น
           </button>
         </div>
