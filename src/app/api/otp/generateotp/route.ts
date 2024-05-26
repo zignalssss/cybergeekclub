@@ -21,6 +21,7 @@ export async function POST(request: Request) {
     // })
     const SIMPLE_MAIL_TRANSFER_PROTOCOL_USERNAME= process.env.SIMPLE_MAIL_TRANSFER_PROTOCOL_USERNAME
     const SIMPLE_MAIL_TRANSFER_PROTOCOL_PASSWORD= process.env.SIMPLE_MAIL_TRANSFER_PROTOCOL_PASSWORD
+  
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
