@@ -53,7 +53,7 @@ const Navbar = () => {
 		setIsDrop3(!isDrop3);
 	}
 
-	const [isLogin, setIsLogin] = useState(false)//login state
+	const [isLogin, setIsLogin] = useState(true)//login state
 	return (
 		<>
 			<nav className="bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
@@ -166,7 +166,7 @@ const Navbar = () => {
 									</div>
 								</div>
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)]'>
-									Name
+									TEST
 								</div>
 							</div>
 							{/* dropdown-content */}
@@ -182,7 +182,7 @@ const Navbar = () => {
 										<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>100</span></div>
 									</div>
 									<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
-										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>Member</span></div>
+										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>CERTIFIED</span></div>
 									</div>
 									<div className=' flex items-center py-4 mt-2 md:py-5 h-5 hover:bg-neutral-950  rounded-md'>
 										<Link href="/setting">
@@ -226,8 +226,6 @@ const Navbar = () => {
 								</div>
 							</div>
 						</div>
-
-
 						<div className="navbar-end">
 							{isLogin ?
 								<div className="dropdown dropdown-end">
