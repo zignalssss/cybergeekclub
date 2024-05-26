@@ -93,7 +93,7 @@ export default function OPTInput({ value, valueLength, onChange }: Props) {
   return (
     <>
       <div className="flex justify-center">
-        <label className="flex flex-row gap-4 max-w-fit w-auto">
+        <label className="flex flex-row md:gap-4 gap-2 max-w-fit w-auto">
           {valueItem.map((digit, idx) => (
             <input
               key={idx}

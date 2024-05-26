@@ -1,13 +1,12 @@
 "use client";
 
-import ThirdSignUp from "@/components/sign-up/ThirdSignUp";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-const ProgressBar = dynamic(
-  () => import("@/components/sign-up/ProgressBarforSignUp")
-);
+const ProgressBar = dynamic(() => import("@/components/sign-up/ProgressBarforSignUp"));
 const FirstSignUp = dynamic(() => import("@/components/sign-up/FirstSignUp"));
 const SecondSignUp = dynamic(() => import("@/components/sign-up/SecondSignUp"));
+const ThirdSignUp = dynamic(() => import("@/components/sign-up/ThirdSignUp"));
+const VerifySignUp = dynamic(() => import("@/components/sign-up/VerifySignUp"));
 
 type FormData1 = {
   email: string;
@@ -26,9 +25,7 @@ type FormData2 = {
   phone_number: string;
   birth_date: string;
 };
-type FormData3 = {
-
-}
+type FormData3 = {};
 
 const SignUp = () => {
   const texts = ["1.ข้อมูลส่วนตัว", "2.ข้อมูลในสถานศึกษา", "3.ยืนยันตัวตน"];
@@ -49,21 +46,36 @@ const SignUp = () => {
   return (
     <div className="grid place-content-center h-fit">
       <div className="flex justify-center w-full h-full my-10">
-        <ProgressBar
-          maximumState={3}
-          nowState={nowState}
-          text={texts}
-        />
+        <ProgressBar maximumState={3} nowState={nowState} text={texts} />
       </div>
 
-      <div className={`${nowState === 0 ? "" : "!hidden"} flex justify-center w-full h-fit`}>
+      <div
+        className={`${
+          nowState === 0 ? "" : "!hidden"
+        } flex justify-center w-full h-fit`}
+      >
         <FirstSignUp onSubmit={handleSubmitData1} state={handleState} />
       </div>
-      <div className={`${nowState === 1 ? "" : "!hidden"} flex justify-center w-full h-fit`}>
+      <div
+        className={`${
+          nowState === 1 ? "" : "!hidden"
+        } flex justify-center w-full h-fit`}
+      >
         <SecondSignUp onSubmit={handleSubmitData2} state={handleState} />
       </div>
-      <div className={`${nowState === 2 ? "" : "!hidden"} flex justify-center w-full h-fit`}>
+      <div
+        className={`${
+          nowState === 2 ? "" : "!hidden"
+        } flex justify-center w-full h-fit`}
+      >
         <ThirdSignUp onSubmit={handleSubmitData3} state={handleState} />
+      </div>
+      <div
+        className={`${
+          nowState === 3 ? "" : "!hidden"
+        } flex justify-center w-full h-fit`}
+      >
+        <VerifySignUp onSubmit={handleSubmitData3} state={handleState} />
       </div>
     </div>
   );
