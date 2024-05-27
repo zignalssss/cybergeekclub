@@ -80,7 +80,7 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
             <select
               id="prefixTH"
               defaultValue=""
-              className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500"
+              className="select select-bordered bg-[#302E2E] invalid:ring-2 invalid:ring-red-500 focus:ring-2 focus:ring-green-500 font-kanit"
               required
               onChange={handleSelectChange}
             >
@@ -88,7 +88,7 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
                 เลือก
               </option>
               {prefix.map((value, index, array)=>(
-                <option key={index}>
+                <option key={index} className="font-kanit">
                   {array[index][0]}
                 </option>
               ))}

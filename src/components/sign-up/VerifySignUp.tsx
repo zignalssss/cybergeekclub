@@ -8,7 +8,7 @@ import OTPInput from "../otp/OTPInput";
 import { useRouter } from "next/navigation";
 
 type Prop = {
-  onSubmit: (data: FormData) => void;
+  userData : Object
   state: (value: number) => void;
   email: string;
   nowState: number;
@@ -18,9 +18,9 @@ type FormData = {
   otp: string;
 };
 
-const VerifySignUp = ({ onSubmit, state, email, nowState }: Prop) => {
+const VerifySignUp = ({ userData,state, email, nowState }: Prop) => {
   const router = useRouter();
-
+  const [isError,setIsError] = useState<string>("")
   const [formData, setFormData] = useState<FormData>({
     otp: "",
   });
@@ -37,8 +37,6 @@ const VerifySignUp = ({ onSubmit, state, email, nowState }: Prop) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(formData);
-
     const inputOTP = formData.otp; // Ensure the OTP is a string
 
     const data = {
@@ -46,11 +44,20 @@ const VerifySignUp = ({ onSubmit, state, email, nowState }: Prop) => {
       email,
     };
     try {
-      await axios.post("/api/otp/verifyotp", data); // Send data directly
-      router.push("/");
+      const verify = await axios.post("/api/otp/verifyotp", data); // Send data directly
+      if(verify.status == 200){
+          await axios.post("/api/auth/signup",userData)
+            .then(response => {
+                router.push("/pendingpage");
+            })
+            .catch(error =>{
+                console.log("message:",error)
+                router.push("/sign-up");
+            })
+      }
     } catch (error: unknown) {
+      setIsError("รหัส OTP ไม่ถูกต้อง")
       console.error("Error verifying OTP:", error);
-      return { message: error };
     }
   };
 
@@ -59,7 +66,6 @@ const VerifySignUp = ({ onSubmit, state, email, nowState }: Prop) => {
       await axios.post("/api/otp/generateotp", { email });
     } catch (error: unknown) {
       console.error("Error generating OTP:", error);
-      return { message: error };
     }
   };
 
@@ -68,7 +74,6 @@ const VerifySignUp = ({ onSubmit, state, email, nowState }: Prop) => {
       await axios.post("/api/otp/updateotp", { email });
     } catch (error: unknown) {
       console.error("Error sending OTP again:", error);
-      return { message: error };
     }
   };
 
@@ -107,6 +112,7 @@ const VerifySignUp = ({ onSubmit, state, email, nowState }: Prop) => {
                   onClick={(e: any) => {
                     e.preventDefault();
                     sendOTPAgain(email);
+                    setIsError("")
                   }}
                 >
                   ส่งอีกครั้ง
@@ -115,6 +121,11 @@ const VerifySignUp = ({ onSubmit, state, email, nowState }: Prop) => {
             </div>
           </label>
         </div>
+        {isError && (
+            <div className="text-center text-red-500 font-kanit my-5">
+              {isError}
+            </div>
+          )}
         <div className="grid grid-cols-2 gap-3 my-10 md:gap-52 md:mx-5">
           <button
             type="button"

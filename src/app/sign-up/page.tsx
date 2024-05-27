@@ -33,8 +33,8 @@ type FormData3 = {
   major_EN: string;
   tag: string;
 };
-type FormData4 = {
-  otp: string;
+type isVerify = {
+  isVerify:boolean;
 };
 
 const SignUp = () => {
@@ -55,11 +55,6 @@ const SignUp = () => {
   const handleSubmitData3 = (data: FormData3) => {
     setUserData((prevData: any) => ({ ...prevData, ...data }));
     
-  };
-
-  const handleSubmitData4 = (data: FormData4) => {
-    
-
   };
 
   const handleState = (value: number) => {
@@ -98,7 +93,7 @@ const SignUp = () => {
           nowState === 3 ? "" : "!hidden"
         } flex justify-center w-full h-fit`}
       >
-        <VerifySignUp onSubmit={handleSubmitData4} state={handleState} email = {userData.email} nowState = {nowState}/>
+        <VerifySignUp userData={userData} state={handleState} email = {userData.email} nowState = {nowState}/>
       </div>
     </div>
   );
