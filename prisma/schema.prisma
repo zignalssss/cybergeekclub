@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
@@ -33,12 +33,12 @@ model account {
   birthdate       DateTime?      @db.Date
   code            String?        @db.LongText
   role            account_role   @default(MEMBER)
-  point           BigInt         @default(0)
+  point           Int            @default(0)
   document        String?        @db.LongText
   status          account_status @default(ORDINARY)
   display_name    String?        @db.LongText
   remaining_time  DateTime?      @db.DateTime(0)
-  wrong_password  BigInt         @default(0)
+  wrong_password  Int            @default(0)
   ignored_account DateTime?      @db.DateTime(0)
   built           DateTime       @default(now()) @db.Timestamp(0)
 }
@@ -46,7 +46,7 @@ model account {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model account_admin {
   id           String   @id @db.VarChar(256)
-  email        String   @db.VarChar(256)
+  email        String   @unique(map: "email") @db.VarChar(256)
   password     String   @db.VarChar(256)
   display_name String?  @db.VarChar(256)
   built        DateTime @default(now()) @db.Timestamp(0)
@@ -55,7 +55,7 @@ model account_admin {
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model activity_calendar {
-  id           String    @db.VarChar(256)
+  id           String    @id @db.VarChar(256)
   schedule     String?   @db.LongText
   start_period DateTime? @db.DateTime(0)
   end_period   DateTime? @db.DateTime(0)
@@ -144,7 +144,7 @@ model one_time_password {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model personnel {
   id             String             @id @db.VarChar(256)
-  generation     BigInt
+  generation     Int
   category       personnel_category @default(MEMBER)
   prefix_th      String?            @db.LongText
   prefix_en      String?            @db.LongText

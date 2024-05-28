@@ -38,6 +38,12 @@ export default function SignIn() {
         email,
         password
       })
+      if(result?.error){
+        setErrorMessage(result?.error)
+        console.log(result?.error)
+        return false
+      }
+      router.push('/profile')
     }catch(error){
       console.log('error',error)
     }

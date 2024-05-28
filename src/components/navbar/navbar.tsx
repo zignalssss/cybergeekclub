@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import { MenuA, MenuItemDropdownA, MenuB, MenuItemDropdownB, MenuC, MenuItemDropdownC } from "../ui/navbar-menu";
 import { motion } from "framer-motion";
 import Hamburger from 'hamburger-react'
-
+import { useSession, signOut } from 'next-auth/react'
 //import icons and image
 import { GoSignIn } from "react-icons/go";
 import { FaPeopleGroup } from "react-icons/fa6";
@@ -54,6 +54,8 @@ const Navbar = () => {
 	}
 
 	const [isLogin, setIsLogin] = useState(false)//login state
+
+	const {data:session,status}:any = useSession();
 	return (
 		<>
 			<nav className="bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
@@ -158,7 +160,8 @@ const Navbar = () => {
 						</ul>
 					</div>
 					<div className="hidden  lg:flex order-2 md:order-3">
-						{isLogin ? <div className="dropdown dropdown-end">
+						{status === 'authenticated' && session.user ? 
+						<div className="dropdown dropdown-end">
 							<div tabIndex={0} role="button" className='flex group '>
 								<div className="avatar">
 									<div className="transition-all duration-250 group-hover:drop-shadow-[0_0_10px_rgba(22,101,52)] w-7mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_4px_rgba(22,101,52)]">
@@ -166,14 +169,14 @@ const Navbar = () => {
 									</div>
 								</div>
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)]'>
-									TEST
+									{session.user?.display_name}
 								</div>
 							</div>
 							{/* dropdown-content */}
 							<ul tabIndex={0} className="bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 bg-black rounded-md w-52 md:w-60 border border-white/0.2">
 								<div className='flex flex-col gap-1'>
 									<div className='text-base md:text-xl indent-3 font-semibold text-green-500 drop-shadow-[0_0_3px_rgba(22,101,52)]'>
-										Somchai Jaidee
+										{session.user?.first_name_en}
 									</div>
 									<div className='text-base md:text-sm mb-2 indent-3 font-semibold text-white'>
 										Faculty of Engineering
@@ -194,9 +197,9 @@ const Navbar = () => {
 											<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
 										</Link>
 									</div>
-									<div className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md '>
+									<button className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md ' onClick={()=>{signOut()}}>
 										<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
-									</div>
+									</button>
 
 								</div>
 							</ul>
@@ -227,7 +230,7 @@ const Navbar = () => {
 							</div>
 						</div>
 						<div className="navbar-end">
-							{isLogin ?
+							{status === 'authenticated' && session.user ?
 								<div className="dropdown dropdown-end">
 									<div tabIndex={0} role="button">
 										<div className="avatar">
