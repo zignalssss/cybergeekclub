@@ -1,12 +1,13 @@
 import React from "react";
-import GridNews from "@/components/news/grid-news";
-import SearchNews from "@/components/searchEngine/SearchNews";
+import dynamic from "next/dynamic";
+const SearchActivities = dynamic(()=> import("@/components/searchEngine/SearchActivities"));
+const GridActivities = dynamic(()=> import("@/components/activities/GridActivities"));
 
-const News: React.FC<{ searchParams?: { query?: string } }> = ({
+const Activities: React.FC<{ searchParams?: { query?: string } }> = ({
   searchParams,
 }) => {
   const query = searchParams?.query || "";
-  const newsObj = [
+  const activitiesObj = [
     {
       banner:
         "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686",
@@ -43,20 +44,19 @@ const News: React.FC<{ searchParams?: { query?: string } }> = ({
         "สถาบันการศึกษาและบริษัทเทคโนโลยีร่วมมือกันเปิดตัวโปรแกรมการเรียนการสอนที่ใช้เทคโนโลยีความจริงเสมือนในการสร้างประสบการณ์การเรียนที่มีความสมจริงและน่าสนใจสำหรับนักเรียน",
     },
   ];
-
   return (
-    <div className="h-screen bg-black overflow-auto scroll-smooth">
-      <h1 className="text-center text-4xl font-kanit font-bold py-10">
-        ข่าวสารชมรม
-      </h1>
-      <SearchNews />
-      <div className="flex justify-center w-full h-fit">
-        <div className="bg-black w-4/5 h-4/5">
-          <GridNews news={newsObj} query={query} />
+    <>
+      <div className="h-fit">
+        <h1 className="text-3xl font-kanit text-center p-10">กิจกรรมองค์กร</h1>
+        <SearchActivities />
+        <div className="flex justify-center w-full h-fit">
+          <div className="bg-black w-4/5 h-4/5">
+            <GridActivities activities={activitiesObj} query={query}/>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default News;
+export default Activities;
