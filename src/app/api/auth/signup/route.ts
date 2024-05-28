@@ -46,15 +46,13 @@ export async function POST(req: Request): Promise<Response> {
             major_EN: string;
             tag: string;
         };
-
-        const uuid = uuidv4();
-        const hashPassword = bcrypt.hashSync(password, 10);
+ 
 
         await prisma.account.create({
             data: {
-                id: uuid,
+                id: uuidv4(),
                 email,
-                password: hashPassword,
+                password: bcrypt.hashSync(password, 10),
                 prefix_th: prefix_TH,
                 prefix_en: prefix_EN,
                 first_name_th: name_TH,
@@ -78,7 +76,7 @@ export async function POST(req: Request): Promise<Response> {
                 point: 20,
                 document: null,
                 status: "ORDINARY",
-                display_name: null,
+                display_name: nickname_EN,
                 remaining_time: null,
                 wrong_password: 0,
                 ignored_account: null

@@ -2,6 +2,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from 'next-auth/react';
+import { TbWashDryP } from "react-icons/tb";
 
 type FormData = {
   email: string;
@@ -26,14 +28,19 @@ export default function SignIn() {
     });
     setErrorMessage("");
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (true) {
-      setErrorMessage("");
-    } else {
-      setErrorMessage("รหัสผ่านไม่ตรงกัน");
+    try{
+      const email = formData.email
+      const password = formData.password
+      const result = await signIn('credentials',{
+        redirect:false,
+        email,
+        password
+      })
+    }catch(error){
+      console.log('error',error)
     }
-    console.log("Login form", formData)
   };
   return (
     <div className="flex justify-center md:h-screen h-fit my-10">
@@ -77,7 +84,7 @@ export default function SignIn() {
             </div>
           )}
           <button type="submit" className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500 md:my-10">
-            เริ่มต้น
+            เข้าสู่ระบบ
           </button>
         </div>
       </form>

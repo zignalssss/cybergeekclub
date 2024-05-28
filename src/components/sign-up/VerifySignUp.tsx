@@ -100,7 +100,7 @@ const VerifySignUp = ({ userData,state, email, nowState }: Prop) => {
           <label className="form-control w-fit max-w-xs">
             <div className="label">
               <span className="label-text text-white font-kanit">
-                ใส่รหัส OPT
+                ใส่รหัส OTP
               </span>
             </div>
             <div className="flex flex-col gap-2 py-5">

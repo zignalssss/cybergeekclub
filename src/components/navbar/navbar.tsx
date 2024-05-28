@@ -53,7 +53,7 @@ const Navbar = () => {
 		setIsDrop3(!isDrop3);
 	}
 
-	const [isLogin, setIsLogin] = useState(true)//login state
+	const [isLogin, setIsLogin] = useState(false)//login state
 	return (
 		<>
 			<nav className="bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
@@ -73,7 +73,7 @@ const Navbar = () => {
 						<ul className="hidden lg:flex font-semibold justify-between font-kanit">
 							<li className="text-green-400 group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
 								<Link href="/">
-									หน้าเเรก
+									หน้าหลัก
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>
 							</li>
@@ -102,7 +102,7 @@ const Navbar = () => {
 										<Link href="/coremember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-3'>
 												<FaPeopleGroup className='text-xl' />
-												<div className='text-base'>บุคคลากร</div>
+												<div className='text-base'>บุคลากร</div>
 											</div>
 										</Link>
 
@@ -294,7 +294,7 @@ const Navbar = () => {
 						<ul className="h-screen max-w-screen lg:h-auto items-center justify-center lg:flex ">
 							<li className=" pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
 								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
-									<div className='ml-[7%] md:ml-3'>หน้าเเรก</div>
+									<div className='ml-[7%] md:ml-3'>หน้าหลัก</div>
 								</Link>
 							</li>
 							<li className=" pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
@@ -330,7 +330,7 @@ const Navbar = () => {
 										<Link onClick={() => setIsOpen(!isOpen)} href="/coremember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<FaPeopleGroup className='text-2xl' />
-												<div className='text-sm'>บุคคลากร</div>
+												<div className='text-sm'>บุคลากร</div>
 											</div>
 										</Link>
 
