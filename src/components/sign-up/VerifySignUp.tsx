@@ -44,36 +44,43 @@ const VerifySignUp = ({ userData,state, email, nowState }: Prop) => {
       email,
     };
     try {
-      const verify = await axios.post("/api/otp/verifyotp", data); // Send data directly
-      if(verify.status == 200){
+      await axios.post("/api/otp/verifyotp", data) // Send data directly
+        .then( async response =>{
           await axios.post("/api/auth/signup",userData)
             .then(response => {
                 router.push("/pendingpage");
             })
             .catch(error =>{
-                console.log("message:",error)
                 router.push("/sign-up");
             })
-      }
+        })
+        .catch( error =>{
+          setIsError(error.response.data.error)
+        })
     } catch (error: unknown) {
-      setIsError("รหัส OTP ไม่ถูกต้อง")
-      console.error("Error verifying OTP:", error);
+      // console.error("Error verifying OTP:", error);
     }
   };
 
   const generateOTP = async (email: string) => {
     try {
-      await axios.post("/api/otp/generateotp", { email });
+      await axios.post("/api/otp/generateotp", { email })
+        .catch(error =>{
+          setIsError(error.response.data.message)
+        })
     } catch (error: unknown) {
-      console.error("Error generating OTP:", error);
+      // console.error("Error generating OTP:", error);
     }
   };
 
   const sendOTPAgain = async (email: string) => {
     try {
-      await axios.post("/api/otp/updateotp", { email });
+      await axios.post("/api/otp/updateotp", { email })
+        .catch(error => {
+            setIsError(error.response.data.message)
+        })
     } catch (error: unknown) {
-      console.error("Error sending OTP again:", error);
+      // console.error("Error sending OTP again:", error);
     }
   };
 

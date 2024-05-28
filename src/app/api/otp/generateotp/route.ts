@@ -11,6 +11,14 @@ export async function POST(request: Request) {
     const { email }: {
         email: string,
     } = await request.json()
+    const user = await prisma.one_time_password.findUnique({
+      where: {
+        email,
+      },
+    })
+    if(user){
+      return Response.json({ message: "ไม่สามารถส่ง OTP เนื่องจาก Email มีอยู่เเล้ว", data: email }, { status: 400 });
+    }
     const OTP= otpGenerator.generate(OTP_LENGTH, { digits: true, lowerCaseAlphabets: false, upperCaseAlphabets: false, specialChars: false })
 
     await prisma.one_time_password.create({
