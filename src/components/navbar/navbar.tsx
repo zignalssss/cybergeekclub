@@ -177,7 +177,7 @@ const Navbar = () => {
 							<div tabIndex={0} role="button" className='flex group '>
 								<div className="avatar">
 									<div className="transition-all duration-250 group-hover:drop-shadow-[0_0_10px_rgba(22,101,52)] w-7mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_4px_rgba(22,101,52)]">
-										<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+										<img src={userData.profile_image} />
 									</div>
 								</div>
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)]'>
@@ -210,7 +210,7 @@ const Navbar = () => {
 											<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
 										</Link>
 									</div>
-									<button className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md ' onClick={()=>{signOut()}}>
+									<button className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md ' onClick={()=>{signOut({callbackUrl:'/'})}}>
 										<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
 									</button>
 
@@ -248,7 +248,7 @@ const Navbar = () => {
 									<div tabIndex={0} role="button">
 										<div className="avatar">
 											<div className="w-9 mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_7px_rgba(22,101,52)]">
-												<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+												<img src={userData.profile_image} />
 											</div>
 										</div>
 									</div>
@@ -278,9 +278,9 @@ const Navbar = () => {
 												</Link>
 
 											</div>
-											<div className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md '>
+											<button className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md ' onClick={()=>{signOut({callbackUrl:'/'})}}>
 												<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
-											</div>
+											</button>
 
 										</div>
 									</ul>
