@@ -6,6 +6,7 @@ import otpGenerator from "otp-generator";
 const OTP_LENGTH = 6
 const prisma: PrismaClient = new PrismaClient();
 
+
 export async function POST(request: Request) {
   try {
     const { email }: {
