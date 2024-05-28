@@ -2,11 +2,12 @@
 //import function and component
 
 import Link from 'next/link';
-import React, { useState } from 'react'
+import axios, { AxiosResponse } from 'axios'
+import React, { useState , useEffect, use} from 'react'
 import { MenuA, MenuItemDropdownA, MenuB, MenuItemDropdownB, MenuC, MenuItemDropdownC } from "../ui/navbar-menu";
 import { motion } from "framer-motion";
 import Hamburger from 'hamburger-react'
-
+import { useSession, signOut } from 'next-auth/react'
 //import icons and image
 import { GoSignIn } from "react-icons/go";
 import { FaPeopleGroup } from "react-icons/fa6";
@@ -16,6 +17,7 @@ import { IoIosNotifications } from "react-icons/io";
 import { FaFacebookSquare, FaCalendarAlt, FaInstagram } from "react-icons/fa";
 import { MdAnnouncement } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { setServers } from 'dns';
 
 const variantsleft = {
 	open: { opacity: 1, x: 0 },
@@ -52,8 +54,20 @@ const Navbar = () => {
 		setIsDrop2(false);
 		setIsDrop3(!isDrop3);
 	}
+	const {data:session,status}:any = useSession();
+	const [userData ,setuserData] = useState<any>({})
 
-	const [isLogin, setIsLogin] = useState(true)//login state
+	const getData = async ()=>{
+		try{
+			const user_account = await axios.post("/api/user/getuser",{email : session.user.email})	
+			setuserData(user_account.data.data)
+		}catch(error){
+			// console.log(error)
+		}
+	}
+	useEffect(()=>{
+		getData()
+	},[])
 	return (
 		<>
 			<nav className="bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
@@ -73,7 +87,7 @@ const Navbar = () => {
 						<ul className="hidden lg:flex font-semibold justify-between font-kanit">
 							<li className="text-green-400 group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
 								<Link href="/">
-									หน้าเเรก
+									หน้าหลัก
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>
 							</li>
@@ -102,7 +116,7 @@ const Navbar = () => {
 										<Link href="/coremember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-3'>
 												<FaPeopleGroup className='text-xl' />
-												<div className='text-base'>บุคคลากร</div>
+												<div className='text-base'>บุคลากร</div>
 											</div>
 										</Link>
 
@@ -158,7 +172,8 @@ const Navbar = () => {
 						</ul>
 					</div>
 					<div className="hidden  lg:flex order-2 md:order-3">
-						{isLogin ? <div className="dropdown dropdown-end">
+						{status === 'authenticated' && session.user ? 
+						<div className="dropdown dropdown-end">
 							<div tabIndex={0} role="button" className='flex group '>
 								<div className="avatar">
 									<div className="transition-all duration-250 group-hover:drop-shadow-[0_0_10px_rgba(22,101,52)] w-7mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_4px_rgba(22,101,52)]">
@@ -166,23 +181,24 @@ const Navbar = () => {
 									</div>
 								</div>
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)]'>
-									TEST
+									{userData.display_name}
 								</div>
 							</div>
 							{/* dropdown-content */}
-							<ul tabIndex={0} className="bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 bg-black rounded-md w-52 md:w-60 border border-white/0.2">
+							<ul tabIndex={0} className="bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 bg-black rounded-md w-52 md:w-fit border border-white/0.2">
 								<div className='flex flex-col gap-1'>
-									<div className='text-base md:text-xl indent-3 font-semibold text-green-500 drop-shadow-[0_0_3px_rgba(22,101,52)]'>
-										Somchai Jaidee
+									<div className='text-base md:text-xl indent-3 font-semibold text-green-500 drop-shadow-[0_0_3px_rgba(22,101,52)]' >
+									{userData.first_name_en}&nbsp;{userData.last_name_en}
+
 									</div>
-									<div className='text-base md:text-sm mb-2 indent-3 font-semibold text-white'>
-										Faculty of Engineering
+									<div className='text-base md:text-sm mb-2 indent-3 font-semibold text-white text-nowrap '>
+									{userData.faculty_en}
 									</div>
 									<div className='flex items-center py-4 md:py-5 h-5 border rounded-md'>
-										<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>100</span></div>
+										<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>{userData.point}</span></div>
 									</div>
 									<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
-										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>CERTIFIED</span></div>
+										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>{userData.status}</span></div>
 									</div>
 									<div className=' flex items-center py-4 mt-2 md:py-5 h-5 hover:bg-neutral-950  rounded-md'>
 										<Link href="/setting">
@@ -194,9 +210,9 @@ const Navbar = () => {
 											<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
 										</Link>
 									</div>
-									<div className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md '>
+									<button className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md ' onClick={()=>{signOut()}}>
 										<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
-									</div>
+									</button>
 
 								</div>
 							</ul>
@@ -227,7 +243,7 @@ const Navbar = () => {
 							</div>
 						</div>
 						<div className="navbar-end">
-							{isLogin ?
+							{status === 'authenticated' && session.user ?
 								<div className="dropdown dropdown-end">
 									<div tabIndex={0} role="button">
 										<div className="avatar">
@@ -240,16 +256,16 @@ const Navbar = () => {
 									<ul tabIndex={0} className="bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 bg-black rounded-md w-52 md:w-60 border border-white/0.2">
 										<div className='flex flex-col gap-1'>
 											<div className='text-base md:text-xl indent-3 font-semibold text-green-500 drop-shadow-[0_0_3px_rgba(22,101,52)]'>
-												Somchai Jaidee
+												{userData.first_name_en}&nbsp;{userData.last_name_en}
 											</div>
 											<div className='text-xs md:text-sm mb-2 indent-3 font-semibold text-white '>
-												Faculty of Engineering
+												{userData.faculty_en}
 											</div>
 											<div className='flex items-center py-4 md:py-5 h-5 border rounded-md'>
-												<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>100</span></div>
+												<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>{userData.point}</span></div>
 											</div>
 											<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
-												<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>Member</span></div>
+												<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>{userData.status}</span></div>
 											</div>
 											<div className='flex items-center py-4 mt-2 md:py-5 h-5 rounded-md hover:bg-neutral-950'>
 												<Link href="/setting">
@@ -294,7 +310,7 @@ const Navbar = () => {
 						<ul className="h-screen max-w-screen lg:h-auto items-center justify-center lg:flex ">
 							<li className=" pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
 								<Link href="/" onClick={() => setIsOpen(!isOpen)}>
-									<div className='ml-[7%] md:ml-3'>หน้าเเรก</div>
+									<div className='ml-[7%] md:ml-3'>หน้าหลัก</div>
 								</Link>
 							</li>
 							<li className=" pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
@@ -330,7 +346,7 @@ const Navbar = () => {
 										<Link onClick={() => setIsOpen(!isOpen)} href="/coremember" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<FaPeopleGroup className='text-2xl' />
-												<div className='text-sm'>บุคคลากร</div>
+												<div className='text-sm'>บุคลากร</div>
 											</div>
 										</Link>
 
