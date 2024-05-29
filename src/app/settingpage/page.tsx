@@ -1,51 +1,63 @@
 import React from 'react'
 
 const Settingpage = () => {
-  return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-    <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Settings</h2>
-      <form className="space-y-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="username">
-            Username
-          </label>
-          <input
-            type="text"
-            id="username"
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
+    return (
+        <div className='bg-black h-screen grid md:grid-cols-[30%_70%]'>
+            <div className='font-kanit ml-[20%] border border-black border-r-white/15'>
+                <div className=' mt-14'>
+                <div className='text-2xl font-semibold'>การตั้งค่าบัญชี</div>
+                <div className='text-base'>Use a permanent address where you can receive mail.</div>
+                </div>
+                
+            </div>
+            <div className='text-xl max-w-[90%] ml-5  mt-14 font-kanit'>
+                <div className='flex flex-col gap-4'>
+                    <div className='flex items-center'>
+                        <div className="avatar">
+                            <div className="w-24 rounded-xl">
+                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                            </div>
+                        </div>
+                        <div className='flex flex-col items-center ml-10'>
+                            <div className="relative  bg-green-900  px-3 h-8 leading-8 text-center text-sm rounded-md">
+                            Change avatar
+                            <input type="file" className="absolute inset-0 w-full h-full opacity-0" />
+                        </div>
+                        <div className='text-xs mt-2'>JPG, GIF or PNG. 1MB max.</div></div>
+                    </div>
+                    <div className='grid grid-cols-2'>
+                        <div>
+                            <div className='text-sm'>First Name (EN)</div>
+                            <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs mt-2" />
+                        </div>
+                        <div>
+                            <div className='text-sm'>Last Name (EN)</div>
+                            <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs mt-2" />
+                        </div>
+                    </div>
+                    <div className='grid grid-cols-2 '>
+                        <div>
+                            <div className='text-sm'>ชื่อ (TH)</div>
+                            <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs mt-2" />
+                        </div>
+                        <div>
+                            <div className='text-sm'>นามสกุล (TH)</div>
+                            <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs mt-2" />
+                        </div>
+                    </div>
+                    <div>
+                        <div className='text-sm'>Display Name</div>
+                        <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs mt-2" />
+                    </div>
+                    <div>
+                        <div className='text-sm'>First Name</div>
+                        <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs mt-2" />
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="email">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700" htmlFor="password">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Save Changes
-        </button>
-      </form>
-    </div>
-  </div>
-  )
+    )
 }
 
 export default Settingpage
