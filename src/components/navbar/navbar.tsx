@@ -18,6 +18,7 @@ import { FaFacebookSquare, FaCalendarAlt, FaInstagram } from "react-icons/fa";
 import { MdAnnouncement } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { setServers } from 'dns';
+import Image from 'next/image';
 
 const variantsleft = {
 	open: { opacity: 1, x: 0 },
@@ -177,7 +178,7 @@ const Navbar = () => {
 							<div tabIndex={0} role="button" className='flex group '>
 								<div className="avatar">
 									<div className="transition-all duration-250 group-hover:drop-shadow-[0_0_10px_rgba(22,101,52)] w-7mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_4px_rgba(22,101,52)]">
-										{userData.profile_image ? <img src={userData.profile_image} /> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
+										{userData.profile_image ? <Image alt='profile' src={userData.profile_image} /> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
 									</div>
 								</div>
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)] font-kanit'>
@@ -249,7 +250,7 @@ const Navbar = () => {
 									<div tabIndex={0} role="button">
 										<div className="avatar">
 											<div className="w-9 mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_7px_rgba(22,101,52)]">
-											{userData.profile_image ? <img src={userData.profile_image} /> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
+											{userData.profile_image ? <Image alt='profile' src={userData.profile_image} /> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
 											</div>
 										</div>
 									</div>

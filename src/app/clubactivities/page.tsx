@@ -1,6 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-const SearchActivities = dynamic(()=> import("@/components/searchEngine/SearchActivities"));
+const SearchActivities = dynamic(()=> import("@/components/searchEngine/searchActivities"));
 const GridActivities = dynamic(()=> import("@/components/activities/GridActivities"));
 
 const Activities: React.FC<{ searchParams?: { query?: string } }> = ({
