@@ -83,7 +83,7 @@ export async function POST(req: Request): Promise<Response> {
             },
         });
 
-        return NextResponse.json({ message: 'Account created successfully' });
+        return NextResponse.json({ message: 'Account created successfully'});
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
