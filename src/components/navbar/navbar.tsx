@@ -177,19 +177,19 @@ const Navbar = () => {
 							<div tabIndex={0} role="button" className='flex group '>
 								<div className="avatar">
 									<div className="transition-all duration-250 group-hover:drop-shadow-[0_0_10px_rgba(22,101,52)] w-7mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_4px_rgba(22,101,52)]">
-										<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+										{userData.profile_image ? <img src={userData.profile_image} /> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
 									</div>
 								</div>
-								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)]'>
-									{userData.display_name}
+								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)] font-kanit'>
+									{userData.display_name ? `${userData.display_name}` : "Loading..."}
 								</div>
 							</div>
 							{/* dropdown-content */}
-							<ul tabIndex={0} className="bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 bg-black rounded-md w-52 md:w-fit border border-white/0.2">
-								<div className='flex flex-col gap-1'>
+							<ul tabIndex={0} className={`bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 ${userData.first_name_en ? `bg-black w-52 md:w-fit` : `skeleton bg-black w-60 h-72`} rounded-md border border-white/0.2`}>
+								{userData.first_name_en && (
+									<div className='flex flex-col gap-1'>
 									<div className='text-base md:text-xl indent-3 font-semibold text-green-500 drop-shadow-[0_0_3px_rgba(22,101,52)]' >
 									{userData.first_name_en}&nbsp;{userData.last_name_en}
-
 									</div>
 									<div className='text-base md:text-sm mb-2 indent-3 font-semibold text-white text-nowrap '>
 									{userData.faculty_en}
@@ -201,20 +201,21 @@ const Navbar = () => {
 										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>{userData.status}</span></div>
 									</div>
 									<div className=' flex items-center py-4 mt-2 md:py-5 h-5 hover:bg-neutral-950  rounded-md'>
-										<Link href="/setting">
+										<Link href="/settingpage">
 											<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
 										</Link>
 									</div>
 									<div className=' flex items-center py-4 md:py-5 h-5 hover:bg-neutral-950 rounded-md'>
-										<Link href="/activitieshistory">
+										<Link href="/useractivitieshistory">
 											<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
 										</Link>
 									</div>
-									<button className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md ' onClick={()=>{signOut()}}>
+									<button className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md ' onClick={()=>{signOut({callbackUrl:'/'})}}>
 										<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
 									</button>
 
 								</div>
+								)}
 							</ul>
 						</div>
 							:
@@ -248,7 +249,7 @@ const Navbar = () => {
 									<div tabIndex={0} role="button">
 										<div className="avatar">
 											<div className="w-9 mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_7px_rgba(22,101,52)]">
-												<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+											{userData.profile_image ? <img src={userData.profile_image} /> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
 											</div>
 										</div>
 									</div>
@@ -268,19 +269,19 @@ const Navbar = () => {
 												<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>{userData.status}</span></div>
 											</div>
 											<div className='flex items-center py-4 mt-2 md:py-5 h-5 rounded-md hover:bg-neutral-950'>
-												<Link href="/setting">
+												<Link href="/settingpage">
 													<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
 												</Link>
 											</div>
 											<div className='flex items-center py-4 md:py-5 h-5 rounded-md hover:bg-neutral-950 '>
-												<Link href="/activitieshistory">
+												<Link href="/useractivitieshistory">
 													<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
 												</Link>
 
 											</div>
-											<div className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md '>
+											<button className='group flex items-center md:py-5 py-4 h-5 hover:bg-red-900 rounded-md ' onClick={()=>{signOut({callbackUrl:'/'})}}>
 												<div className=' text-sm md:text-lg  group-hover:text-white ml-2 text-red-500 '>ล็อคเอ้าท์</div>
-											</div>
+											</button>
 
 										</div>
 									</ul>

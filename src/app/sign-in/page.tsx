@@ -18,7 +18,6 @@ export default function SignIn() {
     email: "",
     password: "",
   });
-  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -43,7 +42,7 @@ export default function SignIn() {
         console.log(result?.error)
         return false
       }
-      router.push('/profile')
+      router.push('/pendingpage')
     }catch(error){
       console.log('error',error)
     }

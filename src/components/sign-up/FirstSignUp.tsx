@@ -27,6 +27,10 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
       return false;
     }
   };
+
+  const ORG_EMAIL_CHECK = () =>{
+      return formData.email.endsWith("@ku.th")
+  }
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData({
@@ -39,9 +43,13 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (checkPassword()) {
-      setErrorMessage("");
-      onSubmit(formData);
-      state(1);
+      if(ORG_EMAIL_CHECK()){
+        setErrorMessage("");
+        onSubmit(formData);
+        state(1);
+      }else{
+        setErrorMessage("กรุณาใช้อีเมล @ku.th");
+      }
     } else {
       setErrorMessage("รหัสผ่านไม่ตรงกัน");
     }

@@ -1,6 +1,6 @@
 import React from "react";
 import GridNews from "@/components/news/grid-news";
-import SearchNews from "@/components/searchEngine/SearchNews";
+import SearchNews from "@/components/searchEngine/searchNews";
 
 const News: React.FC<{ searchParams?: { query?: string } }> = ({
   searchParams,
