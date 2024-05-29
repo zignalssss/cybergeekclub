@@ -23,9 +23,9 @@ const Settingpage = () => {
                             Change avatar
                             <input type="file" className="absolute inset-0 w-full h-full opacity-0" />
                         </div>
-                        <div className='text-xs mt-2'>JPG, GIF or PNG. 1MB max.</div></div>
+                        <div className='text-xs mt-2'>JPG or PNG. 1MB max.</div></div>
                     </div>
-                    <div className='grid grid-cols-2'>
+                    <div className='grid grid-cols-[35%_65%]'>
                         <div>
                             <div className='text-sm'>First Name (EN)</div>
                             <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs mt-2" />
@@ -35,7 +35,7 @@ const Settingpage = () => {
                             <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs mt-2" />
                         </div>
                     </div>
-                    <div className='grid grid-cols-2 '>
+                    <div className='grid grid-cols-[35%_65%] '>
                         <div>
                             <div className='text-sm'>ชื่อ (TH)</div>
                             <input type="text" placeholder="Type here" className="input input-bordered input-sm w-full max-w-xs mt-2" />
