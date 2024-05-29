@@ -201,12 +201,12 @@ const Navbar = () => {
 										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>{userData.status}</span></div>
 									</div>
 									<div className=' flex items-center py-4 mt-2 md:py-5 h-5 hover:bg-neutral-950  rounded-md'>
-										<Link href="/setting">
+										<Link href="/settingpage">
 											<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
 										</Link>
 									</div>
 									<div className=' flex items-center py-4 md:py-5 h-5 hover:bg-neutral-950 rounded-md'>
-										<Link href="/activitieshistory">
+										<Link href="/useractivitieshistory">
 											<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
 										</Link>
 									</div>
@@ -269,12 +269,12 @@ const Navbar = () => {
 												<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>{userData.status}</span></div>
 											</div>
 											<div className='flex items-center py-4 mt-2 md:py-5 h-5 rounded-md hover:bg-neutral-950'>
-												<Link href="/setting">
+												<Link href="/settingpage">
 													<div className='text-sm md:text-lg ml-2'>การตั้งค่า</div>
 												</Link>
 											</div>
 											<div className='flex items-center py-4 md:py-5 h-5 rounded-md hover:bg-neutral-950 '>
-												<Link href="/activitieshistory">
+												<Link href="/useractivitieshistory">
 													<div className='text-sm md:text-lg ml-2'>ประวัติการเข้าร่วมกิจกรรม</div>
 												</Link>
 
