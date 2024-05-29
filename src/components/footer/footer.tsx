@@ -3,7 +3,7 @@ import {FaInstagram, FaFacebookSquare } from "react-icons/fa";
 import Link from 'next/link';
 const footer = () => {
     return (
-        <footer className=" shadow shadow-white/[0.4] footer p-10 bg-black text-neutral-content">
+        <footer className=" border border-black border-t-white/15 footer p-10 bg-black text-neutral-content">
              <div className='flex  font-kanit font-semibold'>
                     <div>
                         <div className='text-xl px-5 md:text-2xl md:px-4'>
