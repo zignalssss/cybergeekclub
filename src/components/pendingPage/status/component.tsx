@@ -15,7 +15,7 @@ const ShowStatus = ({ prop }: { prop: LIST[] }) => {
   return (
     <div className="h-fit w-11/12 border border-white rounded-3xl my-10">
       <div className="text-center text-3xl my-10">สถานะใบสมัคร</div>
-      <div className="overflow-x-auto pb-10">
+      <div className=" pb-10">
         <table className="table">
           {/* head */}
           <thead>
