@@ -92,7 +92,7 @@ const SignUp = () => {
           nowState === 3 ? "" : "!hidden"
         } flex justify-center w-full h-fit`}
       >
-        <VerifySignUp userData={userData} state={handleState} email = {userData.email} nowState = {nowState}/>
+        <VerifySignUp userData={userData} state={handleState} email = {userData.email} nowState = {nowState} finalState={3}/>
       </div>
     </div>
   );
