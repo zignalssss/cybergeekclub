@@ -12,13 +12,14 @@ type Prop = {
   state: (value: number) => void;
   email: string;
   nowState: number;
+  finalState : number;
 };
 
 type FormData = {
   otp: string;
 };
 
-const VerifySignUp = ({ userData,state, email, nowState }: Prop) => {
+const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => {
   const router = useRouter();
   const [isError,setIsError] = useState<string>("")
   const [formData, setFormData] = useState<FormData>({
@@ -32,7 +33,7 @@ const VerifySignUp = ({ userData,state, email, nowState }: Prop) => {
   };
 
   const handleBackBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    state(2);
+    state(nowState-1);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -85,10 +86,10 @@ const VerifySignUp = ({ userData,state, email, nowState }: Prop) => {
   };
 
   useEffect(() => {
-    if (nowState === 3) {
+    if (nowState === finalState) {
       generateOTP(email);
     }
-  }, [nowState, email]);
+  }, [nowState, email, finalState]);
 
   return (
     <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:h-[700px] md:bg-[#181818] rounded-3xl border border-white/15">
