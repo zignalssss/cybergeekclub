@@ -2,7 +2,6 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios'
 import { RiContrastDropLine } from 'react-icons/ri';
-import { useSession } from 'next-auth/react';
 interface FormData {
     email:string,
     displayName: string;
@@ -17,7 +16,6 @@ interface FormData {
 
 
 const Settingpage: React.FC = () => {
-    const {data:session} = useSession()
     const [formData, setFormData] = useState<FormData>({
         email: '',
         displayName: '',
@@ -62,10 +60,6 @@ const Settingpage: React.FC = () => {
               };
         }
         try{
-            finalData = {
-                ...filteredData,
-                email:session?.user?.email
-              };
             const response = await axios.post('/api/user/updateuser', finalData, {
                 headers: {
                   'Content-Type': 'multipart/form-data',
