@@ -82,8 +82,8 @@ export default function SignIn() {
               onChange={handleInputChange}
               value={formData.password}
             />
-            <div className="label mt-10">
-              <Link href={"/recovery"} className="label-text text-white font-kanit underline underline-offset-4">ลืมรหัสผ่านใช่หรือไม่ ?</Link>
+            <div className="mt-10">
+              <Link href={"/recovery"} className="text-white hover:text-green-500 font-kanit underline underline-offset-4">ลืมรหัสผ่านใช่หรือไม่ ?</Link>
             </div>
           </label>
           {errorMessage && (
