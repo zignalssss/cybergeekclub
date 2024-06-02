@@ -49,7 +49,7 @@ const Settingpage: React.FC = () => {
         const filteredData = Object.fromEntries(
             Object.entries(formData).filter(([key, value]) => value)
           );
-
+        
         let finalData = {
         ...filteredData,
         };
