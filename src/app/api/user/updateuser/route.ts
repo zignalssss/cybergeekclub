@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
             const uniqueSuffix = uuidv4();
             const extname = path.extname(file.name);
             const filename = uniqueSuffix + extname;
-            const uploadPath = path.join(process.cwd(), 'public', filename);
+            const uploadPath = path.join(process.cwd(), 'public/asset/profile', filename);
 
             await fsPromises.writeFile(uploadPath, buffer);
 
