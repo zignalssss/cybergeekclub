@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
             // Save the file path in the database
             // await prisma.account.update({
             //     where: { email },
-            //     data: { profileImage: filename }
+            //     data: { profile_Image: filename }
             // });
         }
 
