@@ -178,7 +178,7 @@ const Navbar = () => {
 							<div tabIndex={0} role="button" className='flex group '>
 								<div className="avatar">
 									<div className="transition-all duration-250 group-hover:drop-shadow-[0_0_10px_rgba(22,101,52)] w-7mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_4px_rgba(22,101,52)]">
-										{userData.profile_image ? <Image alt='profile' src={userData.profile_image} width={16} height={16}/> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
+										{userData.profile_image ? <Image alt='profile' src="/asset/image/Screenshot 2024-05-07 224728.png" width={16} height={16}/> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
 									</div>
 								</div>
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)] font-kanit'>
