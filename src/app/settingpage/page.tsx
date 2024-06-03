@@ -84,7 +84,7 @@ const Settingpage: React.FC = () => {
                     <div className='flex items-center'>
                         <div className="avatar">
                             <div className="w-24 rounded-xl border-2 border-green-500 ">
-                                <img src={avatar ? URL.createObjectURL(avatar) : "/asset/image/Screenshot 2024-05-07 224728.png"} />
+                                <img src={avatar ? URL.createObjectURL(avatar) : "/asset/image/cat.png"} />
                             </div>
                         </div>
                         <div className='flex flex-col items-center ml-10'>
