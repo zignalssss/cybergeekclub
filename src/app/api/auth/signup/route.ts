@@ -68,7 +68,7 @@ export async function POST(req: Request): Promise<Response> {
                 faculty_en: faculty_EN,
                 major_th: major_TH,
                 major_en: major_EN,
-                profile_image: "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/blank-profile-picture-973460_1280.png?alt=media&token=8e0b08a9-2543-402a-bf86-2b500557f9eb",
+                profile_image: null,
                 middle_name_th: null,
                 middle_name_en: null,
                 code: tag,
@@ -83,7 +83,7 @@ export async function POST(req: Request): Promise<Response> {
             },
         });
 
-        return NextResponse.json({ message: 'Account created successfully' });
+        return NextResponse.json({ message: 'Account created successfully'});
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
