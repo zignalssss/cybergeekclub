@@ -2,6 +2,8 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios'
 import { RiContrastDropLine } from 'react-icons/ri';
+import Swal from 'sweetalert2'
+
 interface FormData {
     email:string,
     displayName: string;
@@ -27,6 +29,18 @@ const Settingpage: React.FC = () => {
         confirmPassword: '',
         phoneNumber: '',
     });
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
 
     const [avatar, setAvatar] = useState<File | null>(null);
 
@@ -65,6 +79,14 @@ const Settingpage: React.FC = () => {
                   'Content-Type': 'multipart/form-data',
                 },
               });
+            Toast.fire({
+                icon: "success",
+                title: "เเก้ไขข้อมูลสำเร็จ!!"
+            })
+            .then(() => {
+                window.location.reload();
+            })
+            
         }catch(error){
             console.log(error)
         }

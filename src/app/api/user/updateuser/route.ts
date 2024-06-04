@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
             data: updateData
         });
 
-        return NextResponse.json({ message: "อัพเดท user สำเร็จ" });
+        return NextResponse.json({ message: "อัพเดทสำเร็จ" });
     } catch (error) {
         console.error(error);
         return NextResponse.json({ message: "เกิดข้อผิดพลาด" }, { status: 500 });
