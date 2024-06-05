@@ -16,9 +16,6 @@ const SecondRecovery = ({ onSubmit, state }: Prop) => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [formData, setFormData] = useState<formData>({
-    password: "",
-  });
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.id === "password") {
       setPassword(e.target.value);
@@ -33,10 +30,7 @@ const SecondRecovery = ({ onSubmit, state }: Prop) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (checkPassword()) {
-      setFormData({
-        password: password,
-      });
-      onSubmit(formData);
+      onSubmit({password : password});
       state(2);
     } else {
       setErrorMessage("รหัสผ่านไม่ตรงกัน");

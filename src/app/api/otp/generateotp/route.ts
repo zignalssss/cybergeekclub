@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     const { email }: {
         email: string,
     } = await request.json()
-    const user = await prisma.one_time_password.findUnique({
+    const user = await prisma.account.findUnique({
       where: {
         email,
       },
