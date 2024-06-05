@@ -82,6 +82,9 @@ export default function SignIn() {
               onChange={handleInputChange}
               value={formData.password}
             />
+            <div className="mt-10">
+              <Link href={"/recovery"} className="text-white hover:text-green-500 font-kanit underline underline-offset-4">ลืมรหัสผ่านใช่หรือไม่ ?</Link>
+            </div>
           </label>
           {errorMessage && (
             <div className="text-center text-red-500 font-kanit">
@@ -94,7 +97,7 @@ export default function SignIn() {
         </div>
       </form>
       <div className="flex justify-center p-5 font-kanit">
-        <h1>ยังไม่มีบัญชี ?&nbsp;</h1>
+        <h1>ยังไม่มีบัญชีใช่หรือไม่ ?&nbsp;</h1>
         <Link className="hover:text-green-500 underline underline-offset-4" href={"/sign-up"}>สมัครสมาชิก</Link>
       </div>
     </div>
