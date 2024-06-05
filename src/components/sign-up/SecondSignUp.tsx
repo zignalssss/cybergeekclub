@@ -87,7 +87,7 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
               <option value="" disabled>
                 เลือก
               </option>
-              {prefix.map((value, index, array)=>(
+              {prefix.map((value, index, array) => (
                 <option key={index} className="font-kanit">
                   {array[index][0]}
                 </option>
@@ -224,25 +224,24 @@ const SecondSignUp = ({ onSubmit, state }: Prop) => {
               {errorMessage}
             </div>
           )}
-          
         </div>
         <div className="grid grid-cols-2 gap-3 my-10 md:gap-52 md:mx-5">
-            <button
-              type="button"
-              className="btn btn-ghost min-w-20 bg-transparent font-kanit hover:text-green-500"
-              onClick={handleBackBtn}
-            >
-              <FaArrowLeftLong />
-              ย้อนกลับ
-            </button>
-            <button
-              type="submit"
-              className="btn btn-ghost min-w-20 bg-black font-kanit hover:text-green-500"
-            >
-              ต่อไป
-              <FaArrowRightLong />
-            </button>
-          </div>
+          <button
+            type="button"
+            className="btn btn-ghost min-w-20 bg-transparent font-kanit hover:text-green-500"
+            onClick={handleBackBtn}
+          >
+            <FaArrowLeftLong />
+            ย้อนกลับ
+          </button>
+          <button
+            type="submit"
+            className="btn btn-ghost min-w-20 bg-black font-kanit hover:text-green-500"
+          >
+            ต่อไป
+            <FaArrowRightLong />
+          </button>
+        </div>
       </form>
     </div>
   );
