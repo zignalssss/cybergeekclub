@@ -5,6 +5,9 @@ import dynamic from "next/dynamic";
 const FirstRecovery = dynamic(
   () => import("@/components/recovery/FirstRecovery")
 );
+const SecondRecovery = dynamic(
+  () => import("@/components/recovery/SecondRecovery")
+);
 const Verify = dynamic(
   () => import("@/components/sign-up/VerifySignUp")
 );
@@ -14,19 +17,40 @@ interface Prop {
   state: (value: number) => void;
 }
 
+interface Email {
+  email: string;
+}
+interface Password {
+  password : string;
+}
+
 interface formData {
-  password: string;
+  email : string;
+  password : string;
 }
 
 const Recovery = () => {
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [formData, setFormData] = useState<formData | null>(null);
+  const [formData, setFormData] = useState<formData>({
+    email: "",
+    password: "",
+  });
   const [nowState, setNowState] = useState<number>(0);
-  const [userData, setUserData] = useState<any>({});
-  const handleSubmitData = (data: formData) => {
-    setPassword(data.password);
+  const handleSubmitData1 = (data: Email) => {
+    setEmail(data.email);
+    setFormData({
+      ...formData,
+      email: data.email,
+    });
+  };
+  const handleSubmitData2 = (data: Password) => {
+    setFormData({
+      ...formData,
+      password: data.password,
+    });
   };
   const handleState = (value: number) => {
     setNowState(value);
@@ -38,6 +62,9 @@ const Recovery = () => {
       return false;
     }
   };
+  const checkExistEmail = () => {
+    
+  }
   return (
     <div className="grid place-content-center h-fit mb-20">
       <div
@@ -45,14 +72,21 @@ const Recovery = () => {
           nowState === 0 ? "" : "!hidden"
         } flex justify-center w-full h-fit my-10`}
       >
-        <FirstRecovery onSubmit={handleSubmitData} state={handleState} />
+        <FirstRecovery onSubmit={handleSubmitData1} state={handleState} />
       </div>
       <div
         className={`${
           nowState === 1 ? "" : "!hidden"
         } flex justify-center w-full h-fit my-10`}
       >
-        <Verify userData={userData} state={handleState} email = {userData.email} nowState = {nowState} finalState={1}/>
+        <SecondRecovery onSubmit={handleSubmitData2} state={handleState}/>
+      </div>
+      <div
+        className={`${
+          nowState === 2 ? "" : "!hidden"
+        } flex justify-center w-full h-fit my-10`}
+      >
+        <Verify userData={formData} state={handleState} email = {formData.email} nowState = {nowState} finalState={2}/>
       </div>
     </div>
   );
