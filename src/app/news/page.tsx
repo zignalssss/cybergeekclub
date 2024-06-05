@@ -1,49 +1,32 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import GridNews from "@/components/news/grid-news";
 import SearchNews from "@/components/searchEngine/searchNews";
+import axios from "axios";
+
+interface newsObj {
+  banner_th : string,
+  title_th : string,
+  particulars_th : string,
+}
 
 const News: React.FC<{ searchParams?: { query?: string } }> = ({
   searchParams,
 }) => {
   const query = searchParams?.query || "";
-  const newsObj = [
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686",
-      title: "สมาร์ทโฟนรุ่นใหม่จากบริษัทชั้นนำเปิดตัว",
-      detail:
-        "บริษัทชั้นนำในวงการเทคโนโลยีเปิดตัวสมาร์ทโฟนรุ่นใหม่ที่มาพร้อมกับคุณสมบัติและเทคโนโลยีล่าสุด เช่น กล้องความละเอียดสูง, โหมดถ่ายภาพใหม่, และปรับปรุงด้านประสิทธิภาพของระบบปฏิบัติการ",
-    },
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686}",
-      title: "สมาร์ทโฟนรุ่นใหม่จากบริษัทชั้นนำเปิดตัว",
-      detail:
-        "บริษัทชั้นนำในวงการเทคโนโลยีเปิดตัวสมาร์ทโฟนรุ่นใหม่ที่มาพร้อมกับคุณสมบัติและเทคโนโลยีล่าสุด เช่น กล้องความละเอียดสูง, โหมดถ่ายภาพใหม่, และปรับปรุงด้านประสิทธิภาพของระบบปฏิบัติการ",
-    },
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686}",
-      title: "การเปิดตัวและการพัฒนาโดรนใหม่",
-      detail:
-        "บริษัทเทคโนโลยีชั้นนำเปิดตัวโดรนที่มีความสามารถในการบินและการถ่ายภาพที่สูงขึ้น โดรนรุ่นใหม่นี้มาพร้อมกับฟีเจอร์และความปลอดภัยที่ปรับปรุง",
-    },
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686}",
-      title: "อุปกรณ์สวมใส่อัจฉริยะในการติดตามสุขภาพ",
-      detail:
-        "การเปิดตัวอุปกรณ์สวมใส่อัจฉริยะที่ช่วยในการติดตามสุขภาพและกิจกรรมการออกกำลังกายของผู้ใช้ อุปกรณ์ใหม่นี้มีฟีเจอร์ต่างๆ เช่น ตรวจวัดการนอนหลับ, ติดตามอารมณ์, และการวัดความเครียด",
-    },
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686}",
-      title: "การเปิดตัวเทคโนโลยีความจริงเสมือนในสถานการณ์เชิงการศึกษา",
-      detail:
-        "สถาบันการศึกษาและบริษัทเทคโนโลยีร่วมมือกันเปิดตัวโปรแกรมการเรียนการสอนที่ใช้เทคโนโลยีความจริงเสมือนในการสร้างประสบการณ์การเรียนที่มีความสมจริงและน่าสนใจสำหรับนักเรียน",
-    },
-  ];
-
+  const [newsObj, setNewsObj] = useState<newsObj[]>([]);
+  const getNews = async () => {
+    try {
+      const res = await axios.get("/api/news/getallnews");
+      const newsObj = res.data.data;
+      setNewsObj(newsObj);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getNews();
+  }, []);
   return (
     <div className="h-screen bg-black overflow-auto scroll-smooth">
       <h1 className="text-center text-4xl font-kanit font-bold py-10">
