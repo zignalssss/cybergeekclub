@@ -11,18 +11,17 @@ interface formData {
 }
 
 const Recovery = ({ onSubmit, state }: Prop) => {
-  const [email, setEmail] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [formData, setFormData] = useState<formData>({
     email: "",
   });
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.id === "email") {
-      setEmail(e.target.value);
+      setFormData({email : e.target.value});
     }
   };
   const ORG_EMAIL_CHECK = () => {
-    return email.endsWith("@ku.th");
+    return formData.email.endsWith("@ku.th");
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,7 +29,6 @@ const Recovery = ({ onSubmit, state }: Prop) => {
       setErrorMessage("กรุณาใช้อีเมล @ku.th");
     } else {
       setErrorMessage("");
-      setFormData({ email: email });
       onSubmit(formData);
       state(1);
     }

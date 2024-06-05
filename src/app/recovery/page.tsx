@@ -8,8 +8,8 @@ const FirstRecovery = dynamic(
 const SecondRecovery = dynamic(
   () => import("@/components/recovery/SecondRecovery")
 );
-const Verify = dynamic(
-  () => import("@/components/sign-up/VerifySignUp")
+const VerifyRecovery = dynamic(
+  () => import("@/components/recovery/VerifyRecovery")
 );
 
 interface Prop {
@@ -30,41 +30,26 @@ interface formData {
 }
 
 const Recovery = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [errorMessage, setErrorMessage] = useState<string>("");
   const [formData, setFormData] = useState<formData>({
-    email: "",
-    password: "",
+    email : "",
+    password : "",
   });
   const [nowState, setNowState] = useState<number>(0);
   const handleSubmitData1 = (data: Email) => {
-    setEmail(data.email);
     setFormData({
       ...formData,
-      email: data.email,
-    });
+      email : data.email
+    })
   };
   const handleSubmitData2 = (data: Password) => {
     setFormData({
       ...formData,
-      password: data.password,
-    });
+      password : data.password
+    })
   };
   const handleState = (value: number) => {
     setNowState(value);
   };
-  const checkPassword = () => {
-    if (password === confirmPassword) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-  const checkExistEmail = () => {
-    
-  }
   return (
     <div className="grid place-content-center h-fit mb-20">
       <div
@@ -86,7 +71,7 @@ const Recovery = () => {
           nowState === 2 ? "" : "!hidden"
         } flex justify-center w-full h-fit my-10`}
       >
-        <Verify userData={formData} state={handleState} email = {formData.email} nowState = {nowState} finalState={2}/>
+        <VerifyRecovery userData={formData} state={handleState} email = {formData.email} nowState = {nowState} finalState={2}/>
       </div>
     </div>
   );
