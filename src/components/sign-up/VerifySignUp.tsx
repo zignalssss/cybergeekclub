@@ -42,7 +42,7 @@ type ObjUser = {
   tag: string;
 }
 
-const VerifySignUp = ({ userData,state, email, nowState }: Prop) => {
+const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => {
   const router = useRouter();
   const [isError,setIsError] = useState<string>("")
   const [formData, setFormData] = useState<FormData>({
