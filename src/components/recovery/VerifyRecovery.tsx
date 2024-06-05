@@ -6,24 +6,33 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
 import OTPInput from "../otp/OTPInput";
 import { useRouter } from "next/navigation";
-import { signIn } from 'next-auth/react';
+import { signIn } from "next-auth/react";
 import { stringify } from "querystring";
 
 type Prop = {
-  userData : object;
+  userData: {
+    email : string;
+    password: string;
+  };
   state: (value: number) => void;
   email: string;
   nowState: number;
-  finalState : number;
+  finalState: number;
 };
 
 type FormData = {
   otp: string;
 };
 
-const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => {
+const VerifySignUp = ({
+  userData,
+  state,
+  email,
+  nowState,
+  finalState,
+}: Prop) => {
   const router = useRouter();
-  const [isError,setIsError] = useState<string>("")
+  const [isError, setIsError] = useState<string>("");
   const [formData, setFormData] = useState<FormData>({
     otp: "",
   });
@@ -35,7 +44,7 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
   };
 
   const handleBackBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    state(nowState-1);
+    state(nowState - 1);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,42 +56,31 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
       email,
     };
     try {
-      await axios.post("/api/otp/verifyotp", data) // Send data directly
-        .then( async response =>{
-          await axios.post("/api/auth/signup",userData)
-            .then( response => {
-                router.push("/sign-in");
+      await axios
+        .post("/api/otp/verifyotp", data) // Send data directly
+        .then(async (response) => {
+          await axios
+            .post("/api/user/updatepassword", userData)
+            .then((response) => {
+              router.push("/sign-in");
             })
-            .catch(error =>{
-                router.push("/sign-up");
-            })
+            .catch((error) => {
+              router.push("/sign-up");
+            });
         })
-        .catch( error =>{
-          setIsError(error.response.data.error)
-        })
+        .catch((error) => {
+          setIsError(error.response.data.error);
+        });
     } catch (error: unknown) {
       // console.error("Error verifying OTP:", error);
     }
   };
 
-  const generateOTP = async (email: string) => {
-    try {
-      await axios.post("/api/otp/generateotp", { email })
-        .catch(error =>{
-          setIsError(error.response.data.message)
-        })
-    } catch (error: unknown) {
-      // console.error("Error generating OTP:", error);
-    }
-  };
-
   const sendOTPAgain = async (email: string) => {
-    console.log(email);
     try {
-      await axios.post("/api/otp/updateotp", { email })
-        .catch(error => {
-            setIsError(error.response.data.message)
-        })
+      await axios.post("/api/otp/updateotp", { email }).catch((error) => {
+        setIsError(error.response.data.message);
+      });
     } catch (error: unknown) {
       // console.error("Error sending OTP again:", error);
     }
@@ -90,7 +88,7 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
 
   useEffect(() => {
     if (nowState === finalState) {
-      generateOTP(email);
+      sendOTPAgain(email);
     }
   }, [nowState, email, finalState]);
 
@@ -123,7 +121,7 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
                   onClick={(e: any) => {
                     e.preventDefault();
                     sendOTPAgain(email);
-                    setIsError("")
+                    setIsError("");
                   }}
                 >
                   ส่งอีกครั้ง
@@ -133,10 +131,10 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
           </label>
         </div>
         {isError && (
-            <div className="text-center text-red-500 font-kanit my-5">
-              {isError}
-            </div>
-          )}
+          <div className="text-center text-red-500 font-kanit my-5">
+            {isError}
+          </div>
+        )}
         <div className="grid grid-cols-2 gap-3 my-10 md:gap-52 md:mx-5">
           <button
             type="button"
