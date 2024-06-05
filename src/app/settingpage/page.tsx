@@ -116,14 +116,14 @@ const Settingpage: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className='bg-black h-fit md:h-screen grid md:grid-cols-[30%_70%] mb-5 md:mb-0'>
+        <form onSubmit={handleSubmit} className=' bg-black h-fit  grid md:grid-cols-[30%_70%] mb-5 md:mb-0'>
             <div className='font-kanit ml-[20%] border border-black border-r-white/15 '>
                 <div className=' mt-14'>
                     <div className='text-2xl font-semibold '>การตั้งค่า เเละ ข้อมูลผู้ใช้</div>
                     <div className='text-base'>โปรดตรวจสอบการตั้งค่าและข้อมูลผู้ใช้ของคุณ</div>
                 </div>
             </div>
-            <div className='text-xl max-w-[90%] md:max-w-[100%]  mt-14 font-kanit '>
+            <div className='text-xl max-w-[90%] md:max-w-[100%] mt-14 h-full font-kanit '>
                 <div className='ml-5 max-w-[90%]'>
                     <div className='flex flex-col gap-4 '>
                         <div className='text-xl underline underline-offset-4'>การตั้งค่าบัญชี</div>
@@ -247,38 +247,61 @@ const Settingpage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className='border border-black border-t-white/15 mt-5 font-kanit text-xl'>
+                <div className='border mb-5 border-black border-t-white/15 mt-5 font-kanit text-xl h-fit'>
                     <div className='ml-5 '>
                         <div className='mb-3 mt-5 underline underline-offset-4'>
                             ข้อมูลผู้ใช้
                         </div>
-                        <div className='grid grid-rows-3 gap-2 md:gap-5 text-lg'>
-                            <div className='flex'>
+                        <div className='grid grid-rows-3 gap-2 md:gap-5 text-base'>
+                            <div className='flex flex-row'>
                                 <div className=''>
+                                    {userData.first_name_en}
+                                </div>
+                                <div className='ml-1 '>
+                                    {userData.last_name_en}
+                                </div>
+                                <div className='flex ml-1'>
+                                    (
+                                    <div className=''>
+                                        {userData.first_name_th}
+                                    </div>
+                                    <div className='md:ml-1 '>
+                                        {userData.last_name_th}
+                                    </div>
+                                    )
+                                </div>
+                            </div>
+
+                            <div className='flex flex-col md:flex-row'>
+                                <div className='mb-3'>
                                     {userData.faculty_en}
                                 </div>
-                                <div className='ml-5 '>
+                                <div className='md:ml-5 '>
                                     {userData.major_en}
                                 </div>
                             </div>
-                            <div className='flex max-h-9'>
-                                <div className='border rounded-md px-3'>
-                                    STATUS :
+                            
+                            <div className='grid grid-rows-2 gap-2 md:gap-0 md:grid-cols-2 text-base'>
+                                <div className='flex max-h-7 mt-5 md:mt-0'>
+                                    <div className='border rounded-md px-3'>
+                                        STATUS :
+                                    </div>
+                                    <div className='ml-3'>
+                                        {userData.status}
+                                    </div>
                                 </div>
-                                <div className='ml-3'>
-                                    {userData.status}
+                                <div className='flex max-h-7'>
+                                    <div className='border rounded-md px-3'>
+                                        GEEKPOINT :
+                                    </div>
+                                    <div className='ml-3'>
+                                        {userData.point}
+                                    </div>
                                 </div>
                             </div>
-                            <div className='flex max-h-9'>
-                                <div className='border rounded-md px-3'>
-                                    GEEKPOINT :
-                                </div>
-                                <div className='ml-3'>
-                                    {userData.point}
-                                </div>
-                            </div>
+                            
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </form>
