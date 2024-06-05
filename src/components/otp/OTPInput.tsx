@@ -107,6 +107,7 @@ export default function OPTInput({ value, valueLength, onChange }: Props) {
               onChange={(e) => inputOnChange(e, idx)}
               onFocus={inputOnFocus}
               className="h-16 w-10 bg-[#302E2E] text-center rounded-xl font-kanit"
+              required
             ></input>
           ))}
         </label>
