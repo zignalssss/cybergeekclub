@@ -10,7 +10,7 @@ import { signIn } from 'next-auth/react';
 import { stringify } from "querystring";
 
 type Prop = {
-  userData : ObjUser
+  userData : object;
   state: (value: number) => void;
   email: string;
   nowState: number;
@@ -20,27 +20,6 @@ type Prop = {
 type FormData = {
   otp: string;
 };
-
-type ObjUser = {
-  email: string;
-  password: string;
-  prefix_TH: string;
-  prefix_EN: string;
-  name_TH: string;
-  name_EN: string;
-  surname_TH: string;
-  surname_EN: string;
-  nickname_TH: string;
-  nickname_EN: string;
-  phone_number: string;
-  birth_date: string;
-  student_id: string;
-  faculty_TH: string;
-  faculty_EN: string;
-  major_TH: string;
-  major_EN: string;
-  tag: string;
-}
 
 const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => {
   const router = useRouter();
