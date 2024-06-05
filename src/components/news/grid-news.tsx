@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 interface newsObj {
-  banner: string;
-  title: string;
-  detail: string;
+  banner_th : string,
+  title_th : string,
+  particulars_th : string,
 }
 interface GridNewsProps {
   news: newsObj[];
@@ -19,7 +19,7 @@ const GridNews: React.FC<GridNewsProps> = ({ news, query }) => {
   const router = useRouter();
   const filteredNews = useMemo(() => {
     return news.filter((newsItem) =>
-      newsItem.title.toLowerCase().includes(query.toLowerCase())
+      newsItem.title_th.toLowerCase().includes(query.toLowerCase())
     );
   }, [news, query]);
 
@@ -48,14 +48,14 @@ const GridNews: React.FC<GridNewsProps> = ({ news, query }) => {
             }}
           >
             <Image
-              src={element.banner}
+              src={element.banner_th}
               width={500}
               height={500}
               alt="placeholder"
             ></Image>
             <article className="text-wrap">
-              <p className="group-hover:text-green-500 font-kanit text-start text-xl py-4">{element.title}</p>
-              <p className="group-hover:text-green-500 font-kanit text-start text-neutral-300">{element.detail}</p>
+              <p className="group-hover:text-green-500 font-kanit text-start text-xl py-4">{element.title_th}</p>
+              <p className="group-hover:text-green-500 font-kanit text-start text-neutral-300">{element.particulars_th}</p>
             </article>
           </motion.div>
         ))}
