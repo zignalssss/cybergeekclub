@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect,ChangeEvent, FormEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useSession } from 'next-auth/react';
@@ -43,19 +43,20 @@ const Settingpage: React.FC = () => {
     });
 
     const [avatar, setAvatar] = useState<File | null>(null);
-    const {data:session}:any = useSession();
-	const [userData ,setuserData] = useState<any>({})
-	const getData = async ()=>{
-		try{
-			const user_account = await axios.post("/api/user/getuser",{email : session.user.email})	
-			setuserData(user_account.data.data)
-		}catch(error){
-			// console.log(error)
-		}
-	}
-	useEffect(()=>{
-		getData()
-	},[])
+    const { data: session }: any = useSession();
+    const [isError, setIsError] = useState<string>("")
+    const [userData, setuserData] = useState<any>({})
+    const getData = async () => {
+        try {
+            const user_account = await axios.post("/api/user/getuser", { email: session.user.email })
+            setuserData(user_account.data.data)
+        } catch (error) {
+            // console.log(error)
+        }
+    }
+    useEffect(() => {
+        getData()
+    }, [])
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -87,18 +88,26 @@ const Settingpage: React.FC = () => {
             };
         }
         try {
-            const response = await axios.post('/api/user/updateuser', finalData, {
+            await axios.post('/api/user/updateuser', finalData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
-            });
-            Toast.fire({
-                icon: "success",
-                title: "เเก้ไขข้อมูลสำเร็จ!!"
             })
-                .then(() => {
-                    window.location.reload();
+                .then(repsonse => {
+                    setIsError("")
+                    Toast.fire({
+                        icon: "success",
+                        title: "เเก้ไขข้อมูลสำเร็จ!!"
+                    })
+                        .then(() => {
+                            window.location.reload();
+                        })
                 })
+                .catch(error => {
+                    setIsError(error.response.data.message)
+                })
+
+
 
         } catch (error) {
             console.log(error)
@@ -111,7 +120,7 @@ const Settingpage: React.FC = () => {
             <div className='font-kanit ml-[20%] border border-black border-r-white/15 '>
                 <div className=' mt-14'>
                     <div className='text-2xl font-semibold '>การตั้งค่า เเละ ข้อมูลผู้ใช้</div>
-                    <div className='text-base'>Use a permanent address where you can receive mail.</div>
+                    <div className='text-base'>โปรดตรวจสอบการตั้งค่าและข้อมูลผู้ใช้ของคุณ</div>
                 </div>
             </div>
             <div className='text-xl max-w-[90%] md:max-w-[100%]  mt-14 font-kanit '>
@@ -121,7 +130,7 @@ const Settingpage: React.FC = () => {
                         <div className='flex items-center'>
                             <div className="avatar">
                                 <div className="w-24 rounded-xl border-2 border-green-500 ">
-                                    <img src={avatar ? URL.createObjectURL(avatar) : "/asset/image/cat.png"} />
+                                    <img src={userData.profile_image ? `${avatar ? URL.createObjectURL(avatar) : `/asset/profile/${userData.profile_image}`}` : "/asset/Image/cat.png"} />
                                 </div>
                             </div>
                             <div className='flex flex-col items-center ml-10'>
@@ -139,7 +148,7 @@ const Settingpage: React.FC = () => {
                                 name="displayName"
                                 value={formData.displayName}
                                 onChange={handleChange}
-                                placeholder="Type here"
+                                placeholder={userData.display_name}
                                 className="input input-bordered input-sm w-full max-w-xs mt-2"
                             />
                         </div>
@@ -151,7 +160,7 @@ const Settingpage: React.FC = () => {
                                     name="firstNameEn"
                                     value={formData.firstNameEn}
                                     onChange={handleChange}
-                                    placeholder="Type here"
+                                    placeholder={userData.first_name_en}
                                     className="input input-bordered input-sm w-full max-w-xs mt-2"
                                 />
                             </div>
@@ -162,7 +171,7 @@ const Settingpage: React.FC = () => {
                                     name="lastNameEn"
                                     value={formData.lastNameEn}
                                     onChange={handleChange}
-                                    placeholder="Type here"
+                                    placeholder={userData.last_name_en}
                                     className="input input-bordered input-sm w-full max-w-xs mt-2"
                                 />
                             </div>
@@ -175,7 +184,7 @@ const Settingpage: React.FC = () => {
                                     name="firstNameTh"
                                     value={formData.firstNameTh}
                                     onChange={handleChange}
-                                    placeholder="Type here"
+                                    placeholder={userData.first_name_th}
                                     className="input input-bordered input-sm w-full max-w-xs mt-2"
                                 />
                             </div>
@@ -186,7 +195,7 @@ const Settingpage: React.FC = () => {
                                     name="lastNameTh"
                                     value={formData.lastNameTh}
                                     onChange={handleChange}
-                                    placeholder="Type here"
+                                    placeholder={userData.last_name_th}
                                     className="input input-bordered input-sm w-full max-w-xs mt-2"
                                 />
                             </div>
@@ -199,7 +208,7 @@ const Settingpage: React.FC = () => {
                                     name="password"
                                     value={formData.password}
                                     onChange={handleChange}
-                                    placeholder="Type here"
+                                    placeholder="#$%!1234"
                                     className="input input-bordered input-sm w-full max-w-xs mt-2"
                                 />
                             </div>
@@ -210,7 +219,7 @@ const Settingpage: React.FC = () => {
                                     name="confirmPassword"
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
-                                    placeholder="Type here"
+                                    placeholder="#$%!1234"
                                     className="input input-bordered input-sm w-full max-w-xs mt-2"
                                 />
                             </div>
@@ -226,6 +235,11 @@ const Settingpage: React.FC = () => {
                                 className="input input-bordered input-sm w-full max-w-xs mt-2"
                             />
                         </div>
+                        {isError && (
+                            <div className=" text-red-500 text-base font-kanit ">
+                                {isError}
+                            </div>
+                        )}
                         <div className='mt-3'>
                             <button type="submit" className='bg-green-800 text-sm rounded-md px-4 py-2'>
                                 Save Change
@@ -234,22 +248,38 @@ const Settingpage: React.FC = () => {
                     </div>
                 </div>
                 <div className='border border-black border-t-white/15 mt-5 font-kanit text-xl'>
-                   <div className='ml-5'>
-                   <div className=' mt-5 underline underline-offset-4'> 
-                        ข้อมูลผู้ใช้
-                   </div>
-                   <div>
-                        Faculty 
-                   </div>
-                   <div>
-                        Status
+                    <div className='ml-5 '>
+                        <div className='mb-3 mt-5 underline underline-offset-4'>
+                            ข้อมูลผู้ใช้
+                        </div>
+                        <div className='grid grid-rows-3 gap-2 md:gap-5 text-lg'>
+                            <div className='flex'>
+                                <div className=''>
+                                    {userData.faculty_en}
+                                </div>
+                                <div className='ml-5 '>
+                                    {userData.major_en}
+                                </div>
+                            </div>
+                            <div className='flex max-h-9'>
+                                <div className='border rounded-md px-3'>
+                                    STATUS :
+                                </div>
+                                <div className='ml-3'>
+                                    {userData.status}
+                                </div>
+                            </div>
+                            <div className='flex max-h-9'>
+                                <div className='border rounded-md px-3'>
+                                    GEEKPOINT :
+                                </div>
+                                <div className='ml-3'>
+                                    {userData.point}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                   <div>
-                        Role
-                    </div>
-                   </div>
                 </div>
-
             </div>
         </form>
     );
