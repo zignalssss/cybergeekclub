@@ -1,14 +1,16 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import axios from "axios";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
 import OTPInput from "../otp/OTPInput";
 import { useRouter } from "next/navigation";
+import { signIn } from 'next-auth/react';
+import { stringify } from "querystring";
 
 type Prop = {
-  userData : Object
+  userData : ObjUser
   state: (value: number) => void;
   email: string;
   nowState: number;
@@ -19,7 +21,28 @@ type FormData = {
   otp: string;
 };
 
-const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => {
+type ObjUser = {
+  email: string;
+  password: string;
+  prefix_TH: string;
+  prefix_EN: string;
+  name_TH: string;
+  name_EN: string;
+  surname_TH: string;
+  surname_EN: string;
+  nickname_TH: string;
+  nickname_EN: string;
+  phone_number: string;
+  birth_date: string;
+  student_id: string;
+  faculty_TH: string;
+  faculty_EN: string;
+  major_TH: string;
+  major_EN: string;
+  tag: string;
+}
+
+const VerifySignUp = ({ userData,state, email, nowState }: Prop) => {
   const router = useRouter();
   const [isError,setIsError] = useState<string>("")
   const [formData, setFormData] = useState<FormData>({
@@ -48,8 +71,8 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
       await axios.post("/api/otp/verifyotp", data) // Send data directly
         .then( async response =>{
           await axios.post("/api/auth/signup",userData)
-            .then(response => {
-                router.push("/pendingpage");
+            .then( response => {
+                router.push("/sign-in");
             })
             .catch(error =>{
                 router.push("/sign-up");
