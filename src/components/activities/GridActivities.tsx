@@ -6,9 +6,15 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 interface activitiesObj {
-  banner: string;
-  title: string;
-  detail: string;
+  published_status: string;
+  banner_th: string;
+  banner_en: string;
+  title_th: string;
+  title_en: string;
+  particulars_th: string;
+  particulars_en: string;
+  start_period: string;
+  end_period: string;
 }
 interface GridActivitiesProps {
   activities: activitiesObj[];
@@ -22,7 +28,7 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
   const router = useRouter();
   const filteredActivities = useMemo(() => {
     return activities.filter((activitiesItem) =>
-      activitiesItem.title.toLowerCase().includes(query.toLowerCase())
+      activitiesItem.title_th.toLowerCase().includes(query.toLowerCase())
     );
   }, [activities, query]);
 
@@ -47,7 +53,7 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
             viewport={{ once: true }}
           >
             <Image
-              src={element.banner}
+              src={element.banner_th}
               width={500}
               height={500}
               alt="placeholder"
@@ -63,10 +69,10 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
               }}
             >
               <p className="group-hover:text-green-500 font-kanit text-start text-xl py-4">
-                {element.title}
+                {element.title_th}
               </p>
               <p className="group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                {element.detail}
+                {element.particulars_th}
               </p>
             </article>
             <button className="btn btn-success place-self-center">

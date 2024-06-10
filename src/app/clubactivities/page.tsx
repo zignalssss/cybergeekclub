@@ -1,49 +1,43 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import dynamic from "next/dynamic";
-const SearchActivities = dynamic(()=> import("@/components/searchEngine/searchActivities"));
-const GridActivities = dynamic(()=> import("@/components/activities/GridActivities"));
+const SearchActivities = dynamic(
+  () => import("@/components/searchEngine/searchActivities")
+);
+const GridActivities = dynamic(
+  () => import("@/components/activities/GridActivities")
+);
+
+interface activitiesObj {
+  published_status: string;
+  banner_th: string;
+  banner_en: string;
+  title_th: string;
+  title_en: string;
+  particulars_th: string;
+  particulars_en: string;
+  start_period: string;
+  end_period: string;
+}
 
 const Activities: React.FC<{ searchParams?: { query?: string } }> = ({
   searchParams,
 }) => {
   const query = searchParams?.query || "";
-  const activitiesObj = [
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686",
-      title: "สมาร์ทโฟนรุ่นใหม่จากบริษัทชั้นนำเปิดตัว",
-      detail:
-        "บริษัทชั้นนำในวงการเทคโนโลยีเปิดตัวสมาร์ทโฟนรุ่นใหม่ที่มาพร้อมกับคุณสมบัติและเทคโนโลยีล่าสุด เช่น กล้องความละเอียดสูง, โหมดถ่ายภาพใหม่, และปรับปรุงด้านประสิทธิภาพของระบบปฏิบัติการ",
-    },
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686}",
-      title: "สมาร์ทโฟนรุ่นใหม่จากบริษัทชั้นนำเปิดตัว",
-      detail:
-        "บริษัทชั้นนำในวงการเทคโนโลยีเปิดตัวสมาร์ทโฟนรุ่นใหม่ที่มาพร้อมกับคุณสมบัติและเทคโนโลยีล่าสุด เช่น กล้องความละเอียดสูง, โหมดถ่ายภาพใหม่, และปรับปรุงด้านประสิทธิภาพของระบบปฏิบัติการ",
-    },
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686}",
-      title: "การเปิดตัวและการพัฒนาโดรนใหม่",
-      detail:
-        "บริษัทเทคโนโลยีชั้นนำเปิดตัวโดรนที่มีความสามารถในการบินและการถ่ายภาพที่สูงขึ้น โดรนรุ่นใหม่นี้มาพร้อมกับฟีเจอร์และความปลอดภัยที่ปรับปรุง",
-    },
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686}",
-      title: "อุปกรณ์สวมใส่อัจฉริยะในการติดตามสุขภาพ",
-      detail:
-        "การเปิดตัวอุปกรณ์สวมใส่อัจฉริยะที่ช่วยในการติดตามสุขภาพและกิจกรรมการออกกำลังกายของผู้ใช้ อุปกรณ์ใหม่นี้มีฟีเจอร์ต่างๆ เช่น ตรวจวัดการนอนหลับ, ติดตามอารมณ์, และการวัดความเครียด",
-    },
-    {
-      banner:
-        "https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686}",
-      title: "การเปิดตัวเทคโนโลยีความจริงเสมือนในสถานการณ์เชิงการศึกษา",
-      detail:
-        "สถาบันการศึกษาและบริษัทเทคโนโลยีร่วมมือกันเปิดตัวโปรแกรมการเรียนการสอนที่ใช้เทคโนโลยีความจริงเสมือนในการสร้างประสบการณ์การเรียนที่มีความสมจริงและน่าสนใจสำหรับนักเรียน",
-    },
-  ];
+  const [activitiesObj, setActivitiesObj] = useState<activitiesObj[]>([]);
+  const getActivities = async () => {
+    try {
+      const res = await axios.get("/api/activities/getallactivities");
+      const activities = res.data.data;
+      setActivitiesObj(activities);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getActivities();
+  }, []);
   return (
     <>
       <div className="h-fit">
@@ -51,7 +45,7 @@ const Activities: React.FC<{ searchParams?: { query?: string } }> = ({
         <SearchActivities />
         <div className="flex justify-center w-full h-fit">
           <div className="bg-black w-4/5 h-4/5">
-            <GridActivities activities={activitiesObj} query={query}/>
+            <GridActivities activities={activitiesObj} query={query} />
           </div>
         </div>
       </div>
