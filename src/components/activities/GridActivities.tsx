@@ -53,7 +53,7 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
             viewport={{ once: true }}
           >
             <Image
-              src={element.banner_th}
+              src={`/asset/image/${element.banner_th}`}
               width={500}
               height={500}
               alt="placeholder"
