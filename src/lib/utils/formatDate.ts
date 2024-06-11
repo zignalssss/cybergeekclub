@@ -22,3 +22,9 @@ export function formatThaiDateTime(isoDate: string): string {
     const thaiDate = date.format('ddddที่ D MMMM ปี YYYY เวลา HH:mm น.');
     return thaiDate.replace('YYYY', (date.year() + 543).toString());
 }
+// เช็คว่าเวลาที่ส่งเข้ามาน้อยกว่าเวลาปัจจุบันหรือไม่ (หรือผ่านมาแล้ว) ถ้าใช่จะคืนค่า true ถ้าไม่ใช่จะคืนค่า false 
+export function isPastTime(isoDate: string): boolean {
+    const date = moment(isoDate);
+    const now = moment();
+    return now.isAfter(date);
+}
