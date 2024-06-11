@@ -41,7 +41,7 @@ const Activities: React.FC<{ searchParams?: { query?: string } }> = ({
   }, []);
   return (
     <>
-      <div className="h-fit">
+      <div className="h-fit min-h-screen">
         <h1 className="text-3xl font-kanit text-center p-10">กิจกรรมองค์กร</h1>
         <SearchActivities />
         <div className="flex justify-center w-full h-fit">

@@ -61,7 +61,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="grid place-content-center h-fit mb-20">
+    <div className="grid place-content-center min-h-screen h-fit mb-20">
       <div className="flex justify-center w-full h-full my-10">
         <ProgressBar maximumState={3} nowState={nowState} text={texts} />
       </div>

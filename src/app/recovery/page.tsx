@@ -51,7 +51,7 @@ const Recovery = () => {
     setNowState(value);
   };
   return (
-    <div className="grid place-content-center h-fit mb-20">
+    <div className="grid place-content-center min-h-screen h-fit mb-20">
       <div
         className={`${
           nowState === 0 ? "" : "!hidden"
