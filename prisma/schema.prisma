@@ -13,34 +13,34 @@ model account {
   id              String         @id @db.VarChar(256)
   email           String         @unique(map: "email") @db.VarChar(256)
   password        String         @db.LongText
-  student_id      String?        @unique(map: "student_id") @db.VarChar(256)
-  profile_image   String?        @db.LongText
-  prefix_th       String?        @db.LongText
-  prefix_en       String?        @db.LongText
-  first_name_th   String?        @db.LongText
-  first_name_en   String?        @db.LongText
-  middle_name_th  String?        @db.LongText
-  middle_name_en  String?        @db.LongText
-  last_name_th    String?        @db.LongText
-  last_name_en    String?        @db.LongText
-  nickname_th     String?        @db.LongText
-  nickname_en     String?        @db.LongText
-  faculty_th      String?        @db.LongText
-  faculty_en      String?        @db.LongText
-  major_th        String?        @db.LongText
-  major_en        String?        @db.LongText
-  phone_number    String?        @db.LongText
+  built           DateTime       @default(now()) @db.Timestamp(0)
   birthdate       DateTime?      @db.Date
   code            String?        @db.LongText
-  role            account_role   @default(MEMBER)
-  point           Int            @default(0)
-  document        String?        @db.LongText
-  status          account_status @default(ORDINARY)
   display_name    String?        @db.LongText
-  remaining_time  DateTime?      @db.DateTime(0)
-  wrong_password  Int            @default(0)
+  document        String?        @db.LongText
+  faculty_en      String?        @db.LongText
+  faculty_th      String?        @db.LongText
+  first_name_en   String?        @db.LongText
+  first_name_th   String?        @db.LongText
   ignored_account DateTime?      @db.DateTime(0)
-  built           DateTime       @default(now()) @db.Timestamp(0)
+  last_name_en    String?        @db.LongText
+  last_name_th    String?        @db.LongText
+  major_en        String?        @db.LongText
+  major_th        String?        @db.LongText
+  middle_name_en  String?        @db.LongText
+  middle_name_th  String?        @db.LongText
+  nickname_en     String?        @db.LongText
+  nickname_th     String?        @db.LongText
+  phone_number    String?        @db.LongText
+  point           Int            @default(0)
+  prefix_en       String?        @db.LongText
+  prefix_th       String?        @db.LongText
+  profile_image   String?        @db.LongText
+  remaining_time  DateTime?      @db.DateTime(0)
+  role            account_role   @default(MEMBER)
+  status          account_status @default(ORDINARY)
+  student_id      String?        @unique(map: "student_id") @db.VarChar(256)
+  wrong_password  Int            @default(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -158,6 +158,13 @@ model personnel {
   position_en    String?            @db.LongText
   profile_image  String?            @db.LongText
   built          DateTime           @default(now()) @db.Timestamp(0)
+}
+
+model register_activity {
+  id                    String   @id @db.VarChar(255)
+  corporate_activity_id String   @db.VarChar(255)
+  email                 String   @db.VarChar(255)
+  built                 DateTime @default(now()) @db.Timestamp(0)
 }
 
 enum budget_category {

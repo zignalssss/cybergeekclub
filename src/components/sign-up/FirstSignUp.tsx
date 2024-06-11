@@ -55,7 +55,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
     }
   };
   return (
-    <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:h-[700px] md: bg-[#181818] rounded-3xl border border-white/15">
+    <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:min-h-[700px] md:h-fit md: bg-[#181818] rounded-3xl border border-white/15">
       <div className="flex justify-center my-10">
         <h1 className="font-kanit text-3xl">สมัครสมาชิก</h1>
       </div>

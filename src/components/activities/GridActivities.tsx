@@ -1,14 +1,28 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 interface activitiesObj {
-  banner: string;
-  title: string;
-  detail: string;
+  id: string;
+  published_status: boolean;
+  banner_th: string;
+  banner_en: string;
+  title_th: string;
+  title_en: string;
+  particulars_th: string;
+  particulars_en: string;
+  start_period: string;
+  end_period: string;
+}
+
+interface activitiesHistory {
+  id: string;
+  email: string;
+  corporate_activity_id: string;
 }
 interface GridActivitiesProps {
   activities: activitiesObj[];
@@ -19,13 +33,45 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
   activities,
   query,
 }) => {
+  const [activitiesHistory, setActivitiesHistory] = useState<activitiesHistory[]>([]);
   const router = useRouter();
   const filteredActivities = useMemo(() => {
     return activities.filter((activitiesItem) =>
-      activitiesItem.title.toLowerCase().includes(query.toLowerCase())
+      activitiesItem.title_th.toLowerCase().includes(query.toLowerCase())
     );
   }, [activities, query]);
 
+  const handleClickRegister = async (
+    e: React.MouseEvent<HTMLButtonElement>,
+    id: string
+  ) => {
+    e.preventDefault();
+    await axios.post("/api/activities/registeractivities", { id });
+    getActivitiesHistory();
+  };
+  const handleClickCancel = async (
+    e: React.MouseEvent<HTMLButtonElement>,
+    id: string
+  ) => {
+    e.preventDefault();
+    const activityHistoryId = activitiesHistory.find(item => item.corporate_activity_id === id)?.id;
+    if (activityHistoryId) {
+      await axios.delete(`/api/activities/deleteregisteractivities/`, { data: { id: activityHistoryId } });
+    }
+    getActivitiesHistory();
+  };
+  const getActivitiesHistory = async () => {
+    try {
+      const res = await axios.get("/api/activities/getactivitieshistory");
+      const activitiesHistory = res.data.data;
+      setActivitiesHistory(activitiesHistory);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getActivitiesHistory();
+  }, []);
   return (
     <div className={`grid grid-cols-1 w-full h-fit overflow-y-auto`}>
       {Array.isArray(activities) && filteredActivities.length === 0 && (
@@ -47,31 +93,42 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
             viewport={{ once: true }}
           >
             <Image
-              src={element.banner}
+              src={`/asset/image/${element.banner_th}`}
               width={500}
               height={500}
               alt="placeholder"
-              onClick={() => {
-                router.push(`/activities/${index}`);
-              }}
-              className="hover:cursor-pointer"
             />
             <article
-              className="text-wrap hover:cursor-pointer"
-              onClick={() => {
-                router.push(`/activities/${index}`);
-              }}
+              className="text-wrap"
             >
               <p className="group-hover:text-green-500 font-kanit text-start text-xl py-4">
-                {element.title}
+                {element.title_th}
               </p>
               <p className="group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                {element.detail}
+                {element.particulars_th}
               </p>
             </article>
-            <button className="btn btn-success place-self-center">
-              เข้าร่วมกิจกรรม
-            </button>
+            {element.published_status && !activitiesHistory.some(item => item.corporate_activity_id === element.id) ? (
+              <button
+                className="btn btn-success place-self-center"
+                onClick={(e) => handleClickRegister(e, element.id)}
+              >
+                เข้าร่วมกิจกรรม
+              </button>
+            ) : element.published_status && activitiesHistory.some(item => item.corporate_activity_id === element.id) ? (
+              <button
+                className="btn btn-error place-self-center"
+                onClick={(e) => handleClickCancel(e, element.id)}
+              >
+                ยกเลิกการเข้าร่วมกิจกรรม
+              </button>
+            ) : (
+              <button
+                className="btn btn-warning place-self-center btn-disabled"
+              >
+                กิจกรรมปิดรับสมัคร
+              </button>
+            )}
           </motion.div>
         ))}
     </div>

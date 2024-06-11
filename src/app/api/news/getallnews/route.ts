@@ -9,6 +9,9 @@ export async function GET(request: Request) {
             banner_th : true,
             title_th : true,
             particulars_th : true,
+          },
+          orderBy: {
+            built : 'desc'
           }
         })
         return Response.json({ message: "GET USER Success", data: news }, { status: 200 });
