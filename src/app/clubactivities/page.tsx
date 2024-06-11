@@ -10,7 +10,8 @@ const GridActivities = dynamic(
 );
 
 interface activitiesObj {
-  published_status: string;
+  id : string,
+  published_status: boolean;
   banner_th: string;
   banner_en: string;
   title_th: string;
