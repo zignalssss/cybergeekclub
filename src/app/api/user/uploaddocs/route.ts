@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
                 const prevImagePath = path.join(process.cwd(), 'public/asset/profile', existingData.profile_image);
                 try {
                     await fsPromises.unlink(prevImagePath);
-                    console.log(`Deleted previous image: ${existingData.profile_image}`);
+                    // console.log(`Deleted previous image: ${existingData.profile_image}`);
                 } catch (unlinkError) {
                     console.error(`Error deleting previous image: ${unlinkError}`);
                 }
