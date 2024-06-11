@@ -92,10 +92,21 @@ const Navbar = () => {
 								</Link>
 							</li>
 							<li className="group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
-								<Link href="/sign-up">
-									สมัครเข้าชมรม
-									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
-								</Link>
+								{status === 'authenticated' && session.user ? 
+									(userData.document ? 
+									<></>
+									: 
+									<Link href="/pendingpage">
+										ส่งเอกสารการสมัคร
+										<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
+									</Link>
+									)
+									:
+									<Link href="/sign-up">
+										สมัครเข้าชมรม
+										<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
+									</Link>
+								}
 							</li>
 
 							<MenuA setActiveA={setActiveA}>
@@ -228,8 +239,8 @@ const Navbar = () => {
 							</Link>
 						}
 					</div>
-					{/* Responsive Navbar  Design*/}
 
+					{/* Responsive Navbar  Design*/}
 					<div className="navbar lg:hidden">
 						<div className="navbar-start">
 							<Hamburger size={25} toggled={isOpen} rounded toggle={setIsOpen} />
@@ -298,7 +309,6 @@ const Navbar = () => {
 						</div>
 					</div>
 				</div>
-
 				<motion.div
 					animate={isOpen ? "open" : "closed"}
 					variants={variantsleft}
@@ -316,9 +326,19 @@ const Navbar = () => {
 								</Link>
 							</li>
 							<li className=" pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
-							<Link href="/sign-up" onClick={() => setIsOpen(!isOpen)}>
-									<div className='ml-[7%] md:ml-3'>สมัครเข้าชมรม</div>
-							</Link>
+								{status === 'authenticated' && session.user ? 
+									(userData.document ? 
+									<></>
+									: 
+									<Link href="/pendingpage" onClick={() => setIsOpen(!isOpen)}>
+										<div className='ml-[7%] md:ml-3'>ส่งเอกสารการสมัคร</div>
+									</Link>
+									)
+									:
+									<Link href="/sign-up" onClick={() => setIsOpen(!isOpen)}>
+										<div className='ml-[7%] md:ml-3'>สมัครเข้าชมรม</div>
+									</Link>
+								}
 							</li>
 							<li className=" pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400  lg:hover:bg-transparent">
 

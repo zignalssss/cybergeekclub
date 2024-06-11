@@ -130,7 +130,7 @@ const Settingpage: React.FC = () => {
                         <div className='flex items-center'>
                             <div className="avatar">
                                 <div className="w-24 rounded-xl border-2 border-green-500 ">
-                                    <img src={userData.profile_image ? `${avatar ? URL.createObjectURL(avatar) : `/asset/profile/${userData.profile_image}`}` : "/asset/Image/cat.png"} />
+                                    <img src={avatar ? URL.createObjectURL(avatar) : `${userData.profile_image ? `/asset/profile/${userData.profile_image}` : `/asset/Image/cat.png`}`} />
                                 </div>
                             </div>
                             <div className='flex flex-col items-center ml-10'>
