@@ -2,13 +2,28 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { FaFilePdf } from "react-icons/fa6";
 import axios from 'axios'
-
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 const Send_File = () => {
+  const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0] || null;
     setFile(selectedFile);
   };
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  
+
   const handleSubmit = async(event: FormEvent) => {
     event.preventDefault();
     if (!file) return;
@@ -16,11 +31,18 @@ const Send_File = () => {
     const formData = new FormData();
     formData.append("file", file);
     
-    await axios.post('/api/user/updateuser', formData, {
+    await axios.post('/api/user/uploaddocs', formData, {
       headers: {
           'Content-Type': 'multipart/form-data',
       },
-  })
+    })
+    .then(response => {
+        Toast.fire({
+          icon: "success",
+          title: "ส่งเอกสารสำเร็จ!!"
+        })
+        router.push('/')
+    })
   };
   return (
     <div className="border border-white w-11/12 h-fit rounded-3xl my-10">

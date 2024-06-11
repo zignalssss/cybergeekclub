@@ -46,6 +46,13 @@ export async function POST(request: NextRequest) {
                     console.error(`Error deleting previous image: ${unlinkError}`);
                 }
             }
+            await prisma.account.update({
+                where: { email },
+                data:{
+                    status:"PENDING",
+                    document: filename
+                }
+            });
 
             await fsPromises.mkdir(path.dirname(uploadPath), { recursive: true });
             await fsPromises.writeFile(uploadPath, buffer);

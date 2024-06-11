@@ -71,7 +71,7 @@ const Navbar = () => {
 	return (
 		<>
 			<nav className="bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
-				<div className="h-16 md:h-16 mx-auto md:px-4 flex  items-center justify-between flex-wrap md:flex-nowrap">
+				<div className={`h-16 md:h-16 mx-auto md:px-4 flex  items-center justify-between flex-wrap md:flex-nowrap `}>
 
 					<Link href="/">
 						<div className="hidden lg:grid mt-1 md:mt-0 text-white font-semibold font-kanit order-2 md:order-1 transition-all duration-250 hover:scale-110 ">
@@ -90,16 +90,15 @@ const Navbar = () => {
 									หน้าหลัก
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>
-							</li>
-							<li className="group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400">
+							</li>				
+							<li className={`group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400 `}>
 								{status === 'authenticated' && session.user ? 
-									(userData.document ? 
-									<></>
-									: 
-									<Link href="/pendingpage">
-										ส่งเอกสารการสมัคร
-										<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
-									</Link>
+									(
+										userData.document && 
+											<Link href="/pendingpage">
+												ส่งเอกสารการสมัคร
+												<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
+											</Link>
 									)
 									:
 									<Link href="/sign-up">
@@ -108,7 +107,7 @@ const Navbar = () => {
 									</Link>
 								}
 							</li>
-
+							
 							<MenuA setActiveA={setActiveA}>
 								<MenuItemDropdownA setActiveA={setActiveA} activeA={activeA} item="เกี่ยวกับเรา">
 									<div className="flex flex-col space-y-4 text-sm ">
@@ -325,10 +324,10 @@ const Navbar = () => {
 									<div className='ml-[7%] md:ml-3'>หน้าหลัก</div>
 								</Link>
 							</li>
-							<li className=" pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent">
+							<li className={`${userData.document? `hidden border-0`:``}pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent`}>
 								{status === 'authenticated' && session.user ? 
 									(userData.document ? 
-									<></>
+									""
 									: 
 									<Link href="/pendingpage" onClick={() => setIsOpen(!isOpen)}>
 										<div className='ml-[7%] md:ml-3'>ส่งเอกสารการสมัคร</div>
