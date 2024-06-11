@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { FaFilePdf } from "react-icons/fa6";
+import axios from 'axios'
 
 const Send_File = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -8,12 +9,18 @@ const Send_File = () => {
     const selectedFile = event.target.files?.[0] || null;
     setFile(selectedFile);
   };
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async(event: FormEvent) => {
     event.preventDefault();
     if (!file) return;
 
     const formData = new FormData();
     formData.append("file", file);
+    
+    await axios.post('/api/user/updateuser', formData, {
+      headers: {
+          'Content-Type': 'multipart/form-data',
+      },
+  })
   };
   return (
     <div className="border border-white w-11/12 h-fit rounded-3xl my-10">
@@ -64,7 +71,7 @@ const Send_File = () => {
               <input
                 id="fileInput"
                 type="file"
-                className="file-input file-input-bordered file-input-xs w-fit text-black"
+                className="file-input file-input-bordered file-input-sm file-input-success w-full max-w-xs "
                 onChange={handleFileChange}
                 required
               />

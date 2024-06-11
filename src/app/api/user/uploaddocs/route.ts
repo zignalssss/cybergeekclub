@@ -34,11 +34,11 @@ export async function POST(request: NextRequest) {
             const uniqueSuffix = uuidv4();
             const extname = path.extname(file.name);
             const filename = uniqueSuffix + extname;
-            const uploadPath = path.join(process.cwd(), 'public/asset/profile', filename);
+            const uploadPath = path.join(process.cwd(), 'public/asset/docs', filename);
 
             // Delete previous image file if it exists
-            if (existingData.profile_image) {
-                const prevImagePath = path.join(process.cwd(), 'public/asset/profile', existingData.profile_image);
+            if (existingData.document) {
+                const prevImagePath = path.join(process.cwd(), 'public/asset/docs', existingData.document);
                 try {
                     await fsPromises.unlink(prevImagePath);
                     // console.log(`Deleted previous image: ${existingData.profile_image}`);
@@ -51,8 +51,6 @@ export async function POST(request: NextRequest) {
             await fsPromises.writeFile(uploadPath, buffer);
 
         }
-
-
         return NextResponse.json({ message: "ส่งเอกสารสำเร็จ" });
     } catch (error) {
         console.error(error);
