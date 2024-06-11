@@ -1,0 +1,24 @@
+// utils/formatDate.ts
+import moment from 'moment';
+import 'moment/locale/th';
+
+const shortDayNames = ["อา.", "จ.", "อ.", "พ.", "พฤ.", "ศ.", "ส."];
+const shortMonthNames = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
+
+export function formatThaiDateTimeShort(isoDate: string): string {
+    moment.locale('th');
+    const date = moment(isoDate).utcOffset('+07:00'); // ตั้งค่าโซนเวลาให้เป็นเวลาในประเทศไทย
+    const dayName = shortDayNames[date.day()];
+    const day = date.date();
+    const month = shortMonthNames[date.month()];
+    const year = (date.year() + 543).toString();
+    const time = date.format('HH:mm');
+
+    return `${dayName} ${day} ${month} ${year} เวลา ${time} น.`;
+}
+export function formatThaiDateTime(isoDate: string): string {
+    moment.locale('th');
+    const date = moment(isoDate).utcOffset('+07:00'); // ตั้งค่าโซนเวลาให้เป็นเวลาในประเทศไทย
+    const thaiDate = date.format('ddddที่ D MMMM ปี YYYY เวลา HH:mm น.');
+    return thaiDate.replace('YYYY', (date.year() + 543).toString());
+}
