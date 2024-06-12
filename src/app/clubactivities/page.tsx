@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import dynamic from "next/dynamic";
 const SearchActivities = dynamic(
-  () => import("@/components/searchEngine/searchActivities")
+  () => import("@/components/searchEngine/SearchActivities")
 );
 const GridActivities = dynamic(
   () => import("@/components/activities/GridActivities")

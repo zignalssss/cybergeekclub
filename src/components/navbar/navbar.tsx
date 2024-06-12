@@ -56,7 +56,7 @@ const Navbar = () => {
 		setIsDrop3(!isDrop3);
 	}
 	const {data:session,status}:any = useSession();
-	const [userData ,setuserData] = useState<any>({})
+	const [userData ,setuserData] = useState<any | undefined | null>({})
 	const getData = async ()=>{
 		try{
 			const user_account = await axios.post("/api/user/getuser",{email : session.user.email})	
@@ -182,7 +182,7 @@ const Navbar = () => {
 								</div>
 
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)] font-kanit'>
-									{userData.display_name ? `${userData.display_name}` : "Loading..."}
+									{userData && userData.display_name ? `${userData.display_name}` : "Loading..."}
 								</div>
 							</div>
 							{/* dropdown-content */}
