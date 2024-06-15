@@ -67,7 +67,7 @@ const Navbar = () => {
 	}
 	useEffect(()=>{
 		getData()
-	},[])
+	},[session])
 	return (
 		<>
 			<nav className="bg-opacity-60 shadow-5xl backdrop-filter backdrop-blur-sm sticky top-0 bg-black shadow shadow-white/[0.2] z-50 w-100 px-8 md:px-auto">
