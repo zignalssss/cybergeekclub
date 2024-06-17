@@ -10,65 +10,64 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model account {
-  id              String         @id @db.VarChar(256)
-  email           String         @unique(map: "email") @db.VarChar(256)
-  password        String         @db.LongText
-  built           DateTime       @default(now()) @db.Timestamp(0)
-  birthdate       DateTime?      @db.Date
-  code            String?        @db.LongText
-  display_name    String?        @db.LongText
-  document        String?        @db.LongText
-  faculty_en      String?        @db.LongText
-  faculty_th      String?        @db.LongText
-  first_name_en   String?        @db.LongText
-  first_name_th   String?        @db.LongText
-  ignored_account DateTime?      @db.DateTime(0)
-  last_name_en    String?        @db.LongText
-  last_name_th    String?        @db.LongText
-  major_en        String?        @db.LongText
-  major_th        String?        @db.LongText
-  middle_name_en  String?        @db.LongText
-  middle_name_th  String?        @db.LongText
-  nickname_en     String?        @db.LongText
-  nickname_th     String?        @db.LongText
-  phone_number    String?        @db.LongText
-  point           Int            @default(0)
-  prefix_en       String?        @db.LongText
-  prefix_th       String?        @db.LongText
-  profile_image   String?        @db.LongText
-  remaining_time  DateTime?      @db.DateTime(0)
-  role            account_role   @default(MEMBER)
-  status          account_status @default(ORDINARY)
-  student_id      String?        @unique(map: "student_id") @db.VarChar(256)
-  wrong_password  Int            @default(0)
+  id             String       @id @db.Char(36)
+  email          String       @unique(map: "email") @db.VarChar(255)
+  password       String       @db.VarChar(255)
+  display_name   String       @db.VarChar(255)
+  student_id     String       @unique(map: "student_id") @db.VarChar(255)
+  prefix_th      String       @db.VarChar(255)
+  prefix_en      String       @db.VarChar(255)
+  first_name_th  String       @db.VarChar(255)
+  first_name_en  String       @db.VarChar(255)
+  middle_name_th String       @db.VarChar(255)
+  middle_name_en String       @db.VarChar(255)
+  last_name_th   String       @db.VarChar(255)
+  last_name_en   String       @db.VarChar(255)
+  nickname_th    String       @db.VarChar(255)
+  nickname_en    String       @db.VarChar(255)
+  birthdate      DateTime     @db.Date
+  phone_number   String       @db.VarChar(255)
+  point          Int
+  profile_image  String       @db.VarChar(255)
+  faculty_th     String       @db.VarChar(255)
+  faculty_en     String       @db.VarChar(255)
+  major_th       String       @db.VarChar(255)
+  major_en       String       @db.VarChar(255)
+  code           account_code
+  role           account_role @default(MEMBER)
+  banned         Boolean
+  remaining_time DateTime     @db.DateTime(0)
+  built          DateTime     @default(now()) @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model account_admin {
-  id           String   @id @db.VarChar(256)
-  email        String   @unique(map: "email") @db.VarChar(256)
-  password     String   @db.VarChar(256)
-  display_name String?  @db.VarChar(256)
+  id           String   @id @db.Char(36)
+  email        String   @unique(map: "email") @db.VarChar(255)
+  password     String   @db.VarChar(255)
+  display_name String   @db.VarChar(255)
   built        DateTime @default(now()) @db.Timestamp(0)
 }
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model activity_calendar {
-  id           String    @id @db.VarChar(256)
-  schedule     String?   @db.LongText
-  start_period DateTime? @db.DateTime(0)
-  end_period   DateTime? @db.DateTime(0)
+  id             String   @id @db.Char(36)
+  particulars_th String   @db.LongText
+  particulars_en String   @db.LongText
+  start_period   DateTime @db.DateTime(0)
+  end_period     DateTime @db.DateTime(0)
+  built          DateTime @default(now()) @db.Timestamp(0)
 
   @@ignore
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model budget {
-  id             String          @id @db.VarChar(256)
+  id             String          @id @db.Char(36)
   category       budget_category
-  particulars_th String?         @db.LongText
-  particulars_en String?         @db.LongText
+  particulars_th String          @db.LongText
+  particulars_en String          @db.LongText
   money          Float
   time_series    DateTime        @db.DateTime(0)
   built          DateTime        @default(now()) @db.Timestamp(0)
@@ -76,44 +75,44 @@ model budget {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model contact {
-  id           String           @id @db.VarChar(256)
+  id           String           @id @db.Char(36)
   category     contact_category
-  display_name String           @db.LongText
-  uri          String           @db.LongText
+  display_name String           @db.VarChar(255)
+  uri          String           @db.MediumText
+  built        DateTime         @default(now()) @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model corporate_activity {
-  id               String    @id @db.VarChar(256)
-  published_status Boolean   @default(false)
-  banner_th        String?   @db.LongText
-  banner_en        String?   @db.LongText
-  title_th         String?   @db.LongText
-  title_en         String?   @db.LongText
-  particulars_th   String?   @db.LongText
-  particulars_en   String?   @db.LongText
-  start_period     DateTime? @db.DateTime(0)
-  end_period       DateTime? @db.DateTime(0)
-  built            DateTime  @default(now()) @db.Timestamp(0)
+  id               String   @id @db.Char(36)
+  published_status Boolean
+  banner_th        String   @db.VarChar(255)
+  banner_en        String   @db.VarChar(255)
+  title_th         String   @db.VarChar(255)
+  title_en         String   @db.VarChar(255)
+  particulars_th   String   @db.LongText
+  particulars_en   String   @db.LongText
+  start_period     DateTime @db.DateTime(0)
+  end_period       DateTime @db.DateTime(0)
+  built            DateTime @default(now()) @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model document_log {
-  id          String               @id @db.VarChar(256)
-  email       String               @db.LongText
-  document    String?              @db.LongText
-  status      document_log_status? @default(PENDING)
-  notation    String?              @db.LongText
-  time_series DateTime?            @db.DateTime(0)
-  built       DateTime             @default(now()) @db.Timestamp(0)
-  approve     String?              @db.LongText
+  id               String              @id @db.Char(36)
+  account_id       String              @db.Char(36)
+  document         String              @db.VarChar(255)
+  status           document_log_status @default(PENDING)
+  notation         String?             @db.LongText
+  account_admin_id String?             @db.Char(36)
+  built            DateTime            @default(now()) @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model expenditure {
-  id             String   @id @db.VarChar(256)
-  particulars_th String?  @db.LongText
-  particulars_en String?  @db.LongText
+  id             String   @id @db.Char(36)
+  particulars_th String   @db.LongText
+  particulars_en String   @db.LongText
   money          Float
   time_series    DateTime @db.DateTime(0)
   built          DateTime @default(now()) @db.Timestamp(0)
@@ -121,61 +120,55 @@ model expenditure {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model news {
-  id               String   @id @db.VarChar(256)
-  published_status Boolean  @default(false)
-  banner_th        String?  @db.LongText
-  banner_en        String?  @db.LongText
-  title_th         String?  @db.LongText
-  title_en         String?  @db.LongText
-  particulars_th   String?  @db.LongText
-  particulars_en   String?  @db.LongText
-  author_id        String   @db.VarChar(256)
+  id               String   @id @db.Char(36)
+  published_status Boolean
+  banner_th        String   @db.VarChar(255)
+  banner_en        String   @db.VarChar(255)
+  title_th         String   @db.VarChar(255)
+  title_en         String   @db.VarChar(255)
+  particulars_th   String   @db.LongText
+  particulars_en   String   @db.LongText
+  account_admin_id String   @db.Char(36)
   time_series      DateTime @db.DateTime(0)
   built            DateTime @default(now()) @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model one_time_password {
-  email String   @id @db.VarChar(256)
-  otp   String?  @db.LongText
+  email String   @id(length: 36) @db.VarChar(255)
+  otp   String   @db.Char(6)
   built DateTime @default(now()) @db.Timestamp(0)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model personnel {
-  id             String             @id @db.VarChar(256)
+  id             String             @id @db.Char(36)
   generation     Int
-  category       personnel_category @default(MEMBER)
-  prefix_th      String?            @db.LongText
-  prefix_en      String?            @db.LongText
-  first_name_th  String?            @db.LongText
-  first_name_en  String?            @db.LongText
-  middle_name_th String?            @db.LongText
-  middle_name_en String?            @db.LongText
-  last_name_th   String?            @db.LongText
-  last_name_en   String?            @db.LongText
-  position_th    String?            @db.LongText
-  position_en    String?            @db.LongText
-  profile_image  String?            @db.LongText
+  category       personnel_category
+  prefix_th      String             @db.VarChar(255)
+  prefix_en      String             @db.VarChar(255)
+  first_name_th  String             @db.VarChar(255)
+  first_name_en  String             @db.VarChar(255)
+  middle_name_th String             @db.VarChar(255)
+  middle_name_en String             @db.VarChar(255)
+  last_name_th   String             @db.VarChar(255)
+  last_name_en   String             @db.VarChar(255)
+  position_th    String             @db.VarChar(255)
+  position_en    String             @db.VarChar(255)
+  profile_image  String             @db.VarChar(255)
   built          DateTime           @default(now()) @db.Timestamp(0)
 }
 
-model register_activity {
-  id                    String   @id @db.VarChar(255)
-  corporate_activity_id String   @db.VarChar(255)
-  email                 String   @db.VarChar(255)
+model register_corporate_activity {
+  id                    String   @id @db.Char(36)
+  account_id            String   @db.Char(36)
+  corporate_activity_id String   @db.Char(36)
   built                 DateTime @default(now()) @db.Timestamp(0)
 }
 
 enum budget_category {
   INCOME
   SUBSIDY
-}
-
-enum contact_category {
-  FACEBOOK
-  INSTAGRAM
-  YOUTUBE
 }
 
 enum personnel_category {
@@ -194,10 +187,73 @@ enum account_role {
   CERTIFIED
 }
 
-enum account_status {
-  ORDINARY
-  PENDING
-  CERTIFIED
-  BANNED
-  ALUMNI
+enum contact_category {
+  FACEBOOK
+  INSTAGRAM
+  YOUTUBE
+  DISCORD
+}
+
+enum account_code {
+  R01
+  R02
+  R03
+  R04
+  R05
+  R06
+  R08
+  R09
+  R10
+  R11
+  R12
+  R13
+  R14
+  R15
+  R16
+  R17
+  R20
+  R21
+  R22
+  R23
+  R24
+  R25
+  R32
+  R33
+  T02
+  T03
+  T04
+  T05
+  T07
+  T08
+  T12
+  T13
+  T14
+  T17
+  T18
+  T19
+  T20
+  T22
+  T23
+  S01
+  S02
+  S03
+  S04
+  S05
+  S06
+  S08
+  S09
+  S10
+  S11
+  S18
+  S19
+  S20
+  G01
+  G02
+  M01
+  M02
+  M03
+  M04
+  M05
+  M07
+  M09
 }
