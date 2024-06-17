@@ -5,9 +5,7 @@ const prisma: PrismaClient = new PrismaClient();
 export async function DELETE(request: Request) {
   try {
     const requestBody = await request.json();
-    console.log(requestBody);
-    console.log(requestBody.id);
-    const activitiesHistory = await prisma.register_activity.delete({
+    const activitiesHistory = await prisma.register_corporate_activity.delete({
       where: {
         id: requestBody.id,
       },
