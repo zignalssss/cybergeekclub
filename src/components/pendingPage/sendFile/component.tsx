@@ -26,23 +26,27 @@ const Send_File = () => {
 
   const handleSubmit = async(event: FormEvent) => {
     event.preventDefault();
-    if (!file) return;
+    try {
+      if (!file) return;
 
-    const formData = new FormData();
-    formData.append("file", file);
+      const formData = new FormData();
+      formData.append("file", file);
     
-    await axios.post('/api/user/uploaddocs', formData, {
-      headers: {
-          'Content-Type': 'multipart/form-data',
-      },
-    })
-    .then(response => {
+      await axios.post('/api/user/uploaddocs', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(response => {
         Toast.fire({
           icon: "success",
           title: "ส่งเอกสารสำเร็จ!!"
         })
         router.push('/')
-    })
+      })
+    } catch ( error: any) {
+      console.error(error);
+    }
   };
   return (
     <div className="border border-white w-11/12 h-fit rounded-3xl my-10">

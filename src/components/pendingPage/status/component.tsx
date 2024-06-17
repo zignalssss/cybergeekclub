@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { RiFileWarningFill } from "react-icons/ri";
+import { document_log_status } from "@prisma/client";
+import Link from "next/link";
 
 
 type LIST = {
-  time: string;
-  name: string;
-  status: "pending" | "accept" | "deny" | "error";
-  note: string;
+  id:string;
+  account_id:string;
+  document:string;
+  status:document_log_status;
+  notation:string;
+  account_admin_id:string;         
+  built:string;
 };
 
 const ShowStatus = ({ prop }: { prop: LIST[] }) => {
   return (
-    <div className="h-fit w-11/12 border border-white rounded-3xl my-10">
+    <div className="min-h-screen h-fit w-11/12 border border-white rounded-3xl my-10">
       <div className="text-center text-3xl my-10">สถานะใบสมัคร</div>
       <div className=" pb-10">
         <table className="table">
@@ -29,21 +34,21 @@ const ShowStatus = ({ prop }: { prop: LIST[] }) => {
           <tbody className="font-kanit">
             {prop.map((element, index) => (
               <tr key={index}>
-                <th>{element.time}</th>
-                <td>{element.name}</td>
+                <th>{element.built}</th>
+                <td><Link href={element.document}>คลิกเพื่อดูไฟล์</Link></td>
                 <td className="flex md:grid md:grid-cols-2">
                   {element.status}
-                  {element.status === "pending" ? (
+                  {element.status === "PENDING" ? (
                     <span className="loading loading-spinner loading-xs text-warning"></span>
-                  ) : element.status === "accept" ? (
+                  ) : element.status === "APPROVE" ? (
                     <BsFillCheckCircleFill className="text-green-500 text-sm"/>
-                  ) : element.status === "deny" ? (
+                  ) : element.status === "REJECT" ? (
                     <AiFillCloseCircle className="text-red-500 text-sm"/>
                   ) : (
                     <RiFileWarningFill className="text-yellow-500 text-sm"/>
                   )}
                 </td>
-                <td>{element.note}</td>
+                <td>{element.notation}</td>
               </tr>
             ))}
           </tbody>
