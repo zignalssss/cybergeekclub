@@ -111,11 +111,3 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "เกิดข้อผิดพลาด" }, { status: 500 });
   }
 }
-
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: "10mb", // Adjust as needed
-    },
-  },
-};
