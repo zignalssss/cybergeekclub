@@ -44,7 +44,6 @@ export async function POST(request: NextRequest) {
     const existingData = await prisma.account.findUnique({
       where: { email },
     });
-
     if (!existingData) {
       return NextResponse.json(
         { message: "ไม่มี User ในระบบ" },
@@ -81,7 +80,6 @@ export async function POST(request: NextRequest) {
         },
       });
     }
-
     return NextResponse.json({ message: "ส่งเอกสารสำเร็จ" });
   } catch (error) {
     console.error(error);
