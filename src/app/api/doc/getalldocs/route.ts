@@ -27,6 +27,8 @@ export async function GET(request: NextRequest) {
       where: {
         account_id: user_id,
       },
+      orderBy: { built: "asc" 
+      },
     });
     return NextResponse.json( { message: "GET user document_log Success", data: documents_log }, { status: 200 })
   } catch (error: unknown) {
