@@ -6,13 +6,11 @@ export async function POST(request: Request) {
   try {
     const { email, password }: {email: string; password: string} =
       await request.json();
-      console.log({"email" : email},{ "pass" : password});
     const user = await prisma.account.findUnique({
       where: {
         email: email,
       },
     });
-    console.log(user);
     if (!user) {
       return Response.json({ message: "User not found" }, { status: 404 });
     } else {
