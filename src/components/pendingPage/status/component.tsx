@@ -4,6 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { RiFileWarningFill } from "react-icons/ri";
 import { document_log_status } from "@prisma/client";
 import Link from "next/link";
+import { formatThaiDateTime } from "@/lib/utils/formatDate";
 
 
 type LIST = {
@@ -34,7 +35,7 @@ const ShowStatus = ({ prop }: { prop: LIST[] }) => {
           <tbody className="font-kanit">
             {prop.map((element, index) => (
               <tr key={index}>
-                <th>{element.built}</th>
+                <th>{formatThaiDateTime(element.built)}</th>
                 <td><Link target="_blank" href={element.document}>คลิกเพื่อดูไฟล์</Link></td>
                 <td className="flex md:grid md:grid-cols-2">
                   {element.status}
