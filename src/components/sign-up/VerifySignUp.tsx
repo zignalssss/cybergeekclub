@@ -77,7 +77,6 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
   };
 
   const sendOTPAgain = async (email: string) => {
-    console.log(email);
     try {
       await axios.post("/api/otp/updateotp", { email })
         .catch(error => {

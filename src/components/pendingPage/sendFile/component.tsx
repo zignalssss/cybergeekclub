@@ -4,9 +4,15 @@ import { FaFilePdf } from "react-icons/fa6";
 import axios from 'axios'
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
-const Send_File = () => {
+
+interface prop {
+  onClick: (right : boolean) => void;
+}
+
+const Send_File = ({ onClick } : prop) => {
   const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
+  const [isSending, setIsSending] = useState<boolean>(false);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0] || null;
     setFile(selectedFile);
@@ -26,6 +32,7 @@ const Send_File = () => {
 
   const handleSubmit = async(event: FormEvent) => {
     event.preventDefault();
+    setIsSending(true);
     try {
       if (!file) return;
 
@@ -42,11 +49,16 @@ const Send_File = () => {
           icon: "success",
           title: "ส่งเอกสารสำเร็จ!!"
         })
-        router.push('/')
       })
     } catch ( error: any) {
       console.error(error);
+      Toast.fire({
+        icon: "error",
+        title: "เกิดข้อผิดพลาดในการส่งเอกสาร"
+      })
     }
+    setIsSending(false);
+    onClick(true);
   };
   return (
     <div className="border border-white w-11/12 h-fit rounded-3xl my-10">
@@ -110,9 +122,10 @@ const Send_File = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-32 h-10 border border-white hover:border-green-500 hover:text-green-500 rounded-3xl m-5 font-kanit"
+                disabled={isSending}
+                className={`w-32 h-10 border border-white hover:border-green-500 hover:text-green-500 rounded-3xl m-5 font-kanit disabled:border-white/20 disabled:text-white/20 ${isSending ? 'cursor-not-allowed !w-36' : 'hover:cursor-pointer'}`}
               >
-                ส่งใบสมัคร
+                {isSending ? <div className="flex justify-center"><p>กำลังส่งใบสมัคร</p><span className="loading loading-spinner loading-xs"></span></div> : <p>ส่งใบสมัคร</p>}
               </button>
             </div>
           </form>
