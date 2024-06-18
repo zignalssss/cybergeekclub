@@ -1,0 +1,19 @@
+import { PrismaClient } from "@prisma/client";
+
+const prisma: PrismaClient = new PrismaClient();
+
+export async function GET(request: Request) {
+    try {
+      const activities = await prisma.activity_calendar.findMany({
+        orderBy: {
+          built: "desc",
+        },
+      });
+      return Response.json(
+        { message: "GET USER Success", data: activities },
+        { status: 200 }
+      );
+    } catch (error: unknown) {
+      return Response.json({ message: "GET USER Unsuccess" }, { status: 500 });
+    }
+  }

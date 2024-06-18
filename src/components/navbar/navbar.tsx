@@ -90,11 +90,12 @@ const Navbar = () => {
 									หน้าหลัก
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>
-							</li>				
-							<li className={`group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400 `}>
+							</li>	
+						
+								<li className={`group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400 `}>
 								{status === 'authenticated' && session.user ? 
 									(
-										userData.document && 
+										userData?.role != "CERTIFIED" && 
 											<Link href="/pendingpage">
 												ส่งเอกสารการสมัคร
 												<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
@@ -106,7 +107,9 @@ const Navbar = () => {
 										<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 									</Link>
 								}
-							</li>
+								</li>
+										
+							
 							
 							<MenuA setActiveA={setActiveA}>
 								<MenuItemDropdownA setActiveA={setActiveA} activeA={activeA} item="เกี่ยวกับเรา">
@@ -209,7 +212,7 @@ const Navbar = () => {
 										<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>{userData.point}</span></div>
 									</div>
 									<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
-										<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>{userData.status}</span></div>
+										<div className='text-sm md:text-lg ml-2 font-semibold'>Role : <span className='font-normal'>{userData.role}</span></div>
 									</div>
 									<div className=' flex items-center py-4 mt-2 md:py-5 h-5 hover:bg-neutral-950  rounded-md'>
 										<Link href="/settingpage">
@@ -277,7 +280,7 @@ const Navbar = () => {
 												<div className='text-sm md:text-lg ml-2 font-semibold'>GeekPoint : <span className='font-normal'>{userData.point}</span></div>
 											</div>
 											<div className='flex items-center py-4 md:py-5 h-5 border rounded-md '>
-												<div className='text-sm md:text-lg ml-2 font-semibold'>Status : <span className='font-normal'>{userData.status}</span></div>
+												<div className='text-sm md:text-lg ml-2 font-semibold'>Role : <span className='font-normal'>{userData.role}</span></div>
 											</div>
 											<div className='flex items-center py-4 mt-2 md:py-5 h-5 rounded-md hover:bg-neutral-950'>
 												<Link href="/settingpage">
