@@ -25,12 +25,12 @@ async function uploadFileToS3(
   user_id: string | undefined
 ) {
   const fileBuffer = file;
-const params = {
+  const params = {
     Bucket: BUCKET_NAME,
-    Key: `asset/profile/${user_id}`,
+    Key: `asset/image/profile/${user_id}`,
     Body: Buffer.from(fileBuffer),
     ContentType: "image/jpeg" || "image/png",
-};
+  };
   const command = new PutObjectCommand(params);
   await s3Client.send(command);
   const objectUrl = `https://${BUCKET_NAME}.s3.${REGION}.amazonaws.com/${params.Key}`;
@@ -90,15 +90,15 @@ export async function POST(request: NextRequest) {
     // Handle file upload
     const file: File | null = formData.get("file") as unknown as File;
     if (file) {
-        const user_id = await prisma.account.findUnique({
-          where: { email },
-          select: { id: true },
-        });
-        const bytes = await file.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-        const fileName = await uploadFileToS3(buffer, file.name, user_id?.id);
-        updateData.profile_image = fileName;
-      }
+      const user_id = await prisma.account.findUnique({
+        where: { email },
+        select: { id: true },
+      });
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+      const fileName = await uploadFileToS3(buffer, file.name, user_id?.id);
+      updateData.profile_image = fileName;
+    }
     // Update the user's data in Prisma
     await prisma.account.update({
       where: { email },

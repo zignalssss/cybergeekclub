@@ -34,7 +34,7 @@ const Eventcalendar = () => {
                 <div className="flex items-center justify-end">Date</div>
             </div>
             {testlist.map((list, index) => (
-            <div className="p-4 grid grid-cols-3 gap-5 border border-white/15 mx-10">
+            <div key={index} className="p-4 grid grid-cols-3 gap-5 border border-white/15 mx-10">
                 <div className="flex items-center">{list.id}</div>
                 <div className="flex items-center">{list.title}</div>
                 <div className="flex items-center justify-end">{list.date}</div>

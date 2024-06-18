@@ -35,7 +35,7 @@ const ShowStatus = ({ prop }: { prop: LIST[] }) => {
             {prop.map((element, index) => (
               <tr key={index}>
                 <th>{element.built}</th>
-                <td><Link href={element.document}>คลิกเพื่อดูไฟล์</Link></td>
+                <td><Link target="_blank" href={element.document}>คลิกเพื่อดูไฟล์</Link></td>
                 <td className="flex md:grid md:grid-cols-2">
                   {element.status}
                   {element.status === "PENDING" ? (

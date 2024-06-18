@@ -419,7 +419,7 @@ const Navbar = () => {
 								className={`${isDrop3 ? `flex` : `hidden`}`}
 								>
 									<ul className='flex flex-col gap-2 ml-3 mt-4'>
-										<Link onClick={() => setIsOpen(!isOpen)} href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
+										<Link onClick={() => setIsOpen(!isOpen)} href="https://www.instagram.com/cybergeekclub.src/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-2'>
 												< FaInstagram className='text-2xl' />
 												<div className='text-sm '>:cybergeekclub.src</div>
