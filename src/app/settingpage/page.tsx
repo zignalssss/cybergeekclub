@@ -3,7 +3,7 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useSession } from 'next-auth/react';
-
+import Image from 'next/image';
 interface FormData {
     email: string,
     displayName: string;
@@ -42,6 +42,7 @@ const Settingpage: React.FC = () => {
         }
     });
 
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [avatar, setAvatar] = useState<File | null>(null);
     const { data: session }: any = useSession();
     const [isError, setIsError] = useState<string>("")
@@ -51,7 +52,7 @@ const Settingpage: React.FC = () => {
             const user_account = await axios.post("/api/user/getuser", { email: session.user.email })
             setuserData(user_account.data.data)
         } catch (error) {
-            // console.log(error)
+            console.log(error)
         }
     }
     useEffect(() => {
@@ -74,6 +75,7 @@ const Settingpage: React.FC = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        setIsLoading(true);
         const filteredData = Object.fromEntries(
             Object.entries(formData).filter(([key, value]) => value)
         );
@@ -105,14 +107,16 @@ const Settingpage: React.FC = () => {
                 })
                 .catch(error => {
                     setIsError(error.response.data.message)
+                    Toast.fire({
+                        icon: "error",
+                        title: "เเก้ไขข้อมูลไม่สำเร็จ!!"
+                    
+                    })
                 })
-
-
-
         } catch (error) {
             console.log(error)
         }
-
+        setIsLoading(false);
     };
 
     return (
@@ -130,7 +134,7 @@ const Settingpage: React.FC = () => {
                         <div className='flex items-center'>
                             <div className="avatar">
                                 <div className="w-24 rounded-xl border-2 border-green-500 ">
-                                    <img alt='profile' src={avatar ? URL.createObjectURL(avatar) : `${userData.profile_image ? `${userData.profile_image}` : `/asset/Image/cat.png`}`} />
+                                    <Image alt='profile' src={avatar ? URL.createObjectURL(avatar) : `${userData.profile_image ? `${userData.profile_image}` : `/asset/Image/cat.png`}`} width={100} height={100}/>
                                 </div>
                             </div>
                             <div className='flex flex-col items-center ml-10'>
@@ -243,7 +247,7 @@ const Settingpage: React.FC = () => {
                         )}
                         <div className='mt-3'>
                             <button type="submit" className='bg-green-800 text-sm rounded-md px-4 py-2'>
-                                Save Change
+                                {isLoading ? <div>Changing&nbsp;<span className="loading loading-spinner loading-xs text-white/25"></span></div> : "Save Change"}
                             </button>
                         </div>
                     </div>
@@ -285,10 +289,10 @@ const Settingpage: React.FC = () => {
                             <div className='grid grid-rows-2 gap-2 md:gap-0 md:grid-cols-2 text-base'>
                                 <div className='flex max-h-7 mt-5 md:mt-0'>
                                     <div className='border rounded-md px-3'>
-                                        STATUS :
+                                        ROLE :
                                     </div>
                                     <div className='ml-3'>
-                                        {userData.status}
+                                        {userData.role}
                                     </div>
                                 </div>
                                 <div className='flex max-h-7'>
