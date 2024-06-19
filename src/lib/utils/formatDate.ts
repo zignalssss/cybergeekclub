@@ -16,6 +16,17 @@ export function formatThaiDateTimeShort(isoDate: string): string {
 
     return `${dayName} ${day} ${month} ${year} เวลา ${time} น.`;
 }
+
+export function formatThaiDateOnly(isoDate: string): string {
+    moment.locale('th');
+    const date = moment(isoDate).utcOffset('+07:00'); // ตั้งค่าโซนเวลาให้เป็นเวลาในประเทศไทย
+    const day = date.date();
+    const month = shortMonthNames[date.month()];
+    const year = (date.year() + 543).toString();
+    const time = date.format('HH:mm');
+    return `${day} ${month} ${year}  ${time}`;
+}
+
 export function formatThaiDateTime(isoDate: string): string {
     moment.locale('th');
     const date = moment(isoDate).utcOffset('+07:00'); // ตั้งค่าโซนเวลาให้เป็นเวลาในประเทศไทย

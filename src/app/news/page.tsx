@@ -29,7 +29,7 @@ const News: React.FC<{ searchParams?: { query?: string } }> = ({
   }, []);
   return (
     <div className="h-screen bg-black overflow-auto scroll-smooth">
-      <h1 className="text-center text-4xl font-kanit font-bold py-10">
+      <h1 className="text-center text-4xl font-kanit font-extrabold py-10">
         ข่าวสารชมรม
       </h1>
       <SearchNews />

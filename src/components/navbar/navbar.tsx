@@ -19,6 +19,7 @@ import { MdAnnouncement } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { setServers } from 'dns';
 import Image from 'next/image';
+import { account } from '@prisma/client';
 
 const variantsleft = {
 	open: { opacity: 1, x: 0 },
@@ -56,7 +57,7 @@ const Navbar = () => {
 		setIsDrop3(!isDrop3);
 	}
 	const {data:session,status}:any = useSession();
-	const [userData ,setuserData] = useState<any | undefined | null>({})
+	const [userData ,setuserData] = useState<account>({} as account)
 	const getData = async ()=>{
 		try{
 			const user_account = await axios.post("/api/user/getuser",{email : session.user.email})	
@@ -91,11 +92,11 @@ const Navbar = () => {
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>
 							</li>	
-						
+							{(userData?.role === "MEMBER" || status === 'unauthenticated') &&  
 								<li className={`group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400 `}>
 								{status === 'authenticated' && session.user ? 
 									(
-										userData?.role != "CERTIFIED" && 
+										userData?.role === "MEMBER" &&
 											<Link href="/pendingpage">
 												ส่งเอกสารการสมัคร
 												<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
@@ -108,18 +109,11 @@ const Navbar = () => {
 									</Link>
 								}
 								</li>
-										
-							
-							
+							}
+								
 							<MenuA setActiveA={setActiveA}>
 								<MenuItemDropdownA setActiveA={setActiveA} activeA={activeA} item="เกี่ยวกับเรา">
 									<div className="flex flex-col space-y-4 text-sm ">
-										<Link href="/clubbudget" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
-											<div className='flex gap-3'>
-												< TbMoneybag className='text-xl' />
-												<div className='text-base '>งบประมาณ</div>
-											</div>
-										</Link>
 										<Link href="/clubhistory" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-3'>
 												<IoDocumentText className='text-xl' />
@@ -166,7 +160,7 @@ const Navbar = () => {
 							<MenuC setActiveC={setActiveC}>
 								<MenuItemDropdownC setActiveC={setActiveC} activeC={activeC} item="ติตต่อเรา">
 									<div className="flex flex-col space-y-4 text-sm">
-										<Link href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
+										<Link href="https://www.instagram.com/cybergeekclub.src/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-3'>
 												< FaInstagram className='text-xl' />
 												<div className='text-base '>: cybergeekclub.src</div>
@@ -327,9 +321,9 @@ const Navbar = () => {
 									<div className='ml-[7%] md:ml-3'>หน้าหลัก</div>
 								</Link>
 							</li>
-							<li className={`${userData.document? `hidden border-0`:``}pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent`}>
+							<li className={`${userData.role === "CERTIFIED"? `hidden border-0`:``}pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent`}>
 								{status === 'authenticated' && session.user ? 
-									(userData.document ? 
+									(userData.role === "CERTIFIED" ? 
 									""
 									: 
 									<Link href="/pendingpage" onClick={() => setIsOpen(!isOpen)}>
@@ -355,12 +349,6 @@ const Navbar = () => {
 								className={`${isDrop1 ? `flex` : `hidden`}`}
 								>
 									<ul className='flex flex-col gap-2 ml-3 mt-4'>
-										<Link onClick={() => setIsOpen(!isOpen)} href="/clubbudget" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
-											<div className='flex gap-2'>
-												< TbMoneybag className='text-2xl' />
-												<div className='text-sm '>งบประมาณ</div>
-											</div>
-										</Link>
 										<Link onClick={() => setIsOpen(!isOpen)} href="/clubhistory" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<IoDocumentText className='text-2xl' />
