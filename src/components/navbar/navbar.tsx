@@ -91,11 +91,11 @@ const Navbar = () => {
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>
 							</li>	
-						
+							{userData?.role != "CERTIFIED"&& 
 								<li className={`group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400 `}>
 								{status === 'authenticated' && session.user ? 
 									(
-										userData?.role != "CERTIFIED" && 
+										userData?.role == "MEMBER" &&
 											<Link href="/pendingpage">
 												ส่งเอกสารการสมัคร
 												<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
@@ -108,18 +108,11 @@ const Navbar = () => {
 									</Link>
 								}
 								</li>
-										
-							
-							
+							}
+								
 							<MenuA setActiveA={setActiveA}>
 								<MenuItemDropdownA setActiveA={setActiveA} activeA={activeA} item="เกี่ยวกับเรา">
 									<div className="flex flex-col space-y-4 text-sm ">
-										<Link href="/clubbudget" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
-											<div className='flex gap-3'>
-												< TbMoneybag className='text-xl' />
-												<div className='text-base '>งบประมาณ</div>
-											</div>
-										</Link>
 										<Link href="/clubhistory" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-3'>
 												<IoDocumentText className='text-xl' />
@@ -355,12 +348,6 @@ const Navbar = () => {
 								className={`${isDrop1 ? `flex` : `hidden`}`}
 								>
 									<ul className='flex flex-col gap-2 ml-3 mt-4'>
-										<Link onClick={() => setIsOpen(!isOpen)} href="/clubbudget" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
-											<div className='flex gap-2'>
-												< TbMoneybag className='text-2xl' />
-												<div className='text-sm '>งบประมาณ</div>
-											</div>
-										</Link>
 										<Link onClick={() => setIsOpen(!isOpen)} href="/clubhistory" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150 ">
 											<div className='flex gap-2'>
 												<IoDocumentText className='text-2xl' />
