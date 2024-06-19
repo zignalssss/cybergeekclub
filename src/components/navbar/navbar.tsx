@@ -19,6 +19,7 @@ import { MdAnnouncement } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { setServers } from 'dns';
 import Image from 'next/image';
+import { account } from '@prisma/client';
 
 const variantsleft = {
 	open: { opacity: 1, x: 0 },
@@ -56,7 +57,7 @@ const Navbar = () => {
 		setIsDrop3(!isDrop3);
 	}
 	const {data:session,status}:any = useSession();
-	const [userData ,setuserData] = useState<any | undefined | null>({})
+	const [userData ,setuserData] = useState<account>({} as account)
 	const getData = async ()=>{
 		try{
 			const user_account = await axios.post("/api/user/getuser",{email : session.user.email})	
@@ -91,11 +92,11 @@ const Navbar = () => {
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>
 							</li>	
-							{userData?.role != "CERTIFIED"&& 
+							{(userData?.role === "MEMBER" || status === 'unauthenticated') &&  
 								<li className={`group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400 `}>
 								{status === 'authenticated' && session.user ? 
 									(
-										userData?.role == "MEMBER" &&
+										userData?.role === "MEMBER" &&
 											<Link href="/pendingpage">
 												ส่งเอกสารการสมัคร
 												<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
@@ -320,9 +321,9 @@ const Navbar = () => {
 									<div className='ml-[7%] md:ml-3'>หน้าหลัก</div>
 								</Link>
 							</li>
-							<li className={`${userData.document? `hidden border-0`:``}pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent`}>
+							<li className={`${userData.role === "CERTIFIED"? `hidden border-0`:``}pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent`}>
 								{status === 'authenticated' && session.user ? 
-									(userData.document ? 
+									(userData.role === "CERTIFIED" ? 
 									""
 									: 
 									<Link href="/pendingpage" onClick={() => setIsOpen(!isOpen)}>

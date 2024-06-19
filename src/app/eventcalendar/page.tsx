@@ -27,7 +27,7 @@ const Eventcalendar = () => {
         <div className='min-h-screen h-fit md:h-screen flex justify-center font-kanit overflow-x-auto'>
         
             <div className='mb-5 w-11/12 min-w-[400px]'>
-                <div className=' text-center m-10 text-3xl'>ปฏิทินกิจกรรม</div>
+                <div className=' text-center m-10 text-4xl font-extrabold'>ปฏิทินกิจกรรม</div>
                 <div className="p-4 grid grid-cols-3 gap-5 mx-10 font-semibold ">
                     <div className="flex items-center">ID</div>
                     <div className="flex items-center">Title</div>

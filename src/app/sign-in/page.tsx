@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from 'next-auth/react';
 import { TbWashDryP } from "react-icons/tb";
-
+import axios from 'axios'
 type FormData = {
   email: string;
   password: string;
@@ -42,7 +42,12 @@ export default function SignIn() {
         console.log(result?.error)
         return false
       }
-      router.push('/pendingpage')
+      const role = await axios.post("/api/user/getrolebyemail",{email:email})
+      if(role.data.data.role === "CERTIFIED"){
+        router.push('/')
+      }else{
+        router.push('/pendingpage')
+      }
     }catch(error){
       console.log('error',error)
     }
