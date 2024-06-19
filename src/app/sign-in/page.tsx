@@ -14,6 +14,7 @@ type FormData = {
 };
 
 export default function SignIn() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -32,6 +33,7 @@ export default function SignIn() {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const email = formData.email;
       const password = formData.password;
@@ -51,12 +53,16 @@ export default function SignIn() {
       }else{
         router.push('/pendingpage')
       }
-    }catch(error){
-      console.log('error',error)
+    } catch (error) {
+      console.log("error", error);
+    } finally {
+      setIsLoading(false);
     }
+    
   };
   return (
     <div className="flex justify-center md:h-screen h-fit my-10">
+      <title>Sign In | CyberGeek</title>
       <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:h-[700px] md: bg-[#181818] rounded-3xl border border-white/15 my-10 drop-shadow-[0_0_30px_rgba(23,23,23,0.7)]">
         <div className="flex justify-center my-10">
           <h1 className="font-kanit text-3xl">เข้าสู่ระบบ</h1>
@@ -116,10 +122,11 @@ export default function SignIn() {
               </div>
             )}
             <button
+              disabled={isLoading}
               type="submit"
-              className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500 md:my-10"
+              className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500 md:my-10 disabled:text-white/20 disabled:cursor-not-allowed"
             >
-              เข้าสู่ระบบ
+              {isLoading ? <div>เข้าสู่ระบบ&nbsp;<span className="loading loading-spinner loading-xs text-white/25"></span></div> : "เข้าสู่ระบบ"}
             </button>
           </div>
         </form>

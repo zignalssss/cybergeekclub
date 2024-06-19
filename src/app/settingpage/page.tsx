@@ -115,12 +115,14 @@ const Settingpage: React.FC = () => {
                 })
         } catch (error) {
             console.log(error)
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     };
 
     return (
-        <form onSubmit={handleSubmit} className=' bg-black h-fit  grid md:grid-cols-[30%_70%] mb-5 md:mb-0'>
+        <form onSubmit={handleSubmit} className=' bg-black h-fit  grid md:grid-cols-[30%_70%] mb-5 md:mb-0 min-h-screen'>
+            <title>Setting | CyberGeek</title>
             <div className='font-kanit ml-[20%] border border-black border-r-white/15 '>
                 <div className=' mt-14'>
                     <div className='text-2xl font-semibold '>การตั้งค่า เเละ ข้อมูลผู้ใช้</div>

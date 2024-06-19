@@ -97,6 +97,7 @@ const PendingPage: React.FC = () => {
   // Render the main content only if the user is authenticated
   return (
     <div className="min-h-screen h-fit flex flex-col">
+      <title>Pending | CyberGeek</title>
       <div className="p-10">
         <h1 className="text-center text-3xl font-kanit">กำลังดำเนินการ</h1>
       </div>

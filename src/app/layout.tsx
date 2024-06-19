@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'CyberGeek',
-  description: 'Home Page of CyberGeek',
+  description: 'Official website of CyberGeek club at KUSRC',
 }
 
 export default async function RootLayout({

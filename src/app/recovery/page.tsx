@@ -52,6 +52,7 @@ const Recovery = () => {
   };
   return (
     <div className="grid place-content-center min-h-screen h-fit mb-20">
+      <title>Recovery | CyberGeek</title>
       <div
         className={`${
           nowState === 0 ? "" : "!hidden"
