@@ -21,7 +21,7 @@ const Eventcalendar = () => {
     ]
   return (
     <div className='h-fit md:h-screen flex justify-center font-kanit'>
-      
+        <title>Event Calendar | CyberGeek</title>
         <div className='mb-5'>
             <div className=' text-center m-10 text-3xl'>ปฏิทินกิจกรรม</div>
             <div className="p-4 grid grid-cols-3 gap-5 mx-10 font-semibold">

@@ -62,8 +62,9 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
         })
     } catch (error: unknown) {
       // console.error("Error verifying OTP:", error);
+    } finally {
+      setIsLoadingVerify(false);
     }
-    setIsLoadingVerify(false);
   };
 
   const generateOTP = async (email: string) => {

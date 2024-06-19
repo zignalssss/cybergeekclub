@@ -76,8 +76,10 @@ const VerifySignUp = ({
         });
     } catch (error: unknown) {
       // console.error("Error verifying OTP:", error);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
+    
   };
 
   const sendOTPAgain = async (email: string) => {
