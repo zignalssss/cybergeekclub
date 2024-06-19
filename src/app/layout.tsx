@@ -6,6 +6,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
 import SessionProvider from "@/components/SessionProvider/SessionProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default async function RootLayout({
           <SessionProvider session={session}>
             <Navbar />
               {children}
+              <SpeedInsights />
             <Footer />
           </SessionProvider>
         </Providers>

@@ -10,7 +10,6 @@ export async function DELETE(request: Request) {
         id: requestBody.id,
       },
     });
-    console.log(activitiesHistory);
     return Response.json(
       { message: "DELETE activity from this user Success", data: activitiesHistory },
       { status: 200 }

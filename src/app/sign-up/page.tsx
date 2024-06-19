@@ -38,7 +38,7 @@ type isVerify = {
 
 const SignUp = () => {
   const texts = ["1.ข้อมูลส่วนตัว", "2.ข้อมูลในสถานศึกษา", "3.ยืนยันตัวตน"];
-  const [nowState, setNowState] = useState<number>(0);
+  const [nowState, setNowState] = useState<number>(3);
   const [userData, setUserData] = useState<any>({});
 
   const handleSubmitData1 = (data: FormData1) => {

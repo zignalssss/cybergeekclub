@@ -1,13 +1,10 @@
 "use client";
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
 import OTPInput from "../otp/OTPInput";
 import { useRouter } from "next/navigation";
-import { signIn } from 'next-auth/react';
-import { stringify } from "querystring";
 
 type Prop = {
   userData : object;
@@ -24,6 +21,8 @@ type FormData = {
 const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => {
   const router = useRouter();
   const [isError,setIsError] = useState<string>("")
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoadingVerify, setIsLoadingVerify] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>({
     otp: "",
   });
@@ -40,6 +39,7 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoadingVerify(true);
     const inputOTP = formData.otp; // Ensure the OTP is a string
 
     const data = {
@@ -63,6 +63,7 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
     } catch (error: unknown) {
       // console.error("Error verifying OTP:", error);
     }
+    setIsLoadingVerify(false);
   };
 
   const generateOTP = async (email: string) => {
@@ -77,7 +78,6 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
   };
 
   const sendOTPAgain = async (email: string) => {
-    console.log(email);
     try {
       await axios.post("/api/otp/updateotp", { email })
         .catch(error => {
@@ -117,17 +117,19 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
             <div className="">
               <span className="text-white font-kanit">
                 ไม่ได้รับรหัส OTP ?
-                <a
-                  href="#"
-                  className="font-kanit text-white underline underline-offset-8 px-2 hover:text-green-500"
-                  onClick={(e: any) => {
+                <button
+                  type="button"
+                  className={`font-kanit text-white underline underline-offset-8 px-2 hover:text-green-500 ${isLoading ? "cursor-not-allowed !pointer-events-none !text-white/25 !no-underline" : ""}`}
+                  onClick={async (e: any) => {
                     e.preventDefault();
-                    sendOTPAgain(email);
-                    setIsError("")
+                    await setIsLoading(true);
+                    await sendOTPAgain(email);
+                    await setIsError("");
+                    await setIsLoading(false);
                   }}
                 >
-                  ส่งอีกครั้ง
-                </a>
+                  {isLoading ? <div>กำลังส่งอีกครั้ง&nbsp;<span className="loading loading-spinner loading-xs text-white/25"></span></div> : "ส่งอีกครั้ง"}
+                </button>
               </span>
             </div>
           </label>
@@ -147,10 +149,11 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
             ย้อนกลับ
           </button>
           <button
+            disabled={isLoadingVerify}
             type="submit"
-            className="btn btn-ghost min-w-20 bg-black font-kanit hover:text-green-500"
+            className="btn btn-ghost min-w-20 bg-black font-kanit hover:text-green-500 disabled:text-white/25"
           >
-            เสร็จสิ้น <FaCheck />
+            {isLoadingVerify ? <div>เสร็จสิ้น&nbsp;<span className="loading loading-spinner loading-xs text-white/25"></span></div> : <div className="flex justify-center">เสร็จสิ้น&nbsp;<FaCheck /></div>}
           </button>
         </div>
       </form>

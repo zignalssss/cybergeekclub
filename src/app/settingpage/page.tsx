@@ -130,13 +130,13 @@ const Settingpage: React.FC = () => {
                         <div className='flex items-center'>
                             <div className="avatar">
                                 <div className="w-24 rounded-xl border-2 border-green-500 ">
-                                    <img src={avatar ? URL.createObjectURL(avatar) : `${userData.profile_image ? `${userData.profile_image}` : `/asset/Image/cat.png`}`} />
+                                    <img alt='profile' src={avatar ? URL.createObjectURL(avatar) : `${userData.profile_image ? `${userData.profile_image}` : `/asset/Image/cat.png`}`} />
                                 </div>
                             </div>
                             <div className='flex flex-col items-center ml-10'>
                                 <div className="relative bg-green-900 px-3 h-8 leading-8 text-center text-sm rounded-md">
                                     Change avatar
-                                    <input type="file" className="absolute inset-0 w-full h-full opacity-0" onChange={handleAvatarChange} />
+                                    <input size={10 * 1024 * 1024} title='avatar' accept="image/*" type="file" className="absolute inset-0 w-full h-full opacity-0" onChange={handleAvatarChange} />
                                 </div>
                                 <div className='text-xs mt-2'>JPG or PNG. 10MB max.</div>
                             </div>
@@ -149,6 +149,7 @@ const Settingpage: React.FC = () => {
                                 value={formData.displayName}
                                 onChange={handleChange}
                                 placeholder={userData.display_name}
+                                title="Display Name"
                                 className="input input-bordered input-sm w-full max-w-xs mt-2"
                             />
                         </div>

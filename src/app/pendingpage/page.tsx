@@ -21,6 +21,10 @@ type LIST = {
   built:string;
 };
 
+interface Props {
+  onClick: (right : boolean) => void;
+}
+
 const PendingPage: React.FC = () => {
   const [right, setRight] = useState<boolean>(false);
   const [documents_log, setDocuments_log] = useState<LIST[]>([]);
@@ -41,6 +45,10 @@ const PendingPage: React.FC = () => {
     } catch (error: any) {
       console.error(error);
     }
+  }
+
+  const onClick = (right : boolean) => {
+    setRight(right);
   }
 
   const handleButton1 = () => {
@@ -91,7 +99,7 @@ const PendingPage: React.FC = () => {
         </div>
       </div>
       <div className={`${right ? "!hidden" : ""} flex justify-center`}>
-        <Send_File />
+        <Send_File onClick={onClick}/>
       </div>
       <div className={`${!right ? "!hidden" : ""} flex justify-center h-fit`}>
         <ShowStatus prop={documents_log} />

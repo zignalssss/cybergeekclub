@@ -13,31 +13,31 @@ model account {
   id             String       @id @db.Char(36)
   email          String       @unique(map: "email") @db.VarChar(255)
   password       String       @db.VarChar(255)
-  display_name   String       @db.VarChar(255)
-  student_id     String       @unique(map: "student_id") @db.VarChar(255)
-  prefix_th      String       @db.VarChar(255)
-  prefix_en      String       @db.VarChar(255)
-  first_name_th  String       @db.VarChar(255)
-  first_name_en  String       @db.VarChar(255)
-  middle_name_th String       @db.VarChar(255)
-  middle_name_en String       @db.VarChar(255)
-  last_name_th   String       @db.VarChar(255)
-  last_name_en   String       @db.VarChar(255)
-  nickname_th    String       @db.VarChar(255)
-  nickname_en    String       @db.VarChar(255)
+  built          DateTime     @default(now()) @db.Timestamp(0)
   birthdate      DateTime     @db.Date
+  code           account_code
+  display_name   String       @db.VarChar(255)
+  faculty_en     String       @db.VarChar(255)
+  faculty_th     String       @db.VarChar(255)
+  first_name_en  String       @db.VarChar(255)
+  first_name_th  String       @db.VarChar(255)
+  last_name_en   String       @db.VarChar(255)
+  last_name_th   String       @db.VarChar(255)
+  major_en       String       @db.VarChar(255)
+  major_th       String       @db.VarChar(255)
+  middle_name_en String       @db.VarChar(255)
+  middle_name_th String       @db.VarChar(255)
+  nickname_en    String       @db.VarChar(255)
+  nickname_th    String       @db.VarChar(255)
   phone_number   String       @db.VarChar(255)
   point          Int
+  prefix_en      String       @db.VarChar(255)
+  prefix_th      String       @db.VarChar(255)
   profile_image  String       @db.VarChar(255)
-  faculty_th     String       @db.VarChar(255)
-  faculty_en     String       @db.VarChar(255)
-  major_th       String       @db.VarChar(255)
-  major_en       String       @db.VarChar(255)
-  code           account_code
-  role           account_role @default(MEMBER)
-  banned         Boolean
   remaining_time DateTime     @db.DateTime(0)
-  built          DateTime     @default(now()) @db.Timestamp(0)
+  role           account_role @default(MEMBER)
+  student_id     String       @unique(map: "student_id") @db.VarChar(255)
+  banned         Boolean
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -58,6 +58,8 @@ model activity_calendar {
   start_period   DateTime @db.DateTime(0)
   end_period     DateTime @db.DateTime(0)
   built          DateTime @default(now()) @db.Timestamp(0)
+  particulars_en String   @db.LongText
+  particulars_th String   @db.LongText
 
 }
 
@@ -99,12 +101,12 @@ model corporate_activity {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model document_log {
   id               String              @id @db.Char(36)
-  account_id       String              @db.Char(36)
   document         String              @db.VarChar(255)
   status           document_log_status @default(PENDING)
   notation         String?             @db.LongText
-  account_admin_id String?             @db.Char(36)
   built            DateTime            @default(now()) @db.Timestamp(0)
+  account_admin_id String?             @db.Char(36)
+  account_id       String              @db.Char(36)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -127,9 +129,9 @@ model news {
   title_en         String   @db.VarChar(255)
   particulars_th   String   @db.LongText
   particulars_en   String   @db.LongText
-  account_admin_id String   @db.Char(36)
   time_series      DateTime @db.DateTime(0)
   built            DateTime @default(now()) @db.Timestamp(0)
+  account_admin_id String   @db.Char(36)
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
