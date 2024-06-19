@@ -52,14 +52,15 @@ model account_admin {
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model activity_calendar {
-  id             String   @id @unique(map: "id") @db.Char(36)
+  id             String   @unique(map: "id") @id @db.Char(36)
+  particulars_th String   @db.LongText
+  particulars_en String   @db.LongText
   start_period   DateTime @db.DateTime(0)
   end_period     DateTime @db.DateTime(0)
   built          DateTime @default(now()) @db.Timestamp(0)
   particulars_en String   @db.LongText
   particulars_th String   @db.LongText
 
-  @@ignore
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
