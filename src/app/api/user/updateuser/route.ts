@@ -3,10 +3,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/authOptions";
 import { PrismaClient } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
-import path from "path";
-import { promises as fsPromises } from "fs";
 import bcrypt from "bcrypt";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 
 const REGION = process.env.AWS_REGION;
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
@@ -21,13 +19,11 @@ const s3Client = new S3Client({
 });
 async function uploadFileToS3(
   file: ArrayBuffer,
-  fileName: string,
-  user_id: string | undefined
 ) {
   const fileBuffer = file;
   const params = {
     Bucket: BUCKET_NAME,
-    Key: `asset/image/profile/${user_id}`,
+    Key: `asset/image/profile/${uuidv4()}`,
     Body: Buffer.from(fileBuffer),
     ContentType: "image/jpeg" || "image/png",
   };
@@ -35,6 +31,13 @@ async function uploadFileToS3(
   await s3Client.send(command);
   const objectUrl = `https://${BUCKET_NAME}.s3.${REGION}.amazonaws.com/${params.Key}`;
   return objectUrl;
+}
+async function deleteFileFromS3(file_id : string | undefined) {
+  const params = {
+    Bucket: BUCKET_NAME,
+    Key: `asset/image/profile/${file_id}` ,
+  };
+  await s3Client.send(new DeleteObjectCommand(params));
 }
 
 export async function POST(request: NextRequest) {
@@ -90,13 +93,16 @@ export async function POST(request: NextRequest) {
     // Handle file upload
     const file: File | null = formData.get("file") as unknown as File;
     if (file) {
-      const user_id = await prisma.account.findUnique({
-        where: { email },
-        select: { id: true },
-      });
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
-      const fileName = await uploadFileToS3(buffer, file.name, user_id?.id);
+      const file_id = await prisma.account.findUnique({
+        where: { email },
+        select: { profile_image: true },
+      });
+      if (file_id) {
+        await deleteFileFromS3(file_id.profile_image.split("/").pop());
+      }
+      const fileName = await uploadFileToS3(buffer);
       updateData.profile_image = fileName;
     }
     // Update the user's data in Prisma
