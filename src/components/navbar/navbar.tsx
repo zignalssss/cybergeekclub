@@ -160,7 +160,7 @@ const Navbar = () => {
 							<MenuC setActiveC={setActiveC}>
 								<MenuItemDropdownC setActiveC={setActiveC} activeC={activeC} item="ติตต่อเรา">
 									<div className="flex flex-col space-y-4 text-sm">
-										<Link href="https://www.instagram.com/cybergeek_club/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
+										<Link href="https://www.instagram.com/cybergeekclub.src/" target='_blank' className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
 											<div className='flex gap-3'>
 												< FaInstagram className='text-xl' />
 												<div className='text-base '>: cybergeekclub.src</div>
