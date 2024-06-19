@@ -26,13 +26,29 @@ interface Props {
 }
 
 const PendingPage: React.FC = () => {
+  const [userrole,setuserrole] = useState<string>("")
   const [right, setRight] = useState<boolean>(false);
   const [documents_log, setDocuments_log] = useState<LIST[]>([]);
-  const { status } = useSession();
+  const {data:session,status} = useSession();
   const router = useRouter();
   const controls: AnimationControls = useAnimation();
-
+  const rolecheck = async() =>{
+    try{
+      if(session){
+        const email = session.user?.email
+        const role = await axios.post("/api/user/getrolebyemail",{email:email})
+        const userrole = role.data.data.role;
+        if(userrole === "CERTIFIED"){
+          router.push("/");
+        }
+      }
+    }catch(error){
+      console.log(error)
+    }
+  }
+  
   useEffect(() => {
+    rolecheck();
     if (status === "unauthenticated") {
       router.push("/sign-in");
     }
