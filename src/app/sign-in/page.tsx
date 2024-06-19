@@ -12,6 +12,7 @@ type FormData = {
 };
 
 export default function SignIn() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -30,6 +31,7 @@ export default function SignIn() {
   };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const email = formData.email;
       const password = formData.password;
@@ -47,6 +49,7 @@ export default function SignIn() {
     } catch (error) {
       console.log("error", error);
     }
+    setIsLoading(false);
   };
   return (
     <div className="flex justify-center md:h-screen h-fit my-10">
@@ -109,10 +112,11 @@ export default function SignIn() {
               </div>
             )}
             <button
+              disabled={isLoading}
               type="submit"
-              className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500 md:my-10"
+              className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500 md:my-10 disabled:text-white/20 disabled:cursor-not-allowed"
             >
-              เข้าสู่ระบบ
+              {isLoading ? <div>เข้าสู่ระบบ&nbsp;<span className="loading loading-spinner loading-xs text-white/25"></span></div> : "เข้าสู่ระบบ"}
             </button>
           </div>
         </form>
