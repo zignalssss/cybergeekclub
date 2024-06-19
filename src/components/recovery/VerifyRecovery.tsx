@@ -32,6 +32,8 @@ const VerifySignUp = ({
   finalState,
 }: Prop) => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSendingOTP, setIsSendingOTP] = useState<boolean>(false);
   const [isError, setIsError] = useState<string>("");
   const [formData, setFormData] = useState<FormData>({
     otp: "",
@@ -49,6 +51,7 @@ const VerifySignUp = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     const inputOTP = formData.otp; // Ensure the OTP is a string
 
     const data = {
@@ -74,6 +77,7 @@ const VerifySignUp = ({
     } catch (error: unknown) {
       // console.error("Error verifying OTP:", error);
     }
+    setIsLoading(false);
   };
 
   const sendOTPAgain = async (email: string) => {
@@ -115,17 +119,19 @@ const VerifySignUp = ({
             <div className="">
               <span className="text-white font-kanit">
                 ไม่ได้รับรหัส OTP ?
-                <a
-                  href="#"
-                  className="font-kanit text-white underline underline-offset-8 px-2 hover:text-green-500"
-                  onClick={(e: any) => {
+                <button
+                  type="button"
+                  className={`font-kanit text-white underline underline-offset-8 px-2 hover:text-green-500 ${isSendingOTP ? "cursor-not-allowed !pointer-events-none !text-white/25 !no-underline" : ""}`}
+                  onClick={async (e: any) => {
                     e.preventDefault();
-                    sendOTPAgain(email);
-                    setIsError("");
+                    await setIsSendingOTP(true);
+                    await sendOTPAgain(email);
+                    await setIsError("");
+                    await setIsSendingOTP(false);
                   }}
                 >
-                  ส่งอีกครั้ง
-                </a>
+                  {isSendingOTP ? <div>กำลังส่งอีกครั้ง&nbsp;<span className="loading loading-spinner loading-xs text-white/25"></span></div> : "ส่งอีกครั้ง"}
+                </button>
               </span>
             </div>
           </label>
@@ -145,10 +151,11 @@ const VerifySignUp = ({
             ย้อนกลับ
           </button>
           <button
+            disabled={isLoading}
             type="submit"
-            className="btn btn-ghost min-w-20 bg-black font-kanit hover:text-green-500"
+            className="btn btn-ghost min-w-20 bg-black font-kanit hover:text-green-500 disabled:text-white/25 disabled:cursor-not-allowed"
           >
-            เสร็จสิ้น <FaCheck />
+            {isLoading ? <div className="flex justify-center"><p>เสร็จสิ้น &nbsp;</p><span className="loading loading-spinner loading-xs"></span></div> : <div className="flex justify-center"><p>เสร็จสิ้น &nbsp;</p><FaCheck /></div>}
           </button>
         </div>
       </form>
