@@ -248,7 +248,7 @@ const Settingpage: React.FC = () => {
                             </div>
                         )}
                         <div className='mt-3'>
-                            <button type="submit" className='bg-green-800 text-sm rounded-md px-4 py-2'>
+                            <button type="submit" className='bg-green-800 text-sm rounded-md px-4 py-2' disabled={isLoading} >
                                 {isLoading ? <div>Changing&nbsp;<span className="loading loading-spinner loading-xs text-white/25"></span></div> : "Save Change"}
                             </button>
                         </div>
