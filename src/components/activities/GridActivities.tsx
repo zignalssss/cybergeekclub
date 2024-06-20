@@ -104,65 +104,82 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Image
-                src={`/asset/image/${element.banner_th}`}
-                width={500}
-                height={500}
-                alt="placeholder"
-              />
-              <article className="overflow-auto max-h-[300px] md:max-h-[400px] max-w-[500px]">
-                <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-xl py-4">
-                  {element.title_th}
-                </pre>
-                <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-xl py-4">
-                  {element.title_en}
-                </pre>
-                <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                  <h1 className="text-white">รายละเอียดกิจกรรม</h1>
-                  {element.particulars_th}
-                </pre>
-                <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                  {element.particulars_en}
-                </pre>
-                <div className="bottom-0">
-                  <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                    <h1 className="text-white">เวลาเริ่มกิจกรรม</h1>
-                    {formatThaiDateTime(element.start_period)}
+              <div className="w-[512px] h-[512px]">
+                <Image
+                  src={`https://images-ext-1.discordapp.net/external/ZnrMjW5-zyNDJM4IpjVQ95nbH093zHNkpjvzPjE88BA/%3Falt%3Dmedia%26token%3D71ff72b0-8644-498c-9114-0a39d5e96dd7/https/firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/codingcamp.png?format=webp&quality=lossless&width=702&height=702`}
+                  width={512}
+                  height={512}
+                  alt="placeholder"
+                />
+              </div>
+              <article className="overflow-auto mx-5 grid-rows-2 w-full h-full bg-white col-span-2">
+                <div>
+                  <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-xl py-4">
+                    {element.title_th}
+                  </pre>
+                  <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-xl py-4">
+                    {element.title_en}
                   </pre>
                   <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                    <h1 className="text-white">เวลาสิ้นสุดกิจกรรม</h1>
-                    {formatThaiDateTime(element.end_period)}
+                    <h1 className="text-white">รายละเอียดกิจกรรม</h1>
+                    {element.particulars_th}
                   </pre>
+                  <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
+                    {element.particulars_en}
+                  </pre>
+                  <div className="bottom-0">
+                    <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
+                      <h1 className="text-white">เวลาเริ่มกิจกรรม</h1>
+                      {formatThaiDateTime(element.start_period)}
+                    </pre>
+                    <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
+                      <h1 className="text-white">เวลาสิ้นสุดกิจกรรม</h1>
+                      {formatThaiDateTime(element.end_period)}
+                    </pre>
+                  </div>
+                  <div className="grid grid-cols-2">
+                    <div className="flex justify-center">
+                      {isPublished && !isRegistered && !isPast && (
+                        <button
+                          className="btn btn-success place-self-center mt-5"
+                          onClick={(e) => handleClickRegister(e, element.id)}
+                        >
+                          เข้าร่วมกิจกรรม
+                        </button>
+                      )}
+                      {isPublished && isRegistered && !isPast && (
+                        <button
+                          className="btn btn-error place-self-center"
+                          onClick={(e) => handleClickCancel(e, element.id)}
+                        >
+                          ยกเลิกการเข้าร่วมกิจกรรม
+                        </button>
+                      )}
+                      {isPast && (
+                        <button
+                          className="bg-white text-black text-sm place-self-center p-3 rounded-md"
+                          disabled
+                        >
+                          กิจกรรมปิดรับสมัคร
+                        </button>
+                      )}
+                      {!isPublished && !isPast && (
+                        <button
+                          className="bg-white text-black text-sm place-self-center p-3 rounded-md"
+                          disabled
+                        >
+                          กิจกรรมยังไม่เปิดรับสมัคร
+                        </button>
+                      )}
+                    </div>
+                    <div>
+                      <button>
+                        test
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </article>
-              <div className="flex justify-center">
-                {isPublished && !isRegistered && !isPast && (
-                  <button
-                    className="btn btn-success place-self-center mt-5"
-                    onClick={(e) => handleClickRegister(e, element.id)}
-                  >
-                    เข้าร่วมกิจกรรม
-                  </button>
-                )}
-                {isPublished && isRegistered && !isPast && (
-                  <button
-                    className="btn btn-error place-self-center"
-                    onClick={(e) => handleClickCancel(e, element.id)}
-                  >
-                    ยกเลิกการเข้าร่วมกิจกรรม
-                  </button>
-                )}
-                {isPast && (
-                  <button className="bg-white text-black text-sm place-self-center p-3 rounded-md" disabled>
-                    กิจกรรมปิดรับสมัคร
-                  </button>
-                )}
-                {!isPublished && !isPast &&(
-                  <button className="bg-white text-black text-sm place-self-center p-3 rounded-md" disabled>
-                    กิจกรรมยังไม่เปิดรับสมัคร
-                  </button>
-                )}
-              </div>
             </motion.div>
           );
         })}

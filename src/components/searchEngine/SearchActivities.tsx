@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react";
+import { FaSearch } from "react-icons/fa";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const SearchActivities: React.FC = () => {
@@ -20,6 +21,7 @@ const SearchActivities: React.FC = () => {
 
   return (
     <div className="flex justify-center w-full p-10">
+      <FaSearch className="m-4"/>
       <input
         className="input w-4/5 bg-[#302E2E]"
         type="search"
