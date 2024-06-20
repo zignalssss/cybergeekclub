@@ -93,7 +93,7 @@ const Page = () => {
                         <p>ฝ่ายชั่วโมงกิจกรรม</p>
                     </div>
                     <div className="text-center text-gray-300 ">
-                        <Image width={1000} height={1000} draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686%7D" alt="avatar img" />
+                        <Image width={1000} height={1000} draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/memberprofile%2Fcartoon.jpg?alt=media&token=321d511f-ed16-4c06-b56e-e636ca278bf0" alt="avatar img" />
                         <h3 className="mb-1  text-xl font-bold tracking-tight text-white ">
                             <a href="#">ชัชนันทร์ กะการดี</a>
                         </h3>
@@ -107,7 +107,7 @@ const Page = () => {
                         <p>ฝ่ายกิจกรรม</p>
                     </div>
                     <div className="text-center text-gray-300 ">
-                        <Image width={1000} height={1000} draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686%7D" alt="avatar img" />
+                        <Image width={1000} height={1000} draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/memberprofile%2Fking.png?alt=media&token=ddb920f8-ace5-45a6-a72a-ede458e45d7e" alt="avatar img" />
                         <h3 className="mb-1  text-xl font-bold tracking-tight text-white ">
                             <a href="#">เกรียงเดช เปี่ยมแจง</a>
                         </h3>
