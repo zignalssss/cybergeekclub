@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   try {
     const activities = await prisma.corporate_activity.findMany({
       orderBy: {
-        built: "desc",
+        built: "asc",
       },
     });
     return Response.json(
@@ -17,3 +17,4 @@ export async function GET(request: Request) {
     return Response.json({ message: "GET USER Unsuccess" }, { status: 500 });
   }
 }
+export const dynamic = "force-dynamic";

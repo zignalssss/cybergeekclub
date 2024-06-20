@@ -39,3 +39,11 @@ export function isPastTime(isoDate: string): boolean {
     const now = moment();
     return now.isAfter(date);
 }
+
+export function formatEnglishDateTime(isoDate: string): string {
+    moment.locale('en');
+    const date = moment(isoDate).utcOffset('+07:00');
+    const englishDate = date.format('dddd, MMMM D, YYYY');
+    const time = date.format('h:mm A');
+    return `${englishDate} at ${time}`;
+}
