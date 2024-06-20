@@ -33,6 +33,7 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
   activities,
   query,
 }) => {
+  const [isTH, setIsTH] = useState<boolean>(true);
   const [activitiesHistory, setActivitiesHistory] = useState<
     activitiesHistory[]
   >([]);
@@ -99,84 +100,84 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
           return (
             <motion.div
               key={index}
-              className="group md:grid md:grid-cols-3 px-10 py-10 hover:px-5 hover:py-5 mx-2 my-2 border-solid border-white/50 border-2 rounded-2xl hover:ring-1 hover:border-green-500 hover:ring-green-500 transition-all duration-200 hover:shadow-[0_0_10px_rgba(34, 197, 94,1)] shadow-zinc-200"
+              className="group md:grid md:grid-cols-3 mx-2 my-2 border-solid border-white/50 border-2 rounded-2xl hover:ring-1 hover:border-green-500 hover:ring-green-500 transition-all duration-200 hover:shadow-[0_0_10px_rgba(34, 197, 94,1)] shadow-zinc-200"
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="w-[512px] h-[512px]">
+              <div className="h-[512px] w-[512px]">
                 <Image
-                  src={`https://images-ext-1.discordapp.net/external/ZnrMjW5-zyNDJM4IpjVQ95nbH093zHNkpjvzPjE88BA/%3Falt%3Dmedia%26token%3D71ff72b0-8644-498c-9114-0a39d5e96dd7/https/firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/codingcamp.png?format=webp&quality=lossless&width=702&height=702`}
+                  src={isTH ? element.banner_th : element.banner_en}
                   width={512}
                   height={512}
                   alt="placeholder"
+                  className="rounded-l-2xl"
                 />
               </div>
-              <article className="overflow-auto mx-5 grid-rows-2 w-full h-full bg-white col-span-2">
-                <div>
+              <article className="mx-5 grid-rows-2 h-full col-span-2 ">
+                <div className="w-full max-h-[80%]">
                   <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-xl py-4">
-                    {element.title_th}
+                    {isTH ? element.title_th : element.title_en}
                   </pre>
-                  <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-xl py-4">
-                    {element.title_en}
-                  </pre>
-                  <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                    <h1 className="text-white">รายละเอียดกิจกรรม</h1>
-                    {element.particulars_th}
-                  </pre>
-                  <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                    {element.particulars_en}
+                  <h1 className="text-white">รายละเอียดกิจกรรม : </h1>
+                  <pre className="my-2 overflow-auto h-64 max-h-64 break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
+                    {isTH ? element.particulars_th : element.particulars_en}
                   </pre>
                   <div className="bottom-0">
-                    <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                      <h1 className="text-white">เวลาเริ่มกิจกรรม</h1>
+                    <pre className="break-words whitespace-pre-wrap flex group-hover:text-green-500 font-kanit text-start text-neutral-300">
+                      <h1 className="text-white">เวลาเริ่มกิจกรรม : </h1>
                       {formatThaiDateTime(element.start_period)}
                     </pre>
-                    <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                      <h1 className="text-white">เวลาสิ้นสุดกิจกรรม</h1>
+                    <pre className="break-words whitespace-pre-wrap flex group-hover:text-green-500 font-kanit text-start text-neutral-300">
+                      <h1 className="text-white">เวลาสิ้นสุดกิจกรรม : </h1>
                       {formatThaiDateTime(element.end_period)}
                     </pre>
                   </div>
-                  <div className="grid grid-cols-2">
-                    <div className="flex justify-center">
-                      {isPublished && !isRegistered && !isPast && (
-                        <button
-                          className="btn btn-success place-self-center mt-5"
-                          onClick={(e) => handleClickRegister(e, element.id)}
-                        >
-                          เข้าร่วมกิจกรรม
-                        </button>
-                      )}
-                      {isPublished && isRegistered && !isPast && (
-                        <button
-                          className="btn btn-error place-self-center"
-                          onClick={(e) => handleClickCancel(e, element.id)}
-                        >
-                          ยกเลิกการเข้าร่วมกิจกรรม
-                        </button>
-                      )}
-                      {isPast && (
-                        <button
-                          className="bg-white text-black text-sm place-self-center p-3 rounded-md"
-                          disabled
-                        >
-                          กิจกรรมปิดรับสมัคร
-                        </button>
-                      )}
-                      {!isPublished && !isPast && (
-                        <button
-                          className="bg-white text-black text-sm place-self-center p-3 rounded-md"
-                          disabled
-                        >
-                          กิจกรรมยังไม่เปิดรับสมัคร
-                        </button>
-                      )}
-                    </div>
-                    <div>
-                      <button>
-                        test
+                </div>
+                <div className="flex justify-center gap-5 h-fit">
+                  <div className="flex justify-center">
+                    {isPublished && !isRegistered && !isPast && (
+                      <button
+                        className="btn btn-success place-self-center mt-5"
+                        onClick={(e) => handleClickRegister(e, element.id)}
+                      >
+                        เข้าร่วมกิจกรรม
                       </button>
-                    </div>
+                    )}
+                    {isPublished && isRegistered && !isPast && (
+                      <button
+                        className="btn btn-error place-self-center mt-5"
+                        onClick={(e) => handleClickCancel(e, element.id)}
+                      >
+                        ยกเลิกการเข้าร่วมกิจกรรม
+                      </button>
+                    )}
+                    {isPast && (
+                      <button
+                        className="btn !bg-white !text-black place-self-center mt-5"
+                        disabled
+                      >
+                        กิจกรรมปิดรับสมัคร
+                      </button>
+                    )}
+                    {!isPublished && !isPast && (
+                      <button
+                        className="btn !bg-white !text-black place-self-center mt-5"
+                        disabled
+                      >
+                        กิจกรรมยังไม่เปิดรับสมัคร
+                      </button>
+                    )}
+                  </div>
+                  <div className="flex justify-center">
+                    <button
+                      className="btn btn-primary place-self-center mt-5"
+                      onClick={() => {
+                        setIsTH(!isTH);
+                      }}
+                    >
+                      {isTH ? "EN" : "TH"}
+                    </button>
                   </div>
                 </div>
               </article>
