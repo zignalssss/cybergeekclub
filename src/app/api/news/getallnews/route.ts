@@ -18,4 +18,5 @@ export async function GET(request: Request) {
     }catch(error: unknown){
       return Response.json({ message: "GET USER Unsuccess"}, { status: 500 });
     }
-  }
+}
+export const dynamic = "force-dynamic";

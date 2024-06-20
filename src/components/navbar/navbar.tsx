@@ -58,15 +58,16 @@ const Navbar = () => {
 	}
 	const {data:session,status}:any = useSession();
 	const [userData ,setuserData] = useState<account>({} as account)
-	const getData = async ()=>{
-		try{
-			const user_account = await axios.post("/api/user/getuser",{email : session.user.email})	
-			setuserData(user_account.data.data)
-		}catch(error){
-			// console.log(error)
-		}
-	}
+	
 	useEffect(()=>{
+		const getData = async ()=>{
+			try{
+				const user_account = await axios.post("/api/user/getuser",{email : session.user.email})	
+				setuserData(user_account.data.data)
+			}catch(error){
+				// console.log(error)
+			}
+		}
 		getData()
 	},[session])
 	return (
@@ -183,8 +184,8 @@ const Navbar = () => {
 						<div className="dropdown dropdown-end">
 							<div tabIndex={0} role="button" className='flex group '>
 								<div className="avatar">
-									<div className="transition-all duration-250 group-hover:drop-shadow-[0_0_10px_rgba(22,101,52)] w-7mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_4px_rgba(22,101,52)]">
-										{userData ? <img alt='profile' src={userData.profile_image? `${userData.profile_image}`:`/asset/image/blank-prof.png`} width={16} height={16}/> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
+									<div className="transition-all duration-250 group-hover:drop-shadow-[0_0_10px_rgba(22,101,52)] md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_4px_rgba(22,101,52)]">
+										{userData ? <Image width={1000} height={1000} alt='profile' src={userData.profile_image? `${userData.profile_image}`:`/asset/image/blank-prof.png`}/> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
 									</div>
 								</div>
 
@@ -257,7 +258,7 @@ const Navbar = () => {
 									<div tabIndex={0} role="button">
 										<div className="avatar">
 											<div className="w-9 mt-2 md:w-10 rounded-full ring-2 ring-green-400 drop-shadow-[0_0_7px_rgba(22,101,52)]">
-											{userData ? <img alt='profile' src={userData.profile_image? `${userData.profile_image}`:`/asset/image/blank-prof.png`} width={16} height={16}/> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
+											{userData ? <Image alt='profile' src={userData.profile_image? `${userData.profile_image}`:`/asset/image/blank-prof.png`} width={100} height={100}/> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
 											</div>
 										</div>
 									</div>

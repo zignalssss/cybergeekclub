@@ -8,7 +8,7 @@ import FAQ from "@/components/mainpage_comp/FAQ";
 
 // import icon and image
 import Image from "next/image";
-import logoIcon from "../img/logoCGC_TW.svg";
+import logoIcon from "@/img/logoCGC_TW.svg";
 export default function Home() {
   return (
     <>
