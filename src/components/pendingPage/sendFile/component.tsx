@@ -4,6 +4,7 @@ import { FaFilePdf } from "react-icons/fa6";
 import axios from 'axios'
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { FaFileUpload } from "react-icons/fa";
 
 interface prop {
   onClick: (right : boolean) => void;
@@ -63,7 +64,7 @@ const Send_File = ({ onClick } : prop) => {
   return (
     <div className="border border-white w-11/12 h-fit rounded-3xl my-10">
       <div className="text-center text-3xl my-10">ส่งใบสมัคร</div>
-      <h1 className="text-center font-kanit">ดาวน์โหลดไฟล์เอกสาร</h1>
+      <h1 className="text-center font-kanit">ดาวน์โหลดไฟล์เอกสาร<span className="font-semibold text-green-500">&nbsp;(คลิกเพื่อตรวจสอบ)</span></h1>
       <div className="flex justify-center mt-5">
         <label
           htmlFor="my_modal_6"
@@ -73,14 +74,14 @@ const Send_File = ({ onClick } : prop) => {
             modalElement.showModal();
           }}
         >
-          <FaFilePdf />
+          <FaFilePdf className="hover:text-green-500 hover:scale-110 animate-bounce transition-all duration-150" />
         </label>
       </div>
       <dialog id="my_modal_2" className="modal h-full w-screen">
         <div className="modal-box h-[700px] w-full">
           <iframe
             className="w-full h-full"
-            src="https://drive.google.com/file/d/1xUulRx52tBVKoI3AubH0F65FnlVfO28w/preview"
+            src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/%E0%B9%83%E0%B8%9A%E0%B8%AA%E0%B8%A1%E0%B8%B1%E0%B8%84%E0%B8%A3%2F%E0%B9%83%E0%B8%9A%E0%B8%AA%E0%B8%A1%E0%B8%B1%E0%B8%84%E0%B8%A3%E0%B8%8A%E0%B8%A1%E0%B8%A3%E0%B8%A1%20CyberGeekClub.pdf?alt=media&token=abbbd368-3ca2-4f59-8930-1bff7cc08768"
           />
         </div>
         <form method="dialog" className="modal-backdrop">
@@ -93,7 +94,7 @@ const Send_File = ({ onClick } : prop) => {
             <Link
               className="font-kanit group-hover:text-green-500 "
               href={
-                "https://drive.usercontent.google.com/u/0/uc?id=1xUulRx52tBVKoI3AubH0F65FnlVfO28w&export=download"
+                "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/register_doc/ใบสมัครชมรม%20CyberGeekClub.pdf?response-content-disposition=attachment&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0xIkcwRQIgP6GDS8miV43mrUusIG2ZBfwowEJ2EPibLD7nqRTgL80CIQCu9cTx2Y3m016OTYdgKDa4CO5tc1sdb8RkAlBIvL5djCrkAghKEAAaDDk5MjM4MjQyNDQ2NSIMP2yZnWkHTc71Vl81KsECIQAnDFZakHoOZIYyejoIweZnX9jA1fzzZL2BWxM%2BKUZt4JBgcbYgGGBGuedjXTvwdZ556jdJiwLJUGSMDWo5QERTm%2FPjcg%2F%2Bo%2BhMAO16B%2FYf0WtQIOlLFAATOwsitnS8tY179iIZbo1j51cBh%2FXf8p0%2F2MNZ2kSWgYTtY1cmu2EgSf1%2BZF08Kikydc%2Bwy7G0jmFYISpAaCkTfhA7zdDsBPftn3medchwB5wLLKj19mYWkVmvLaejfXKkj1Fv%2BtJ7BHX6XZmi6M%2BgT4BAUIsO4c%2B8e9WKW86X8tOP3VP6J3mF4fPY5Qq2GJt1Cul1%2FSoOk%2BXDUKB195cWL%2FeI2Zoeoj66Wm2ZoJTFHgI7pxJ6C3YjDRckofKZuk0xV2AcsFJWRIH6NyZfoowFUWyOKd%2FccDEvMBbFjBHalHvniZBD2YvYMMv%2F0LMGOrMCpcGhVGXkgYDHBq5YZDtucFAolRw4X3XKZQG7x51%2F03B4wcfRZi%2Fy%2FByUfs8YxTB%2FRzrmD1oRCX6kkjYWrRotp9boK6QQwVtn9fHSS%2BJIKKSUF2A7zdpbK14Ag1vPWzan3uU6K0TKMXUfOa2sDBEXDL58WR%2BB%2BknbpoBEIOXSOlm7Fiw%2BgunUc0r4fSC41AO%2F%2BRhGXvyLyAHkz2n7cm6OAzL8WxuHk9Nx0IBc7LK%2BH10wgbQcc51AAypuYhW4O57497XDAKfG0cL0hxlei6Xnu9PS9a%2Fq%2FY5fF%2F9nLsVXwz1Y27vnPZsW%2BsoHhecdwYrKV16%2BFQ3bru%2BNOxQ1QvQktY8DdK4TyORgzkoTZCQMY%2BEpD7HrdjbP%2BS7OPMDb1RjlDEcemudziSa%2BCncKwIABVorvqg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240620T173530Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIA6ODU2CWIU6SV5UQN%2F20240620%2Fap-southeast-1%2Fs3%2Faws4_request&X-Amz-Signature=3c2ecb5c507ba3cc289a89fa84e731712fa618f50c702d21ebb7ae363f495492"
               }
             >
               ดาวน์โหลด 
@@ -105,19 +106,24 @@ const Send_File = ({ onClick } : prop) => {
       <div className="flex flex-col w-full h-fit my-10">
         <div className="flex justify-center w-full h-fit">
           <form onSubmit={handleSubmit}>
-            <label className="form-control w-full h-fit">
-              <input
+            <input
                 id="fileInput"
                 type="file"
-                className="file-input file-input-bordered file-input-sm file-input-success w-full max-w-xs "
+                className="hidden"
                 onChange={handleFileChange}
                 required
               />
-              <div className="flex justify-center mt-5 animate-pulse">
+            <label className="form-control w-full h-fit text-white bg-gradient-to-r  from-green-900 to-green-700 hover:scale-105 transition-all duration-200   rounded-lg font-kanit " htmlFor="fileInput">
+              <div className="flex justify-center items-center m-2">
+                <FaFileUpload className="text-xl mr-2"/>
+                <div className="mr-2">เลือกไฟล์</div>
+                {file && <p title={file.name} className="truncate max-w-40">{"-> "+file.name}</p>}
+              </div>
+              {/* <div className="flex justify-center mt-5 animate-pulse">
                 <span className="label-text text-green-500">
                   {file && <p>Selected file: {file.name}</p>}
                 </span>
-              </div>
+              </div> */}
             </label>
             <div className="flex justify-center">
               <button
