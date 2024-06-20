@@ -47,17 +47,17 @@ const Settingpage: React.FC = () => {
     const { data: session }: any = useSession();
     const [isError, setIsError] = useState<string>("")
     const [userData, setuserData] = useState<any>({})
-    const getData = async () => {
-        try {
-            const user_account = await axios.post("/api/user/getuser", { email: session.user.email })
-            setuserData(user_account.data.data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
     useEffect(() => {
+        const getData = async () => {
+            try {
+                const user_account = await axios.post("/api/user/getuser", { email: session.user.email })
+                setuserData(user_account.data.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
         getData()
-    }, [])
+    }, [session])
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -95,7 +95,7 @@ const Settingpage: React.FC = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             })
-                .then(repsonse => {
+                .then(response => {
                     setIsError("")
                     Toast.fire({
                         icon: "success",

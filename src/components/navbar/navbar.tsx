@@ -58,15 +58,16 @@ const Navbar = () => {
 	}
 	const {data:session,status}:any = useSession();
 	const [userData ,setuserData] = useState<account>({} as account)
-	const getData = async ()=>{
-		try{
-			const user_account = await axios.post("/api/user/getuser",{email : session.user.email})	
-			setuserData(user_account.data.data)
-		}catch(error){
-			// console.log(error)
-		}
-	}
+	
 	useEffect(()=>{
+		const getData = async ()=>{
+			try{
+				const user_account = await axios.post("/api/user/getuser",{email : session.user.email})	
+				setuserData(user_account.data.data)
+			}catch(error){
+				// console.log(error)
+			}
+		}
 		getData()
 	},[session])
 	return (
