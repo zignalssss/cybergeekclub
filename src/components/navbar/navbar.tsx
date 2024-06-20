@@ -38,7 +38,7 @@ const Navbar = () => {
 	{ /*  section for mobile responsive */ }
 	const [isOpen, setIsOpen] = useState(false)//nav mobile left
 
-	const [isDrop1, setIsDrop1] = useState(false)//dropdown in nav Abou
+	const [isDrop1, setIsDrop1] = useState(false)//dropdown in nav About
 	const [isDrop2, setIsDrop2] = useState(false)//dropdown in nav Contact
 	const [isDrop3, setIsDrop3] = useState(false)//dropdown in nav News
 	const navbarDrop1Handel = () => {
