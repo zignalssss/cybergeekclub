@@ -46,7 +46,7 @@ const Activities: React.FC<{ searchParams?: { query?: string } }> = ({
         <h1 className="text-4xl font-extrabold font-kanit text-center p-10">กิจกรรมองค์กร</h1>
         <SearchActivities />
         <div className="flex justify-center w-full h-fit">
-          <div className="bg-black w-4/5 h-4/5">
+          <div className="bg-black w-11/12 h-4/5">
             <GridActivities activities={activitiesObj} query={query} />
           </div>
         </div>

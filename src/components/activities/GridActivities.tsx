@@ -4,8 +4,13 @@ import React, { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import axios from "axios";
-import { formatThaiDateTime, isPastTime } from "@/lib/utils/formatDate";
+import {
+  formatThaiDateTime,
+  formatEnglishDateTime,
+  isPastTime,
+} from "@/lib/utils/formatDate";
 interface activitiesObj {
   id: string;
   published_status: boolean;
@@ -33,39 +38,61 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
   activities,
   query,
 }) => {
-  const [isTH, setIsTH] = useState<boolean>(true);
   const [activitiesHistory, setActivitiesHistory] = useState<
     activitiesHistory[]
   >([]);
-  const router = useRouter();
+  const [isCertified, setIsCertified] = useState<boolean>(false);
   const filteredActivities = useMemo(() => {
     return activities.filter((activitiesItem) =>
       activitiesItem.title_th.toLowerCase().includes(query.toLowerCase())
     );
   }, [activities, query]);
-
+  const [isTH, setIsTH] = useState<boolean[]>(
+    new Array(filteredActivities.length).fill(true)
+  );
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { data: session} = useSession();
   const handleClickRegister = async (
     e: React.MouseEvent<HTMLButtonElement>,
     id: string
   ) => {
-    e.preventDefault();
-    await axios.post("/api/activities/registeractivities", { id });
-    getActivitiesHistory();
+    try {
+      e.preventDefault();
+      setIsLoading(true);
+      const email = session?.user?.email;
+      const role = await axios.post("/api/user/getrolebyemail",{email:email})
+      if(role.data.data.role === "MEMBER"){
+        return;
+      }
+      await axios.post("/api/activities/registeractivities", { id });
+      getActivitiesHistory();
+    } catch (error: any) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   const handleClickCancel = async (
     e: React.MouseEvent<HTMLButtonElement>,
     id: string
   ) => {
-    e.preventDefault();
-    const activityHistoryId = activitiesHistory.find(
-      (item) => item.corporate_activity_id === id
-    )?.id;
-    if (activityHistoryId) {
-      await axios.delete(`/api/activities/deleteregisteractivities/`, {
-        data: { id: activityHistoryId },
-      });
+    try {
+      e.preventDefault();
+      setIsLoading(true);
+      const activityHistoryId = activitiesHistory.find(
+        (item) => item.corporate_activity_id === id
+      )?.id;
+      if (activityHistoryId) {
+        await axios.delete(`/api/activities/deleteregisteractivities/`, {
+          data: { id: activityHistoryId },
+        });
+      }
+      getActivitiesHistory();
+    } catch (error: any) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-    getActivitiesHistory();
   };
   const getActivitiesHistory = async () => {
     try {
@@ -77,10 +104,23 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
     }
   };
   useEffect(() => {
+    setIsTH(new Array(filteredActivities.length).fill(true));
+    const getRole = async () => {
+      try {
+        const email = session?.user?.email;
+        const role = await axios.post("/api/user/getrolebyemail",{email:email})
+        if(role.data.data.role === "CERTIFIED"){
+          setIsCertified(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getRole();
     getActivitiesHistory();
-  }, []);
+  }, [filteredActivities, session]);
   return (
-    <div className={`grid grid-cols-1 w-full h-fit overflow-y-auto`}>
+    <div className={`grid grid-cols-1 w-full h-fit`}>
       {Array.isArray(activities) && filteredActivities.length === 0 && (
         <>
           <div className="flex justify-center">
@@ -105,78 +145,120 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="h-[512px] w-[512px]">
+              <picture className="xl:h-[512px] xl:w-[512px] w-full h-full ">
                 <Image
-                  src={isTH ? element.banner_th : element.banner_en}
+                  src={isTH[index] ? element.banner_th : element.banner_en}
                   width={512}
                   height={512}
                   alt="placeholder"
-                  className="rounded-l-2xl"
+                  className="rounded-l-2xl xl:size-full"
                 />
-              </div>
+              </picture>
               <article className="mx-5 grid-rows-2 h-full col-span-2 ">
                 <div className="w-full max-h-[80%]">
-                  <pre className="break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-xl py-4">
-                    {isTH ? element.title_th : element.title_en}
-                  </pre>
-                  <h1 className="text-white">รายละเอียดกิจกรรม : </h1>
-                  <pre className="my-2 overflow-auto h-64 max-h-64 break-words whitespace-pre-wrap group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                    {isTH ? element.particulars_th : element.particulars_en}
+                  <p className="break-words whitespace-pre-wrap text-white font-kanit text-start text-2xl py-4">
+                    {element.title_th && isTH[index]
+                      ? element.title_th
+                      : element.title_en && !isTH[index]
+                      ? element.title_en
+                      : isTH[index]
+                      ? "ไม่มีชื่อเรื่อง"
+                      : "No title"}
+                  </p>
+                  <h1 className="text-green-500">
+                    {isTH[index]
+                      ? "รายละเอียดกิจกรรม : "
+                      : "Activity details :"}
+                  </h1>
+                  <pre className="my-2 overflow-auto h-64 max-h-64 break-words whitespace-pre-wrap font-kanit text-start text-neutral-300">
+                    {isTH[index]
+                      ? element.particulars_th
+                      : element.particulars_en}
                   </pre>
                   <div className="bottom-0">
-                    <pre className="break-words whitespace-pre-wrap flex group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                      <h1 className="text-white">เวลาเริ่มกิจกรรม : </h1>
-                      {formatThaiDateTime(element.start_period)}
+                    <pre className="break-words whitespace-pre-wrap flex font-kanit text-start text-neutral-300">
+                      <h1 className="text-green-500">
+                        {isTH[index] ? "เวลาเริ่มกิจกรรม : " : "Event Start :"}
+                      </h1>
+                      {isTH[index]
+                        ? formatThaiDateTime(element.start_period)
+                        : formatEnglishDateTime(element.start_period)}
                     </pre>
-                    <pre className="break-words whitespace-pre-wrap flex group-hover:text-green-500 font-kanit text-start text-neutral-300">
-                      <h1 className="text-white">เวลาสิ้นสุดกิจกรรม : </h1>
-                      {formatThaiDateTime(element.end_period)}
+                    <pre className="break-words whitespace-pre-wrap flex font-kanit text-start text-neutral-300">
+                      <h1 className="text-green-500">
+                        {isTH[index] ? "เวลาสิ้นสุดกิจกรรม : " : "Event End :"}
+                      </h1>
+                      {isTH[index]
+                        ? formatThaiDateTime(element.end_period)
+                        : formatEnglishDateTime(element.end_period)}
                     </pre>
                   </div>
                 </div>
                 <div className="flex justify-center gap-5 h-fit">
                   <div className="flex justify-center">
-                    {isPublished && !isRegistered && !isPast && (
+                    {isLoading && (
                       <button
-                        className="btn btn-success place-self-center mt-5"
-                        onClick={(e) => handleClickRegister(e, element.id)}
+                        className="btn place-self-center my-5"
+                        disabled
                       >
-                        เข้าร่วมกิจกรรม
+                        {isTH[index] ? "กำลังดำเนินการ" : "Loading..."}
                       </button>
                     )}
-                    {isPublished && isRegistered && !isPast && (
+                    {isPublished && !isRegistered && !isPast && isCertified && !isLoading &&(
                       <button
-                        className="btn btn-error place-self-center mt-5"
+                        className="btn btn-success place-self-center my-5"
+                        onClick={(e) => handleClickRegister(e, element.id)}
+                      >
+                        {isTH[index] ? "เข้าร่วมกิจกรรม" : "Join the activity"}
+                      </button>
+                    )}
+                    {isPublished && isRegistered && !isPast && isCertified && !isLoading &&(
+                      <button
+                        className="btn btn-error place-self-center my-5"
                         onClick={(e) => handleClickCancel(e, element.id)}
                       >
-                        ยกเลิกการเข้าร่วมกิจกรรม
+                        {isTH[index] ? "ยกเลิกการเข้าร่วมกิจกรรม" : "Cancel the activity"}
                       </button>
                     )}
                     {isPast && (
                       <button
-                        className="btn !bg-white !text-black place-self-center mt-5"
+                        className="btn !bg-white/75 !text-black place-self-center my-5"
                         disabled
                       >
-                        กิจกรรมปิดรับสมัคร
+                        {isTH[index] ? "กิจกรรมปิดรับสมัคร" : "Activity closed"}
                       </button>
                     )}
-                    {!isPublished && !isPast && (
+                    {!isPublished && !isPast && isCertified && !isLoading &&(
                       <button
-                        className="btn !bg-white !text-black place-self-center mt-5"
+                        className="btn !bg-white/75 !text-black place-self-center my-5"
                         disabled
                       >
-                        กิจกรรมยังไม่เปิดรับสมัคร
+                        {isTH[index] ? "กิจกรรมยังไม่เปิดรับสมัคร" : "Activity not open"}
                       </button>
                     )}
+                    {
+                      !isCertified &&(
+                        <button
+                          className="btn !bg-white/75 !text-black place-self-center my-5"
+                          disabled
+                        >
+                          {isTH[index] ? "ดูอย่างเดียว" : "View only"}
+                        </button>
+                      )
+                    }
                   </div>
                   <div className="flex justify-center">
                     <button
-                      className="btn btn-primary place-self-center mt-5"
+                      className="btn btn-primary place-self-center my-5"
                       onClick={() => {
-                        setIsTH(!isTH);
+                        setIsTH((prev) => [
+                          ...prev.slice(0, index),
+                          !prev[index],
+                          ...prev.slice(index + 1),
+                        ]);
                       }}
                     >
-                      {isTH ? "EN" : "TH"}
+                      {isTH[index] ? "EN" : "TH"}
                     </button>
                   </div>
                 </div>
