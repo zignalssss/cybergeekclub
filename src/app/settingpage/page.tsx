@@ -136,7 +136,7 @@ const Settingpage: React.FC = () => {
                         <div className='flex items-center'>
                             <div className="avatar">
                                 <div className="w-24 rounded-xl border-2 border-green-500 ">
-                                    <Image alt='profile' src={avatar ? URL.createObjectURL(avatar) : `${userData.profile_image ? `${userData.profile_image}` : `/asset/Image/cat.png`}`} width={100} height={100}/>
+                                    <Image alt='profile' src={avatar ? URL.createObjectURL(avatar) : `${userData.profile_image ? `${userData.profile_image}` : `https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/blank-profile-picture-973460_1280.png?alt=media&token=8e0b08a9-2543-402a-bf86-2b500557f9eb`}`} width={100} height={100}/>
                                 </div>
                             </div>
                             <div className='flex flex-col items-center ml-10'>
