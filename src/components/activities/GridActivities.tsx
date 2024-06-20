@@ -157,7 +157,7 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
                     กิจกรรมปิดรับสมัคร
                   </button>
                 )}
-                {!isPublished && (
+                {!isPublished && !isPast &&(
                   <button className="bg-white text-black text-sm place-self-center p-3 rounded-md" disabled>
                     กิจกรรมยังไม่เปิดรับสมัคร
                   </button>
