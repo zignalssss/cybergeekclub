@@ -14,8 +14,8 @@ const Eventcalendar = () => {
     const [calendarObj, setcalendarObj] = useState<calendarObj[]>([]);
     const getCalendar = async()=>{
         try{
-            const evencalendar = await axios.get('/api/calendaractivities/getallcalendar');
-            setcalendarObj(evencalendar.data.data)
+            const evencalendar = await axios.get('/api/calendaractivities/getallcalendar');     
+            setcalendarObj(evencalendar.data.data)   
         }catch(error){
             console.log(error)
         }
@@ -33,13 +33,17 @@ const Eventcalendar = () => {
                     <div className="flex items-center">Title</div>
                     <div className="flex items-center justify-end">Date</div>
                 </div>
-                {calendarObj.map((list, index) => (
-                <div key={index} className="p-4 grid grid-cols-3 gap-5 border border-white/15 mx-10">
-                    <div className="flex items-center">{list.id}</div>
-                    <div className="flex items-center max-w-10 md:max-w-fit">{list.particulars_th}</div>
-                    <div className="flex items-center justify-end">{formatThaiDateOnly(list.start_period)} - {formatThaiDateOnly(list.end_period)}</div>
-                </div>
-                ))}
+                {calendarObj.length != 0 ? 
+                    calendarObj.map((list, index) => (
+                    <div key={index} className="p-4 grid grid-cols-3 gap-5 border border-white/15 mx-10">
+                        <div className="flex items-center">{list.id}</div>
+                        <div className="flex items-center max-w-10 md:max-w-fit">{list.particulars_th}</div>
+                        <div className="flex items-center justify-end">{formatThaiDateOnly(list.start_period)} - {formatThaiDateOnly(list.end_period)}</div>
+                    </div>
+                    )) 
+                :
+                    <div className='text-center text-xl m-10'>Activity Not Found</div>
+                }
             </div>
         </div>
   )
