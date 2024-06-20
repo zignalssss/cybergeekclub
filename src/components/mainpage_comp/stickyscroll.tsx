@@ -10,7 +10,7 @@ const content = [
     content: (
       <div className="h-full w-full  flex items-center justify-center text-white">
         <Image
-          src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/codingcamp.png?alt=media&token=71ff72b0-8644-498c-9114-0a39d5e96dd7"
+          src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/imagecovercoding.png?alt=media&token=97d9b3fe-68b6-4bd5-a05f-c46a6e330b4e"
           width={300}
           height={300}
           className="h-full w-full object-cover"
@@ -29,7 +29,7 @@ const content = [
     content: (
       <div className="h-full w-full  flex items-center justify-center text-white">
         <Image
-          src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/logblack-removebg-preview%20(1).png?alt=media&token=ab43e614-6226-41be-9f3c-771305b3b686%7D"
+          src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/Cybercamp.jpg?alt=media&token=e0e5dfa3-fd6b-4636-bcca-d4650016b10e"
           width={300}
           height={300}
           className="h-full w-full object-cover"
