@@ -6,30 +6,50 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Loading from "./loading";
-import { document_log_status } from "@prisma/client";
-import test from "node:test";
+import { document_log, document_log_status } from "@prisma/client";
 
 const Send_File = dynamic(() => import("@/components/pendingPage/sendFile/component"));
 const ShowStatus = dynamic(() => import("@/components/pendingPage/status/component"));
-
-type LIST = {
-  id:string;
-  account_id:string;
-  document:string;
-  status:document_log_status;
-  notation:string;
-  account_admin_id:string;         
-  built:string;
-};
 
 interface Props {
   onClick: (right : boolean) => void;
 }
 
+// !Comment is part of the code before deployment
+// const testUUID = "b5a0b06f-2b49-4b02-8360-5ef99e447385";
+// const testDocuments_log: document_log[] = [
+//   {
+//     id: "1",
+//     document: "https://www.google.com",
+//     status: document_log_status.PENDING,
+//     notation: "test",
+//     built: new Date(),
+//     account_admin_id: null,
+//     account_id: testUUID
+//   },
+//   {
+//     id: "2",
+//     document: "https://www.google.com",
+//     status: document_log_status.REJECT,
+//     notation: "test",
+//     built: new Date(),
+//     account_admin_id: null,
+//     account_id: testUUID
+//   },
+//   {
+//     id: "3",
+//     document: "https://www.google.com",
+//     status: document_log_status.APPROVE,
+//     notation: "test",
+//     built: new Date(),
+//     account_admin_id: null,
+//     account_id: testUUID
+//   }
+// ]
+
 const PendingPage: React.FC = () => {
-  const [userrole,setuserrole] = useState<string>("")
   const [right, setRight] = useState<boolean>(false);
-  const [documents_log, setDocuments_log] = useState<LIST[]>([]);
+  const [documents_log, setDocuments_log] = useState<document_log[]>([] as document_log[]);
   const {data:session,status} = useSession();
   const router = useRouter();
   const controls: AnimationControls = useAnimation();
@@ -119,7 +139,7 @@ const PendingPage: React.FC = () => {
         <Send_File onClick={onClick}/>
       </div>
       <div className={`${!right ? "!hidden" : ""} flex justify-center h-fit`}>
-        <ShowStatus prop={documents_log} />
+        <ShowStatus prop={documents_log} />  {/* testDocuments_log - for testing / documents_log - for product*/}
       </div>
     </div>
   );
