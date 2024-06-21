@@ -2,9 +2,9 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signIn } from 'next-auth/react';
-import { TbWashDryP } from "react-icons/tb";
-import axios from 'axios'
+import { signIn } from "next-auth/react";
+import { IoIosMail } from "react-icons/io";
+import axios from "axios";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
@@ -47,18 +47,19 @@ export default function SignIn() {
         console.log(result?.error);
         return false;
       }
-      const role = await axios.post("/api/user/getrolebyemail",{email:email})
-      if(role.data.data.role === "CERTIFIED"){
-        router.push('/')
-      }else{
-        router.push('/pendingpage')
+      const role = await axios.post("/api/user/getrolebyemail", {
+        email: email,
+      });
+      if (role.data.data.role === "CERTIFIED") {
+        router.push("/");
+      } else {
+        router.push("/pendingpage");
       }
     } catch (error) {
       console.log("error", error);
     } finally {
       setIsLoading(false);
     }
-    
   };
   return (
     <div className="flex justify-center md:h-screen h-fit my-10">
@@ -73,15 +74,18 @@ export default function SignIn() {
               <div className="label">
                 <span className="label-text text-white font-kanit">อีเมล</span>
               </div>
-              <input
-                id="email"
-                type="email"
-                placeholder="example@ku.th"
-                className="input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E]"
-                required
-                onChange={handleInputChange}
-                value={formData.email}
-              />
+              <label className={`flex items-center gap-2`}>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="example@ku.th"
+                  className="input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E]"
+                  required
+                  onChange={handleInputChange}
+                  value={formData.email}
+                />
+                <IoIosMail className="m-1"/>
+              </label>
             </label>
             <label className="form-control w-full max-w-xs">
               <div className="label">
@@ -89,24 +93,24 @@ export default function SignIn() {
                   รหัสผ่าน
                 </span>
               </div>
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="example@#!@#123"
-                className={`input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E] ${
-                  !errorMessage ? "" : "ring-2 ring-red-500"
-                }`}
-                required
-                onChange={handleInputChange}
-                value={formData.password}
-              />
-              <button
-                className="absolute md:right-52 md:top-72 sm:right-36 sm:top-[270px] right-16 top-[270px]"
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <FaEye /> : <FaEyeSlash /> }
-              </button>
+              <label className={`flex items-center gap-2`}>
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="example@#!@#123"
+                  className={`input input-ghost w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E]`}
+                  required
+                  onChange={handleInputChange}
+                  value={formData.password}
+                />
+                <button
+                  type="button"
+                  className="m-1"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </button>
+              </label>
               <div className="mt-10">
                 <Link
                   href={"/recovery"}
@@ -126,7 +130,14 @@ export default function SignIn() {
               type="submit"
               className="btn btn-ghost min-w-52 bg-black m-5 font-kanit hover:text-green-500 md:my-10 disabled:text-white/20 disabled:cursor-not-allowed"
             >
-              {isLoading ? <div>เข้าสู่ระบบ&nbsp;<span className="loading loading-spinner loading-xs text-white/25"></span></div> : "เข้าสู่ระบบ"}
+              {isLoading ? (
+                <div>
+                  เข้าสู่ระบบ&nbsp;
+                  <span className="loading loading-spinner loading-xs text-white/25"></span>
+                </div>
+              ) : (
+                "เข้าสู่ระบบ"
+              )}
             </button>
           </div>
         </form>
