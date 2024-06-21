@@ -16,38 +16,38 @@ import {
 } from "@prisma/client";
 
 // !Comment is part of the code before deployment
-const testActivities: corporate_activity[] = [
-  {
-    id: "1",
-    title_th: "กิจกรรมทดสอบ",
-    title_en: "Test Activity",
-    particulars_th: "กิจกรรมทดสอบ",
-    particulars_en: "Test Activity",
-    start_period: new Date(),
-    end_period: new Date(),
-    banner_th:
-      "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
-    banner_en:
-      "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
-    published_status: true,
-    built: new Date(),
-  },
-  {
-    id: "2",
-    title_th: "กิจกรรมทดสอบ2",
-    title_en: "Test Activity2",
-    particulars_th: "กิจกรรมทดสอบ2",
-    particulars_en: "Test Activity2 ",
-    start_period: new Date(),
-    end_period: new Date(),
-    banner_th:
-      "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
-    banner_en:
-      "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
-    published_status: true,
-    built: new Date(),
-  },
-];
+// const testActivities: corporate_activity[] = [
+//   {
+//     id: "1",
+//     title_th: "กิจกรรมทดสอบ",
+//     title_en: "Test Activity",
+//     particulars_th: "กิจกรรมทดสอบ",
+//     particulars_en: "Test Activity",
+//     start_period: new Date(),
+//     end_period: new Date(),
+//     banner_th:
+//       "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
+//     banner_en:
+//       "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
+//     published_status: true,
+//     built: new Date(),
+//   },
+//   {
+//     id: "2",
+//     title_th: "กิจกรรมทดสอบ2",
+//     title_en: "Test Activity2",
+//     particulars_th: "กิจกรรมทดสอบ2",
+//     particulars_en: "Test Activity2 ",
+//     start_period: new Date(),
+//     end_period: new Date(),
+//     banner_th:
+//       "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
+//     banner_en:
+//       "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
+//     published_status: true,
+//     built: new Date(),
+//   },
+// ];
 
 interface GridActivitiesProps {
   activities: corporate_activity[];
@@ -156,7 +156,7 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
       )}
       {/* filteredActivities for Product / testActivities for testing */}
       {Array.isArray(activities) &&
-        testActivities.map((element, index) => {
+        filteredActivities.map((element, index) => {
           const isPast = isPastTime(element.start_period.toString());
           const isRegistered = activitiesHistory.some(
             (item) => item.corporate_activity_id === element.id
