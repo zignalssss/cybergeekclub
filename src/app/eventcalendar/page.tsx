@@ -2,16 +2,54 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
 import {formatThaiDateOnly} from '@/lib/utils/formatDate'
-interface calendarObj {
-    id : string  
-    particulars_th : string   
-    particulars_en : string    
-    start_period : string  
-    end_period : string  
-    built    : string  
-}
+import { activity_calendar } from '@prisma/client'
+
+// !Comment this line when you start development
+// const testActivity_calendar: activity_calendar[] = [
+//     {
+//         id: "1",
+//         particulars_th: "กิจกรรมที่ 1",
+//         particulars_en: "Activity 1",
+//         start_period: new Date(),
+//         end_period: new Date(),
+//         built : new Date()
+//     },
+//     {
+//         id: "2",
+//         particulars_th: "กิจกรรมที่ 2",
+//         particulars_en: "Activity 2",
+//         start_period: new Date(),
+//         end_period: new Date(),
+//         built : new Date()
+//     },
+//     {
+//         id: "3",
+//         particulars_th: "กิจกรรมที่ 3",
+//         particulars_en: "Activity 3",
+//         start_period: new Date(),
+//         end_period: new Date(),
+//         built : new Date()
+//     },
+//     {
+//         id: "4",
+//         particulars_th: "กิจกรรมที่ 4",
+//         particulars_en: "Activity 4",
+//         start_period: new Date(),
+//         end_period: new Date(),
+//         built : new Date()
+//     },
+//     {
+//         id: "5",
+//         particulars_th: "กิจกรรมที่ 5",
+//         particulars_en: "Activity 5",
+//         start_period: new Date(),
+//         end_period: new Date(),
+//         built : new Date()
+//     }
+// ]
+
 const Eventcalendar = () => {
-    const [calendarObj, setcalendarObj] = useState<calendarObj[]>([]);
+    const [calendarObj, setcalendarObj] = useState<activity_calendar[]>([] as activity_calendar[]);
     const getCalendar = async()=>{
         try{
             const evencalendar = await axios.get('/api/calendaractivities/getallcalendar');     
@@ -33,12 +71,13 @@ const Eventcalendar = () => {
                     <div className="flex items-center">Title</div>
                     <div className="flex items-center justify-end">Date</div>
                 </div>
+                {/* calendarObj for Product / testActivity_calendar for testing*/}
                 {calendarObj.length != 0 ? 
                     calendarObj.map((list, index) => (
                     <div key={index} className="p-4 grid grid-cols-3 gap-5 border border-white/15 mx-10">
-                        <div className="flex items-center">{list.id}</div>
+                        <div className="flex items-center">{index+1}</div>
                         <div className="flex items-center max-w-10 md:max-w-fit">{list.particulars_th}</div>
-                        <div className="flex items-center justify-end">{formatThaiDateOnly(list.start_period)} - {formatThaiDateOnly(list.end_period)}</div>
+                        <div className="flex items-center justify-end">{formatThaiDateOnly(list.start_period.toString())} - {formatThaiDateOnly(list.end_period.toString())}</div>
                     </div>
                     )) 
                 :
