@@ -2,27 +2,16 @@ import React, { useState } from "react";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { RiFileWarningFill } from "react-icons/ri";
-import { document_log_status } from "@prisma/client";
 import Link from "next/link";
 import { formatThaiDateTime } from "@/lib/utils/formatDate";
+import { document_log } from "@prisma/client";
 
-
-type LIST = {
-  id:string;
-  account_id:string;
-  document:string;
-  status:document_log_status;
-  notation:string;
-  account_admin_id:string;         
-  built:string;
-};
-
-const ShowStatus = ({ prop }: { prop: LIST[] }) => {
+const ShowStatus = ({ prop }: { prop: document_log[] }) => {
   return (
     <div className="min-h-screen h-fit md:w-11/12 border border-white rounded-3xl my-10">
       <div className="text-center text-3xl my-10">สถานะใบสมัคร</div>
-      <div className="pb-10 sm:w-screen sm:overflow-x-auto md:w-full md:overflow-auto">
-        <table className="table sm:w-[1000px] md:w-full">
+      <div className="pb-10 w-screen overflow-x-auto md:w-full md:overflow-auto">
+        <table className="table w-[800px] md:w-full">
           {/* head */}
           <thead>
             <tr className="text-white font-kanit text-base">
@@ -35,7 +24,7 @@ const ShowStatus = ({ prop }: { prop: LIST[] }) => {
           <tbody className="font-kanit">
             {prop.map((element, index) => (
               <tr key={index}>
-                <th>{formatThaiDateTime(element.built)}</th>
+                <th>{formatThaiDateTime(element.built.toString())}</th>
                 <td><Link target="_blank" href={element.document}>คลิกเพื่อดูไฟล์</Link></td>
                 <td>
                   <div className="flex md:grid md:grid-cols-2">
