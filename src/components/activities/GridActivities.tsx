@@ -3,7 +3,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import {
@@ -11,26 +10,47 @@ import {
   formatEnglishDateTime,
   isPastTime,
 } from "@/lib/utils/formatDate";
-interface activitiesObj {
-  id: string;
-  published_status: boolean;
-  banner_th: string;
-  banner_en: string;
-  title_th: string;
-  title_en: string;
-  particulars_th: string;
-  particulars_en: string;
-  start_period: string;
-  end_period: string;
-}
+import {
+  corporate_activity,
+  register_corporate_activity,
+} from "@prisma/client";
 
-interface activitiesHistory {
-  id: string;
-  email: string;
-  corporate_activity_id: string;
-}
+// !Comment is part of the code before deployment
+// const testActivities: corporate_activity[] = [
+//   {
+//     id: "1",
+//     title_th: "กิจกรรมทดสอบ",
+//     title_en: "Test Activity",
+//     particulars_th: "กิจกรรมทดสอบ",
+//     particulars_en: "Test Activity",
+//     start_period: new Date(),
+//     end_period: new Date(),
+//     banner_th:
+//       "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
+//     banner_en:
+//       "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
+//     published_status: true,
+//     built: new Date(),
+//   },
+//   {
+//     id: "2",
+//     title_th: "กิจกรรมทดสอบ2",
+//     title_en: "Test Activity2",
+//     particulars_th: "กิจกรรมทดสอบ2",
+//     particulars_en: "Test Activity2 ",
+//     start_period: new Date(),
+//     end_period: new Date(),
+//     banner_th:
+//       "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
+//     banner_en:
+//       "https://cybergeek-club-bucket.s3.ap-southeast-1.amazonaws.com/asset/image/tester/ratioOfpic.png",
+//     published_status: true,
+//     built: new Date(),
+//   },
+// ];
+
 interface GridActivitiesProps {
-  activities: activitiesObj[];
+  activities: corporate_activity[];
   query: string;
 }
 
@@ -39,8 +59,8 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
   query,
 }) => {
   const [activitiesHistory, setActivitiesHistory] = useState<
-    activitiesHistory[]
-  >([]);
+    register_corporate_activity[]
+  >([] as register_corporate_activity[]);
   const [isCertified, setIsCertified] = useState<boolean>(false);
   const filteredActivities = useMemo(() => {
     return activities.filter((activitiesItem) =>
@@ -51,7 +71,7 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
     new Array(filteredActivities.length).fill(true)
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { data: session} = useSession();
+  const { data: session } = useSession();
   const handleClickRegister = async (
     e: React.MouseEvent<HTMLButtonElement>,
     id: string
@@ -60,8 +80,10 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
       e.preventDefault();
       setIsLoading(true);
       const email = session?.user?.email;
-      const role = await axios.post("/api/user/getrolebyemail",{email:email})
-      if(role.data.data.role === "MEMBER"){
+      const role = await axios.post("/api/user/getrolebyemail", {
+        email: email,
+      });
+      if (role.data.data.role === "MEMBER") {
         return;
       }
       await axios.post("/api/activities/registeractivities", { id });
@@ -108,14 +130,16 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
     const getRole = async () => {
       try {
         const email = session?.user?.email;
-        const role = await axios.post("/api/user/getrolebyemail",{email:email})
-        if(role.data.data.role === "CERTIFIED"){
+        const role = await axios.post("/api/user/getrolebyemail", {
+          email: email,
+        });
+        if (role.data.data.role === "CERTIFIED") {
           setIsCertified(true);
         }
       } catch (error) {
         console.log(error);
       }
-    }
+    };
     getRole();
     getActivitiesHistory();
   }, [filteredActivities, session]);
@@ -130,9 +154,10 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
           </div>
         </>
       )}
+      {/* filteredActivities for Product / testActivities for testing */}
       {Array.isArray(activities) &&
         filteredActivities.map((element, index) => {
-          const isPast = isPastTime(element.start_period);
+          const isPast = isPastTime(element.start_period.toString());
           const isRegistered = activitiesHistory.some(
             (item) => item.corporate_activity_id === element.id
           );
@@ -145,13 +170,13 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <picture className="xl:h-[512px] xl:w-[512px] w-full h-full ">
+              <picture className="xl:h-[512px] xl:w-full flex justify-center place-items-center">
                 <Image
                   src={isTH[index] ? element.banner_th : element.banner_en}
                   width={512}
                   height={512}
                   alt="placeholder"
-                  className="rounded-l-2xl xl:size-full"
+                  className="md:rounded-l-2xl md:rounded-none rounded-t-2xl size-full"
                 />
               </picture>
               <article className="mx-5 grid-rows-2 h-full col-span-2 ">
@@ -181,46 +206,57 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
                         {isTH[index] ? "เวลาเริ่มกิจกรรม : " : "Event Start :"}
                       </h1>
                       {isTH[index]
-                        ? formatThaiDateTime(element.start_period)
-                        : formatEnglishDateTime(element.start_period)}
+                        ? formatThaiDateTime(element.start_period.toString())
+                        : formatEnglishDateTime(
+                            element.start_period.toString()
+                          )}
                     </pre>
                     <pre className="break-words whitespace-pre-wrap flex font-kanit text-start text-neutral-300">
                       <h1 className="text-green-500">
                         {isTH[index] ? "เวลาสิ้นสุดกิจกรรม : " : "Event End :"}
                       </h1>
                       {isTH[index]
-                        ? formatThaiDateTime(element.end_period)
-                        : formatEnglishDateTime(element.end_period)}
+                        ? formatThaiDateTime(element.end_period.toString())
+                        : formatEnglishDateTime(element.end_period.toString())}
                     </pre>
                   </div>
                 </div>
                 <div className="flex justify-center gap-5 h-fit">
                   <div className="flex justify-center">
                     {isLoading && (
-                      <button
-                        className="btn place-self-center my-5"
-                        disabled
-                      >
+                      <button className="btn place-self-center my-5" disabled>
                         {isTH[index] ? "กำลังดำเนินการ" : "Loading..."}
                       </button>
                     )}
-                    {isPublished && !isRegistered && !isPast && isCertified && !isLoading &&(
-                      <button
-                        className="btn btn-success place-self-center my-5"
-                        onClick={(e) => handleClickRegister(e, element.id)}
-                      >
-                        {isTH[index] ? "เข้าร่วมกิจกรรม" : "Join the activity"}
-                      </button>
-                    )}
-                    {isPublished && isRegistered && !isPast && isCertified && !isLoading &&(
-                      <button
-                        className="btn btn-error place-self-center my-5"
-                        onClick={(e) => handleClickCancel(e, element.id)}
-                      >
-                        {isTH[index] ? "ยกเลิกการเข้าร่วมกิจกรรม" : "Cancel the activity"}
-                      </button>
-                    )}
-                    {isPast && (
+                    {isPublished &&
+                      !isRegistered &&
+                      !isPast &&
+                      isCertified &&
+                      !isLoading && (
+                        <button
+                          className="btn btn-success place-self-center my-5"
+                          onClick={(e) => handleClickRegister(e, element.id)}
+                        >
+                          {isTH[index]
+                            ? "เข้าร่วมกิจกรรม"
+                            : "Join the activity"}
+                        </button>
+                      )}
+                    {isPublished &&
+                      isRegistered &&
+                      !isPast &&
+                      isCertified &&
+                      !isLoading && (
+                        <button
+                          className="btn btn-error place-self-center my-5"
+                          onClick={(e) => handleClickCancel(e, element.id)}
+                        >
+                          {isTH[index]
+                            ? "ยกเลิกการเข้าร่วมกิจกรรม"
+                            : "Cancel the activity"}
+                        </button>
+                      )}
+                    {isPast && isCertified && (
                       <button
                         className="btn !bg-white/75 !text-black place-self-center my-5"
                         disabled
@@ -228,24 +264,24 @@ const GridActivities: React.FC<GridActivitiesProps> = ({
                         {isTH[index] ? "กิจกรรมปิดรับสมัคร" : "Activity closed"}
                       </button>
                     )}
-                    {!isPublished && !isPast && isCertified && !isLoading &&(
+                    {!isPublished && !isPast && isCertified && !isLoading && (
                       <button
                         className="btn !bg-white/75 !text-black place-self-center my-5"
                         disabled
                       >
-                        {isTH[index] ? "กิจกรรมยังไม่เปิดรับสมัคร" : "Activity not open"}
+                        {isTH[index]
+                          ? "กิจกรรมยังไม่เปิดรับสมัคร"
+                          : "Activity not open"}
                       </button>
                     )}
-                    {
-                      !isCertified &&(
-                        <button
-                          className="btn !bg-white/75 !text-black place-self-center my-5"
-                          disabled
-                        >
-                          {isTH[index] ? "ดูอย่างเดียว" : "View only"}
-                        </button>
-                      )
-                    }
+                    {!isCertified && (
+                      <button
+                        className="btn !bg-white/75 !text-black place-self-center my-5"
+                        disabled
+                      >
+                        {isTH[index] ? "ดูอย่างเดียว" : "View only"}
+                      </button>
+                    )}
                   </div>
                   <div className="flex justify-center">
                     <button

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import dynamic from "next/dynamic";
+import { corporate_activity } from "@prisma/client";
 const SearchActivities = dynamic(
   () => import("@/components/searchEngine/SearchActivities")
 );
@@ -9,24 +10,12 @@ const GridActivities = dynamic(
   () => import("@/components/activities/GridActivities")
 );
 
-interface activitiesObj {
-  id : string,
-  published_status: boolean;
-  banner_th: string;
-  banner_en: string;
-  title_th: string;
-  title_en: string;
-  particulars_th: string;
-  particulars_en: string;
-  start_period: string;
-  end_period: string;
-}
 
 const Activities: React.FC<{ searchParams?: { query?: string } }> = ({
   searchParams,
 }) => {
   const query = searchParams?.query || "";
-  const [activitiesObj, setActivitiesObj] = useState<activitiesObj[]>([]);
+  const [activitiesObj, setActivitiesObj] = useState<corporate_activity[]>([] as corporate_activity[]);
   const getActivities = async () => {
     try {
       const res = await axios.get("/api/activities/getallactivities");
