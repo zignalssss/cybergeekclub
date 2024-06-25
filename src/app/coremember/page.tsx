@@ -54,21 +54,21 @@ const Page = () => {
                         <h3 className="mb-1  text-xl font-bold tracking-tight text-white ">
                             <a href="#">พีรพัฒน์ แสงเพิ่ม</a>
                         </h3>
-                        <p>ฝ่ายประชาสัมพัทธ์</p>
+                        <p>ฝ่ายประชาสัมพันธ์</p>
                     </div>
                     <div className="text-center text-gray-300 ">
                         <Image width={1000} height={1000} draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/memberprofile%2F4045811111.jpg?alt=media&token=bb411db7-de00-4868-8033-a1c599a660ce" alt="avatar img" />
                         <h3 className="mb-1  text-xl font-bold tracking-tight text-white ">
                             <a href="#">สิปปกร กันหาฤกษ์ </a>
                         </h3>
-                        <p>ฝ่ายประชาสัมพัทธ์</p>
+                        <p>ฝ่ายประชาสัมพันธ์</p>
                     </div>
                     <div className="text-center text-gray-300 ">
                         <Image width={1000} height={1000} draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/memberprofile%2F%E0%B8%93%E0%B8%B1%E0%B8%90%E0%B8%99%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B9%8C.jpg?alt=media&token=2aeddd74-8131-4f5d-9c89-95fd308e4c33" alt="avatar img" />
                         <h3 className="mb-1  text-xl font-bold tracking-tight text-white ">
                             <a href="#">ณัฐนันท์ ปุณโณทก</a>
                         </h3>
-                        <p>ฝ่ายประชาสัมพัทธ์</p>
+                        <p>ฝ่ายประชาสัมพันธ์</p>
                     </div>
 
                     <div className="text-center text-gray-300 ">
