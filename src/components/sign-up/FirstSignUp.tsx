@@ -71,6 +71,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
               placeholder="example@ku.th"
               className="input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E]"
               required
+              pattern="[a-z0-9._%+-]+@ku.th$"
               onChange={handleInputChange}
               value={formData.email}
             />
@@ -85,6 +86,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
               placeholder="example@#!@#123"
               className={`input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E] ${!errorMessage ? "" : "ring-2 ring-red-500"}`}
               required
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               onChange={handleInputChange}
               value={formData.password}
             />

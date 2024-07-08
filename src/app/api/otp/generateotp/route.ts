@@ -18,15 +18,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Verify transporter once during initialization
-transporter.verify((error, success) => {
-  if (error) {
-    console.error("Transporter verification failed", error);
-  } else {
-    console.log("Server is ready to take our messages");
-  }
-});
-
 export async function POST(request: Request) {
   try {
     const { email }: { email: string } = await request.json();
@@ -55,7 +46,15 @@ export async function POST(request: Request) {
     await prisma.one_time_password.create({
       data: { email, otp: OTP },
     });
-
+    // Verify transporter once during initialization
+    transporter.verify((error, success) => {
+      if (error) {
+        console.error("Transporter verification failed", error);
+      } else {
+        console.log("Server is ready to take our messages");
+      }
+    });
+    
     const mailOptions = {
       from: `"CyberGeekClub" <${SIMPLE_MAIL_TRANSFER_PROTOCOL_USERNAME}>`,
       to: email,
