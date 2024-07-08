@@ -33,11 +33,18 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
   }
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
+    
+    if (id === "email" && !value.match(/[a-z0-9._%+-]+@ku.th$/)) {
+      setErrorMessage("กรุณาใช้อีเมล @ku.th");
+    } else if (id === "password" && !value.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)) {
+      setErrorMessage("รหัสผ่านต้องประกอบด้วยตัวเลข ตัวพิมพ์เล็ก ตัวพิมพ์ใหญ่ และมีความยาวอย่างน้อย 8 ตัวอักษร");
+    } else {
+      setErrorMessage("");
+    }
     setFormData({
       ...formData,
       [id]: value,
     });
-    setErrorMessage("");
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -60,7 +67,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
         <h1 className="font-kanit text-3xl">สมัครสมาชิก</h1>
       </div>
       <form id="registrationForm1" onSubmit={handleSubmit}>
-        <div className="md:flex md:flex-col md:place-items-center justify-center grid w-full md:gap-10 gap-4">
+        <div className="md:flex md:flex-col place-items-center justify-center grid w-full md:gap-10 gap-4">
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text text-white font-kanit">อีเมล</span>
@@ -108,7 +115,7 @@ const FirstSignUp = ({ onSubmit, state }: Prop) => {
             />
           </label>
           {errorMessage && (
-            <div className="text-center text-red-500 font-kanit">
+            <div className="text-center text-red-500 font-kanit max-w-[248px]">
               {errorMessage}
             </div>
           )}

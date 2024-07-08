@@ -18,11 +18,15 @@ const SecondRecovery = ({ onSubmit, state }: Prop) => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.id === "password") {
+      if (!e.target.value.match(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/)) {
+        setErrorMessage("รหัสผ่านต้องประกอบด้วยตัวเลข ตัวพิมพ์เล็ก ตัวพิมพ์ใหญ่ และมีความยาวอย่างน้อย 8 ตัวอักษร")
+      } else {
+        setErrorMessage("");
+      }
       setPassword(e.target.value);
     } else if (e.target.id === "confirmPassword") {
       setConfirmPassword(e.target.value);
     }
-    setErrorMessage("");
   };
   const handleBackBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     state(0);
@@ -65,6 +69,7 @@ const SecondRecovery = ({ onSubmit, state }: Prop) => {
                 placeholder="example@#!@#123"
                 className="input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E]"
                 required
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 onChange={handleInputChange}
               />
             </label>
@@ -80,11 +85,12 @@ const SecondRecovery = ({ onSubmit, state }: Prop) => {
                 placeholder="example@#!@#123"
                 className="input input-bordered w-full max-w-xs text-white font-kanit focus:ring-2 focus:ring-green-500 invalid:ring-2 invalid:ring-red-500 bg-[#302E2E]"
                 required
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 onChange={handleInputChange}
               />
             </label>
             {errorMessage && (
-              <div className="text-center text-red-500 font-kanit">
+              <div className="text-center text-red-500 font-kanit max-w-[230px]">
                 {errorMessage}
               </div>
             )}

@@ -1,13 +1,11 @@
 "use client";
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa";
 import OTPInput from "../otp/OTPInput";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
-import { stringify } from "querystring";
+import Swal from 'sweetalert2';
 
 type Prop = {
   userData: {
@@ -37,6 +35,18 @@ const VerifySignUp = ({
   const [isError, setIsError] = useState<string>("");
   const [formData, setFormData] = useState<FormData>({
     otp: "",
+  });
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+    }
   });
 
   const onChange = (value: string) => {
@@ -86,9 +96,22 @@ const VerifySignUp = ({
     try {
       await axios.post("/api/otp/updateotp", { email }).catch((error) => {
         setIsError(error.response.data.message);
+      }).then((response) => {
+        Toast.fire({
+          icon: 'success',
+          title: 'ส่งรหัสสำเร็จ กรุณาตรวจสอบอีเมลของคุณ หากไม่พบอีเมล กรุณาตรวจสอบใน Junk Mail ด้วยครับ',
+          timer: 5000,
+          width: 400
+        })
       });
     } catch (error: unknown) {
       // console.error("Error sending OTP again:", error);
+      Toast.fire({
+        icon: 'error',
+        title: 'ส่งรหัสล้มเหลว กรุณาลองใหม่อีกครั้ง',
+        timer: 5000,
+        width: 400
+      })
     }
   };
 
