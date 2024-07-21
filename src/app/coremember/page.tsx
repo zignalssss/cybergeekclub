@@ -72,7 +72,7 @@ const Page = () => {
                     </div>
 
                     <div className="text-center text-gray-300 ">
-                        <Image width={1000} height={1000} draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/memberprofile%2F438065364_1163494494661455_2826494493911607746_n.jpg?alt=media&token=e72fed07-1a18-4c18-a896-7fd9d793a86c" alt="avatar img" />
+                        <Image width={1000} height={1000} draggable="false" className="mx-auto mb-4  w-28 object-cover border-2 border-green-500 drop-shadow-[0_0_4px_rgba(22,101,52)] h-28 rounded-full" src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/memberprofile%2F450660885_503771315435875_7523920898381233520_n.jpg?alt=media&token=05ac2cca-dd2a-4100-8f1d-fe234ad0ff3e" alt="avatar img" />
                         <h3 className="mb-1  text-xl font-bold tracking-tight text-white ">
                             <a href="#">ภาวิต ทองคำ</a>
                         </h3>
