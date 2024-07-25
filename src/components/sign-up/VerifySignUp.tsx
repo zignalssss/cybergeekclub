@@ -131,7 +131,7 @@ const VerifySignUp = ({ userData,state, email, nowState, finalState }: Prop) => 
       };
       generateOTP(email);
     }
-  }, [nowState, email, finalState, Toast]);
+  }, [nowState, email, finalState]);
 
   return (
     <div className="flex flex-col w-80 sm:w-[500px] h-full md:w-[700px] md:h-[700px] md:bg-[#181818] rounded-3xl border border-white/15">
