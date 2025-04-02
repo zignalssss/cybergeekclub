@@ -93,7 +93,7 @@ const Navbar = () => {
 									<span className="flex justify-center justify-items-center scale-0 group-hover:scale-100 transition-all duration-500 h-0.5 bg-green-400"></span>
 								</Link>
 							</li>	
-							{(userData?.role === "MEMBER" || status === 'unauthenticated') &&  
+							{/* {(userData?.role === "MEMBER" || status === 'unauthenticated') &&  
 								<li className={`group md:px-4 md:py-2 transition-all duration-250 hover:scale-110 hover:text-green-400 `}>
 								{status === 'authenticated' && session.user ? 
 									(
@@ -110,7 +110,7 @@ const Navbar = () => {
 									</Link>
 								}
 								</li>
-							}
+							} */}
 								
 							<MenuA setActiveA={setActiveA}>
 								<MenuItemDropdownA setActiveA={setActiveA} activeA={activeA} item="เกี่ยวกับเรา">
@@ -138,7 +138,7 @@ const Navbar = () => {
 								</MenuItemDropdownA>
 							</MenuA>
 
-							<MenuB setActiveB={setActiveB}>
+							{/* <MenuB setActiveB={setActiveB}>
 								<MenuItemDropdownB setActiveB={setActiveB} activeB={activeB} item="ข่าวสาร">
 									<div className="flex flex-col space-y-4 text-sm ">
 										<Link href="/news" className="text-neutral-200 hover:text-neutral-400 hover:scale-110 transition-all duration-150  ">
@@ -156,7 +156,7 @@ const Navbar = () => {
 
 									</div>
 								</MenuItemDropdownB>
-							</MenuB>
+							</MenuB> */}
 
 							<MenuC setActiveC={setActiveC}>
 								<MenuItemDropdownC setActiveC={setActiveC} activeC={activeC} item="ติตต่อเรา">
@@ -180,7 +180,7 @@ const Navbar = () => {
 						</ul>
 					</div>
 					<div className="hidden  lg:flex order-2 md:order-3">
-						{status === 'authenticated' && session.user ? 
+						{/* {status === 'authenticated' && session.user ? 
 						<div className="dropdown dropdown-end">
 							<div tabIndex={0} role="button" className='flex group '>
 								<div className="avatar">
@@ -192,9 +192,9 @@ const Navbar = () => {
 								<div className='mt-2 text-base indent-3 font-semibold text-white drop-shadow-[0_0_3px_rgba(255,255,255)] font-kanit'>
 									{userData && userData.display_name ? `${userData.display_name}` : "Loading..."}
 								</div>
-							</div>
+							</div> */}
 							{/* dropdown-content */}
-							<ul tabIndex={0} className={`bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 ${userData.first_name_en ? `bg-black w-52 md:w-fit` : `skeleton bg-black w-60 h-72`} rounded-md border border-white/0.2`}>
+							{/* <ul tabIndex={0} className={`bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 ${userData.first_name_en ? `bg-black w-52 md:w-fit` : `skeleton bg-black w-60 h-72`} rounded-md border border-white/0.2`}>
 								{userData.first_name_en && (
 									<div className='flex flex-col gap-1'>
 									<div className='text-base md:text-xl indent-3 font-semibold text-green-500 drop-shadow-[0_0_3px_rgba(22,101,52)]' >
@@ -225,8 +225,8 @@ const Navbar = () => {
 
 								</div>
 								)}
-							</ul>
-						</div>
+							</ul> */}
+						{/* </div>
 							:
 							<Link href="/sign-in">
 								<button className="font-kanit px-4 py-2   transition-all duration-250 hover:scale-110 hover:text-green-400 text-gray-50 rounded-xl flex items-center gap-2">
@@ -234,7 +234,7 @@ const Navbar = () => {
 									<span>เข้าสู่ระบบ</span>
 								</button>
 							</Link>
-						}
+						} */}
 					</div>
 
 					{/* Responsive Navbar  Design*/}
@@ -253,7 +253,7 @@ const Navbar = () => {
 							</div>
 						</div>
 						<div className="navbar-end">
-							{status === 'authenticated' && session.user ?
+							{/* {status === 'authenticated' && session.user ?
 								<div className="dropdown dropdown-end">
 									<div tabIndex={0} role="button">
 										<div className="avatar">
@@ -261,9 +261,9 @@ const Navbar = () => {
 											{userData ? <Image alt='profile' src={userData.profile_image? `${userData.profile_image}`:`https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/blank-profile-picture-973460_1280.png?alt=media&token=8e0b08a9-2543-402a-bf86-2b500557f9eb`} width={100} height={100}/> : <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>}	
 											</div>
 										</div>
-									</div>
+									</div> */}
 									{/* dropdown-content */}
-									<ul tabIndex={0} className="bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 bg-black rounded-md w-52 md:w-60 border border-white/0.2">
+									{/* <ul tabIndex={0} className="bg-opacity-90  mt-5 font-kanit dropdown-content z-[1] menu p-2 bg-black rounded-md w-52 md:w-60 border border-white/0.2">
 										<div className='flex flex-col gap-1'>
 											<div className='text-base md:text-xl indent-3 font-semibold text-green-500 drop-shadow-[0_0_3px_rgba(22,101,52)]'>
 												{userData.first_name_en}&nbsp;{userData.last_name_en}
@@ -302,7 +302,7 @@ const Navbar = () => {
 										<span className=' text-sm' >เข้าสู่ระบบ</span>
 									</button>
 								</Link>
-							}
+							} */}
 						</div>
 					</div>
 				</div>
@@ -322,7 +322,7 @@ const Navbar = () => {
 									<div className='ml-[7%] md:ml-3'>หน้าหลัก</div>
 								</Link>
 							</li>
-							<li className={`${userData.role === "CERTIFIED"? `hidden border-0`:``}pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent`}>
+							{/* <li className={`${userData.role === "CERTIFIED"? `hidden border-0`:``}pb-6 text-base text-white py-2 lg:px-6 text-center border-b-2 lg:border-b-0  hover:text-green-400  border-green-400  lg:hover:bg-transparent`}>
 								{status === 'authenticated' && session.user ? 
 									(userData.role === "CERTIFIED" ? 
 									""
@@ -336,7 +336,7 @@ const Navbar = () => {
 										<div className='ml-[7%] md:ml-3'>สมัครเข้าชมรม</div>
 									</Link>
 								}
-							</li>
+							</li> */}
 							<li className=" pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400  lg:hover:bg-transparent">
 
 								<div onClick={navbarDrop1Handel} className='flex justify-center'>
@@ -372,7 +372,7 @@ const Navbar = () => {
 									</ul>
 								</motion.div>
 							</li>
-							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400   md:hover:bg-transparent">
+							{/* <li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400   md:hover:bg-transparent">
 								<div onClick={navbarDrop2Handel} className='flex justify-center'>
 								{isDrop2? <RiArrowDropDownLine className='mt-[1%] text-xl'/> : <RiArrowDropDownLine className='rotate-180 mt-[1%] text-xl'/>}
 									<div>ข่าวสาร</div>
@@ -398,7 +398,7 @@ const Navbar = () => {
 										</Link>
 									</ul>
 								</motion.div>
-							</li>
+							</li> */}
 							<li className="pb-6 text-base text-white py-2 px-6 text-center  border-b-2 lg:border-b-0    border-green-400   md:hover:bg-transparent">
 								<div onClick={navbarDrop3Handel} className='flex justify-center'>
 									{isDrop3 ? <RiArrowDropDownLine className='mt-[1%] text-xl'/> : <RiArrowDropDownLine className='rotate-180 mt-[1%] text-xl'/>}

@@ -23,13 +23,13 @@ const content = [
     ),
   },
   {
-    title: "CGC's CyberSecurity Camp",
+    title: "Code Battle Contest",
     description:
-      "ค่าย CyberSecurity Camp เป็นที่สำหรับผู้ที่สนใจเรียนรู้เกี่ยวกับความมั่นคงปลอดภัยทางไซเบอร์และการเข้าร่วมการแข่งขัน Capture The Flag (CTF) โดยไม่จำเป็นต้องมีประสบการณ์มาก่อน ทุกคนที่สนใจเรียนรู้เกี่ยวกับเรื่องนี้มีโอกาสเข้าร่วมและเรียนรู้ได้ที่นี่!",
+      "Code Battle Contestโดยมุ่งเน้นการแข่งขันเขียนโค้ด กิจกรรมที่ท้าทายความสามารถของนักพัฒนาโปรแกรม โดยผู้เข้าแข่งขันต้องแก้โจทย์ปัญหาด้วยการเขียนโปรแกรมภายในเวลาที่กำหนด โดยวัดผลจาก ความถูกต้องของโค้ด, ประสิทธิภาพในการทำงาน, และระยะเวลาในการแก้ปัญหา เน้นการแก้โจทย์ปัญหาเชิงอัลกอริทึม",
     content: (
       <div className="h-full w-full  flex items-center justify-center text-white">
         <Image
-          src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/Cybercamp.jpg?alt=media&token=e0e5dfa3-fd6b-4636-bcca-d4650016b10e"
+          src="https://firebasestorage.googleapis.com/v0/b/cybergeek-storage-image.appspot.com/o/479499595_17909433204090492_987256973228160542_n.webp?alt=media&token=71041285-0203-4cb1-adc7-24420082fd36"
           width={300}
           height={300}
           className="h-full w-full object-cover"
